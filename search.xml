@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>初学web</title>
+      <link href="/2021/12/07/shi-yan/"/>
+      <url>/2021/12/07/shi-yan/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 基础 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Java后端路线</title>
+      <link href="/2021/08/02/java-lu-xian/"/>
+      <url>/2021/08/02/java-lu-xian/</url>
+      
+        <content type="html"><![CDATA[<h1 id="JAVA后端自学路线"><a href="#JAVA后端自学路线" class="headerlink" title="JAVA后端自学路线"></a>JAVA后端自学路线</h1><h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><ul><li><p>编程语言:Java </p></li><li><p>基本算法</p></li><li><p>基本网络知识：TCP/IP  HTTP/HTTPS</p></li><li><p>基本的设计模式</p></li></ul><h2 id="工具方面"><a href="#工具方面" class="headerlink" title="工具方面"></a>工具方面</h2><ul><li><p>操作系统：linux (CentOS\Ubuntu\Fe..)</p></li><li><p>代码管理：SVN / Git</p></li><li><p>持续集成(CI/CD)：jenkins</p></li><li><p>java的项目管理工具：Maven / Gradle </p></li></ul><h2 id="框架方面"><a href="#框架方面" class="headerlink" title="框架方面"></a>框架方面</h2><h4 id="应用层框架"><a href="#应用层框架" class="headerlink" title="应用层框架"></a>应用层框架</h4><ul><li><del>ssh (spring+structs+hibernate)(已过时)</del></li><li>ssm:spring +springmvc+mybatis(流行)</li><li>spring boot   spring cloud</li></ul><h4 id="各种中间件"><a href="#各种中间件" class="headerlink" title="各种中间件"></a>各种中间件</h4><ul><li>MQ 消息队列</li><li>RPC 通讯框架 gRPC thrift dubbo springcloud</li><li>elasticsearch 数据库 搜索引擎</li></ul><h4 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h4><ul><li><p>SQL：MySQL / Postgre SQL</p></li><li><p>NoSQL：Redis memcached mongodb elasticsearch</p></li></ul><h2 id="架构方面"><a href="#架构方面" class="headerlink" title="架构方面"></a>架构方面</h2><h4 id="分布式-微服务架构"><a href="#分布式-微服务架构" class="headerlink" title="分布式/微服务架构"></a>分布式/微服务架构</h4><ul><li>spring cloud</li><li>dubbo</li><li>rpc通信</li></ul><h4 id="虚拟化-容器化的技术"><a href="#虚拟化-容器化的技术" class="headerlink" title="虚拟化/容器化的技术"></a>虚拟化/容器化的技术</h4><ul><li>Docker </li><li>容器化</li><li>k8s kubernetes</li></ul><h2 id="关注源码-性能"><a href="#关注源码-性能" class="headerlink" title="关注源码 /性能"></a>关注源码 /性能</h2><ul><li>jdk源码以及部分设计思想</li><li>Spring 源码</li><li>JVM细节与排错</li><li>高并发/高可用</li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 路线 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2021/07/30/hello-world/"/>
+      <url>/2021/07/30/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new &quot;My New Post&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>
