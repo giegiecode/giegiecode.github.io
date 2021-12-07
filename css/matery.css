@@ -244,7 +244,7 @@ mark {
 
 /* 整体背景颜色，包括导航、移动端的导航、页尾、标签页等的背景颜色. */
 .bg-color {
-    background-image: linear-gradient(to right, #2193b0, #6dd5ed);
+    background-image: linear-gradient(to right, #000000, #434343);
     opacity: 0.93;  /* 透明效果 */
 }
 
