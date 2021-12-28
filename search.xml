@@ -8,7 +8,7 @@
       <link href="/2021/12/28/title/"/>
       <url>/2021/12/28/title/</url>
       
-        <content type="html"><![CDATA[<p>尝试通过typro来写博客，试试水，检查看看有没有什么问题</p><h2 id="sql-语句"><a href="#sql-语句" class="headerlink" title="sql 语句"></a>sql 语句</h2><ul><li><p>column_name as 别名</p></li><li><p>ROUND(colum_name,decimals) #ROUND()函数用于把数值字段舍入为指定的小数位</p></li><li><p>LIMIT N OFFSET M #limit 设定返回的记录数，offset指定select语句查询的数据偏移量</p></li><li><p>group by 后面有多个条件用 ”, “ 隔开，搭配 having 使用 而不是 where</p></li><li><p>order by 按什么顺序排序</p></li></ul><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20211228181259946.png"></p><ul><li>inner join 与 join一样</li></ul>]]></content>
+        <content type="html"><![CDATA[<p>尝试通过typro来写博客，试试水，检查看看有没有什么问题</p><h2 id="sql-语句"><a href="#sql-语句" class="headerlink" title="sql 语句"></a>sql 语句</h2><ul><li><p>column_name as 别名</p></li><li><p>ROUND(colum_name,decimals) #ROUND()函数用于把数值字段舍入为指定的小数位</p></li><li><p>LIMIT N OFFSET M #limit 设定返回的记录数，offset指定select语句查询的数据偏移量</p></li><li><p>group by 后面有多个条件用 ”, “ 隔开，搭配 having 使用 而不是 where</p></li><li><p>order by 按什么顺序排序</p></li></ul><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20211228181259946.png"></p><ul><li>inner join 与 join一样</li></ul><pre class="line-numbers language-none"><code class="language-none">select column_name(s)FROM table1INNER JOIN table2ON table1.column_name&#x3D;table2.column_name;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
       
       
       
