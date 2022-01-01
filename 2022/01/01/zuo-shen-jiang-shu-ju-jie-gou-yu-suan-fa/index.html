@@ -488,7 +488,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    194
+                    724
                 </div>
                 
 
@@ -515,7 +515,7 @@
             <div id="articleContent">
                 <h1 id="左神讲解数据结构与算法基础（1）"><a href="#左神讲解数据结构与算法基础（1）" class="headerlink" title="左神讲解数据结构与算法基础（1）"></a>左神讲解数据结构与算法基础（1）</h1><h2 id="认识复杂度与简单排序"><a href="#认识复杂度与简单排序" class="headerlink" title="认识复杂度与简单排序"></a>认识复杂度与简单排序</h2><p><strong>异或</strong>运算-交换 a和b （运用<strong>交换律</strong>与<strong>结合律</strong>，相同为0，不同为1）</p>
 <p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220101085534503.png" alt="image-20220101085534503"></p>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;一个数组中有两个数是奇数个，其余数是偶数个，求奇数个数的两数分别是多少
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F;一个数组中有两个数是奇数个，其余数是偶数个，求奇数个数的两数分别是多少
 int eor &#x3D; 0;
 for(int i &#x3D; 0 ; i &lt; arr.length ; i++)&#123;
     eor ^&#x3D; arr[i];
@@ -523,9 +523,9 @@ for(int i &#x3D; 0 ; i &lt; arr.length ; i++)&#123;
 &#x2F;&#x2F;eor &#x3D; a ^ b
 &#x2F;&#x2F;eor !&#x3D; 0
 &#x2F;&#x2F;eor必然有一个位置上是1
-int rightOne &#x3D; eor &amp; (~eor + 1); &#x2F;&#x2F;提取出最右的1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+int rightOne &#x3D; eor &amp; (~eor + 1); &#x2F;&#x2F;提取出最右的1，常用的方法<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">int onlyOne &#x3D; 0;&#x2F;&#x2F;eor&#39;
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">int onlyOne &#x3D; 0;&#x2F;&#x2F;eor&#39;
 for(int cur : arr)&#123;
     if((cur &amp; rightOne) &#x3D;&#x3D; 1)&#123;&#x2F;&#x2F;0或1都可
         onlyOne ^&#x3D; cur;
@@ -533,6 +533,21 @@ for(int cur : arr)&#123;
 &#125;
 System.out.println(&quot;一个数是：&quot;+onlyOne+&quot;另一个数是：&quot;+(onlyOne^eor));<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h2 id="冒泡排序（O（n平方））"><a href="#冒泡排序（O（n平方））" class="headerlink" title="冒泡排序（O（n平方））"></a>冒泡排序（O（n平方））</h2><p><a target="_blank" rel="noopener" href="http://javainterview.gitee.io/luffy/2021/09/01/11-%E7%AE%97%E6%B3%95/01.%20%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">参考1</a>，<a target="_blank" rel="noopener" href="https://github.com/CyC2018/CS-Notes/blob/master/notes/%E7%AE%97%E6%B3%95%20-%20%E6%8E%92%E5%BA%8F.md">参考2</a>，<a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/bubble-sort.html">参考3</a></p>
+<p>思路：从左往右，两两比较，大(小)放后面，第一次排序结束最大值(最小值)已经在数组末尾，n个数需要n-1趟</p>
+<p>实现：两层for循环，外层控制比较的趟数，内层是比较的次数，每比较一趟后，比较次数-1</p>
+<h2 id="选择排序（O（n平方））"><a href="#选择排序（O（n平方））" class="headerlink" title="选择排序（O（n平方））"></a>选择排序（O（n平方））</h2><p><a target="_blank" rel="noopener" href="http://javainterview.gitee.io/luffy/2021/09/01/11-%E7%AE%97%E6%B3%95/01.%20%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">参考1</a>，<a target="_blank" rel="noopener" href="https://github.com/CyC2018/CS-Notes/blob/master/notes/%E7%AE%97%E6%B3%95%20-%20%E6%8E%92%E5%BA%8F.md">参考2</a>，<a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/selection-sort.html">参考3</a></p>
+<p>思路：从数组中选择最小元素，将它与数组的第一个元素交换位置。再从数组剩下的元素中选择出最小的元素，将它与数组的第二个元素交换位置。不断进行这样的操作，直到将整个数组排序。</p>
+<p>实现：设第一个数是最小值，两层for循环，外层控制比较的趟数，内层找到当前趟数的最小值，与第一个数作比较，小于则进行交换</p>
+<h2 id="插入排序（时间复杂度按最差情况来估计）"><a href="#插入排序（时间复杂度按最差情况来估计）" class="headerlink" title="插入排序（时间复杂度按最差情况来估计）"></a>插入排序（时间复杂度按最差情况来估计）</h2><p><a target="_blank" rel="noopener" href="http://javainterview.gitee.io/luffy/2021/09/01/11-%E7%AE%97%E6%B3%95/01.%20%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">参考1</a>，<a target="_blank" rel="noopener" href="https://github.com/CyC2018/CS-Notes/blob/master/notes/%E7%AE%97%E6%B3%95%20-%20%E6%8E%92%E5%BA%8F.md">参考2</a>，<a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/insertion-sort.html">参考3</a></p>
+<p>思路：每次都将当前元素插入到左侧已经排序的数组中，使得插入之后左侧数组依然有序。</p>
+<p>举例：数组 {3, 5, 2, 4, 1}，从小到大排序，3先不动，从5开始与3比较（5&gt;3不动）：3,5,2,4,1；</p>
+<p>2与5比较（2&lt;5），5和2交换位置，2再与3比较（2&lt;3），3和2交换位置：2,3,5,4,1；</p>
+<p>4与5比较（4&lt;5），5和4交换位置，3再与4比较（4&gt;3），4不再与前面数字比较：2,3,4,5,1;</p>
+<p>1与5比较（1&lt;5），5和1交换位置，1再与4比较（1&lt;4），4和1交换位置，1再与3比较（1&lt;3），3和1交换为位置，1再与2比较（1&lt;2），2和1交换位置：1,2,3,4,5</p>
+<h2 id="二分法：O（logN）"><a href="#二分法：O（logN）" class="headerlink" title="二分法：O（logN）"></a>二分法：O（logN）</h2><p><a target="_blank" rel="noopener" href="https://programmercarl.com/0704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.html#_704-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE">示例</a></p>
+<p>一组有序数中查找一个数；一组有序数中查找最左侧&gt;=num的；一组有序数中查找最右侧&gt;=num的</p>
+<p><strong>注意</strong>：并非有序才能二分</p>
 
                 
             </div>
@@ -946,7 +961,7 @@ System.out.println(&quot;一个数是：&quot;+onlyOne+&quot;另一个数是：&
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">409</span>&nbsp;字
+                class="white-color">939</span>&nbsp;字
             
             
             
