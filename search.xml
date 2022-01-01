@@ -4,65 +4,29 @@
   
     
     <entry>
-      <title>测试5</title>
-      <link href="/2021/12/30/ce-shi-5/"/>
-      <url>/2021/12/30/ce-shi-5/</url>
+      <title>左神讲数据结构与算法</title>
+      <link href="/2022/01/01/zuo-shen-jiang-shu-ju-jie-gou-yu-suan-fa/"/>
+      <url>/2022/01/01/zuo-shen-jiang-shu-ju-jie-gou-yu-suan-fa/</url>
       
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>测试4</title>
-      <link href="/2021/12/30/ce-shi-4/"/>
-      <url>/2021/12/30/ce-shi-4/</url>
-      
-        <content type="html"><![CDATA[<p>545646</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="左神讲解数据结构与算法基础（1）"><a href="#左神讲解数据结构与算法基础（1）" class="headerlink" title="左神讲解数据结构与算法基础（1）"></a>左神讲解数据结构与算法基础（1）</h1><h2 id="认识复杂度与简单排序"><a href="#认识复杂度与简单排序" class="headerlink" title="认识复杂度与简单排序"></a>认识复杂度与简单排序</h2><p><strong>异或</strong>运算-交换 a和b （运用<strong>交换律</strong>与<strong>结合律</strong>，相同为0，不同为1）</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220101085534503.png" alt="image-20220101085534503"></p><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F;一个数组中有两个数是奇数个，其余数是偶数个，求奇数个数的两数分别是多少int eor &#x3D; 0;for(int i &#x3D; 0 ; i &lt; arr.length ; i++)&#123;    eor ^&#x3D; arr[i];&#125;&#x2F;&#x2F;eor &#x3D; a ^ b&#x2F;&#x2F;eor !&#x3D; 0&#x2F;&#x2F;eor必然有一个位置上是1int rightOne &#x3D; eor &amp; (~eor + 1); &#x2F;&#x2F;提取出最右的1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><pre class="line-numbers language-java" data-language="java"><code class="language-java">int onlyOne &#x3D; 0;&#x2F;&#x2F;eor&#39;for(int cur : arr)&#123;    if((cur &amp; rightOne) &#x3D;&#x3D; 1)&#123;&#x2F;&#x2F;0或1都可        onlyOne ^&#x3D; cur;    &#125;&#125;System.out.println(&quot;一个数是：&quot;+onlyOne+&quot;另一个数是：&quot;+(onlyOne^eor));<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
       
       
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>测试3</title>
-      <link href="/2021/12/30/ce-shi-3/"/>
-      <url>/2021/12/30/ce-shi-3/</url>
-      
-        <content type="html"><![CDATA[<p>测试3</p><p>15651</p>]]></content>
+      <categories>
+          
+          <category> 算法 </category>
+          
+          <category> 数据结构 </category>
+          
+      </categories>
       
       
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>测试2</title>
-      <link href="/2021/12/30/ce-shi-2/"/>
-      <url>/2021/12/30/ce-shi-2/</url>
-      
-        <content type="html"><![CDATA[<p>测试2</p><p>水电费第三方的收</p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>开发</title>
-      <link href="/2021/12/30/kai-fa/"/>
-      <url>/2021/12/30/kai-fa/</url>
-      
-        <content type="html"><![CDATA[<p>测试2</p>]]></content>
-      
-      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 数据结构 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -70,8 +34,8 @@
     
     <entry>
       <title>Typora+hexo发布博客</title>
-      <link href="/2021/12/28/title/"/>
-      <url>/2021/12/28/title/</url>
+      <link href="/2021/12/28/test/"/>
+      <url>/2021/12/28/test/</url>
       
         <content type="html"><![CDATA[<p>尝试通过typro来写博客，试试水，检查看看有没有什么问题</p><h2 id="sql-语句"><a href="#sql-语句" class="headerlink" title="sql 语句"></a>sql 语句</h2><ul><li><p>column_name as 别名</p></li><li><p>ROUND(colum_name,decimals) #ROUND()函数用于把数值字段舍入为指定的小数位</p></li><li><p>LIMIT N OFFSET M #limit 设定返回的记录数，offset指定select语句查询的数据偏移量</p></li><li><p>group by 后面有多个条件用 ”, “ 隔开，搭配 having 使用 而不是 where</p></li><li><p>order by 按什么顺序排序</p></li></ul><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20211228181259946.png"></p><ul><li>inner join 与 join一样</li></ul><pre class="line-numbers language-none"><code class="language-none">select column_name(s)FROM table1INNER JOIN table2ON table1.column_name&#x3D;table2.column_name;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><ul><li>不去重：union all</li></ul><h2 id="mysql-高级函数"><a href="#mysql-高级函数" class="headerlink" title="mysql 高级函数"></a>mysql 高级函数</h2><pre class="line-numbers language-none"><code class="language-none">if(expr,v1,v2)#如果表达式expr成立，返回结果v1;否做，返回结果v2.&#x2F;&#x2F; 牛客sql 26<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><pre class="line-numbers language-none"><code class="language-none">case expressionwhen condition then resultwhen 条件 then 结果...else 其他结果 #描述与输出不一致，以输出为准 end#牛客sql 27<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>附：<a href="https://www.cnblogs.com/chenduzizhong/p/9590741.html">case when用法</a></p><pre class="line-numbers language-java" data-language="java"><code class="language-java">system.out.println(&quot;hello&quot;);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
       
@@ -124,25 +88,6 @@
         <tags>
             
             <tag> java </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Java后端路线</title>
-      <link href="/2021/08/02/java-lu-xian/"/>
-      <url>/2021/08/02/java-lu-xian/</url>
-      
-        <content type="html"><![CDATA[<h1 id="JAVA后端自学路线"><a href="#JAVA后端自学路线" class="headerlink" title="JAVA后端自学路线"></a>JAVA后端自学路线</h1><h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><ul><li><p>编程语言:Java </p></li><li><p>基本算法</p></li><li><p>基本网络知识：TCP/IP  HTTP/HTTPS</p></li><li><p>基本的设计模式</p></li></ul><h2 id="工具方面"><a href="#工具方面" class="headerlink" title="工具方面"></a>工具方面</h2><ul><li><p>操作系统：linux (CentOS\Ubuntu\Fe..)</p></li><li><p>代码管理：SVN / Git</p></li><li><p>持续集成(CI/CD)：jenkins</p></li><li><p>java的项目管理工具：Maven / Gradle </p></li></ul><h2 id="框架方面"><a href="#框架方面" class="headerlink" title="框架方面"></a>框架方面</h2><h4 id="应用层框架"><a href="#应用层框架" class="headerlink" title="应用层框架"></a>应用层框架</h4><ul><li><del>ssh (spring+structs+hibernate)(已过时)</del></li><li>ssm:spring +springmvc+mybatis(流行)</li><li>spring boot   spring cloud</li></ul><h4 id="各种中间件"><a href="#各种中间件" class="headerlink" title="各种中间件"></a>各种中间件</h4><ul><li>MQ 消息队列</li><li>RPC 通讯框架 gRPC thrift dubbo springcloud</li><li>elasticsearch 数据库 搜索引擎</li></ul><h4 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h4><ul><li><p>SQL：MySQL / Postgre SQL</p></li><li><p>NoSQL：Redis memcached mongodb elasticsearch</p></li></ul><h2 id="架构方面"><a href="#架构方面" class="headerlink" title="架构方面"></a>架构方面</h2><h4 id="分布式-微服务架构"><a href="#分布式-微服务架构" class="headerlink" title="分布式/微服务架构"></a>分布式/微服务架构</h4><ul><li>spring cloud</li><li>dubbo</li><li>rpc通信</li></ul><h4 id="虚拟化-容器化的技术"><a href="#虚拟化-容器化的技术" class="headerlink" title="虚拟化/容器化的技术"></a>虚拟化/容器化的技术</h4><ul><li>Docker </li><li>容器化</li><li>k8s kubernetes</li></ul><h2 id="关注源码-性能"><a href="#关注源码-性能" class="headerlink" title="关注源码 /性能"></a>关注源码 /性能</h2><ul><li>jdk源码以及部分设计思想</li><li>Spring 源码</li><li>JVM细节与排错</li><li>高并发/高可用</li></ul>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 路线 </tag>
             
         </tags>
       

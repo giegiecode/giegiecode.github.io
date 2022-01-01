@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="开发, HTML,CSS,JavaScript,JQuery,java,linux等">
+    <meta name="keywords" content="左神讲数据结构与算法, HTML,CSS,JavaScript,JQuery,java,linux等">
     <meta name="description" content="本网站是个人兴趣爱好，总结分享经验，记录生活点滴的平台，希望在以后的学习旅途中，走出自己的风景。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>开发 | Xuan&#39;S Blog</title>
+    <title>左神讲数据结构与算法 | Xuan&#39;S Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -320,12 +320,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">开发</h1>
+                    <h1 class="description center-align post-title">左神讲数据结构与算法</h1>
                 </div>
             </div>
         </div>
@@ -439,12 +439,33 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                <span class="chip bg-color">算法</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                                <span class="chip bg-color">数据结构</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                算法
+                            </a>
+                        
+                            <a href="/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                数据结构
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -453,21 +474,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-12-30
+                    2022-01-01
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-12-30
+                    2022-01-01
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3
+                    194
                 </div>
                 
 
@@ -492,7 +513,26 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>测试2</p>
+                <h1 id="左神讲解数据结构与算法基础（1）"><a href="#左神讲解数据结构与算法基础（1）" class="headerlink" title="左神讲解数据结构与算法基础（1）"></a>左神讲解数据结构与算法基础（1）</h1><h2 id="认识复杂度与简单排序"><a href="#认识复杂度与简单排序" class="headerlink" title="认识复杂度与简单排序"></a>认识复杂度与简单排序</h2><p><strong>异或</strong>运算-交换 a和b （运用<strong>交换律</strong>与<strong>结合律</strong>，相同为0，不同为1）</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220101085534503.png" alt="image-20220101085534503"></p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F;一个数组中有两个数是奇数个，其余数是偶数个，求奇数个数的两数分别是多少
+int eor &#x3D; 0;
+for(int i &#x3D; 0 ; i &lt; arr.length ; i++)&#123;
+    eor ^&#x3D; arr[i];
+&#125;
+&#x2F;&#x2F;eor &#x3D; a ^ b
+&#x2F;&#x2F;eor !&#x3D; 0
+&#x2F;&#x2F;eor必然有一个位置上是1
+int rightOne &#x3D; eor &amp; (~eor + 1); &#x2F;&#x2F;提取出最右的1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">int onlyOne &#x3D; 0;&#x2F;&#x2F;eor&#39;
+for(int cur : arr)&#123;
+    if((cur &amp; rightOne) &#x3D;&#x3D; 1)&#123;&#x2F;&#x2F;0或1都可
+        onlyOne ^&#x3D; cur;
+    &#125;
+&#125;
+System.out.println(&quot;一个数是：&quot;+onlyOne+&quot;另一个数是：&quot;+(onlyOne^eor));<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -519,7 +559,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://giegiecode.github.io/2021/12/30/kai-fa/">https://giegiecode.github.io/2021/12/30/kai-fa/</a>
+                    <a href="https://giegiecode.github.io/2022/01/01/zuo-shen-jiang-shu-ju-jie-gou-yu-suan-fa/">https://giegiecode.github.io/2022/01/01/zuo-shen-jiang-shu-ju-jie-gou-yu-suan-fa/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -556,7 +596,15 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                    <span class="chip bg-color">算法</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                                    <span class="chip bg-color">数据结构</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -598,17 +646,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/12/30/ce-shi-2/">
+                <a href="/2022/01/01/zuo-shen-jiang-shu-ju-jie-gou-yu-suan-fa/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="测试2">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="左神讲数据结构与算法">
                         
-                        <span class="card-title">测试2</span>
+                        <span class="card-title">左神讲数据结构与算法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -618,16 +667,37 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-01
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            code-轩
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                    算法
+                                </a>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                    数据结构
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">算法</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="chip bg-color">数据结构</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -639,7 +709,7 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/12/28/title/">
+                <a href="/2021/12/28/test/">
                     <div class="card-image">
                         
                         
@@ -856,7 +926,7 @@
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2021</span>
+                <span id="year">2021-2022</span>
             
             <span id="year">2021</span>
             <a href="/about" target="_blank">code-轩</a>
@@ -865,7 +935,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">510</span>&nbsp;字
+                class="white-color">483</span>&nbsp;字
             
             
             
