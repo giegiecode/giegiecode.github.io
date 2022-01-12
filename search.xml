@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>项目调试技巧</title>
+      <link href="/2022/01/12/xiang-mu-diao-shi-ji-qiao/"/>
+      <url>/2022/01/12/xiang-mu-diao-shi-ji-qiao/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220112214338461.png" alt="image-20220112214338461"></p><h2 id="状态码："><a href="#状态码：" class="headerlink" title="状态码："></a>状态码：</h2><p>200：成功了</p><p>302：重定向</p><p>404：路径写错了</p><p>500：服务器在处理的过程中发生了问题</p><h2 id="打断点"><a href="#打断点" class="headerlink" title="打断点"></a>打断点</h2><p>F8：程序逐行向下执行</p><p>F7：进入当前行所调方法的内部</p><p>F9：程序向下执行直到执行到下一个断点为止</p><p>客户端断点调试</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220112220911302.png" alt="image-20220112220911302"></p><p>F10：向下执行一行</p><p>F11：进入代码</p><p>F8：执行到底</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 基础 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 调试 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>初学mybatis</title>
       <link href="/2022/01/12/mybatis/"/>
       <url>/2022/01/12/mybatis/</url>
