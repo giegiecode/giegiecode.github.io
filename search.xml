@@ -4,6 +4,81 @@
   
     
     <entry>
+      <title>git使用</title>
+      <link href="/2022/01/14/git-shi-yong/"/>
+      <url>/2022/01/14/git-shi-yong/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220113082458327.png" alt="image-20220113082458327"></p><p>进入目录</p><p>git init</p><p>git add 增加</p><p>git commit -m “注释语句” 提交</p><p>git status 看状态</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 基础 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>初识spring</title>
+      <link href="/2022/01/14/chu-shi-spring/"/>
+      <url>/2022/01/14/chu-shi-spring/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220113195429108.png" alt="image-20220113195429108"></p><p>spring 管理的对象称为 bean</p><p> 若不用 IoC 自己管理对象，new对象A,对象B，A.set 使A和B产生联系，A调用B，缺点：A和B产生了耦合，项目规模变大，不易维护</p><p>Spring Container是IoC容器要装两份数据：① 需要向其提供bean的类型 ② 配置文件，配置描述bean之间的关系<br>会自动实例化Bean 然后被调用，bean 之间不会产生直接关系，它们之间的关系体现在配置文件的配置中，降低了耦合度</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220113195809413.png" alt="image-20220113195809413"></p><p>spring 应用运行启动，底层自动启动了tomcat，并创建了spring容器，容器会自动扫描某些包下的某些类，将这些Bean自动装配到容器中</p><p>CommunityApplication 这个类就是配置文件，注解@SpringBootApplication 标识的类就是配置文件</p><p><strong>进到@SpringBootApplication 底层</strong></p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220114080336197.png" alt="image-20220114080336197"></p><p>@SpringBootConfiguration 表示这个类是个配置文件</p><p>@EnableAutoConfiguration 表示启用自动配置</p><p>@ComponentScan 表示主键扫描，会自动扫描某些包下的某些bean，装配到容器里，扫描配置类所在的包以及子包下的bean，并且<br>这些bean上需要有像@Controller这样的注解，才能被扫描<br>和@Controller等价的注解有@Service@Repository@Component，都是由@Component 来实现的</p><p>如果开发业务组件用@Service标明，如果开发处理请求的组件用@Controller标识，如果开发数据库访问的组件用@Repository<br>如果开发的类在任何地方都能用，用@Component 通用</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220114082620382.png" alt="image-20220114082620382"></p><p>①：加注解 @ContextConfiguration 使测试类启用 CommunityApplication 作为配置类</p><p>②：哪个类要得到容器，就实现 ApplicationContextAware 这个接口</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220114083153895.png" alt="image-20220114083153895"></p><p>BeanFactory是容器的顶层接口</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220114085343478.png" alt="image-20220114085343478"></p><p>@Autowired 注入<br>spring 容器将AlphaDao 注入到 alphaDao 属性中，直接使用这个属性就可以</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 框架 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> spring </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>牛客项目（发送邮件）</title>
+      <link href="/2022/01/14/niu-ke-xiang-mu-1/"/>
+      <url>/2022/01/14/niu-ke-xiang-mu-1/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220114102208602.png" alt="image-20220114102208602"></p><h2 id="开启SMTP服务"><a href="#开启SMTP服务" class="headerlink" title="开启SMTP服务"></a>开启SMTP服务</h2><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220114122601574.png" alt="image-20220114122601574"></p><h2 id="导入jar包"><a href="#导入jar包" class="headerlink" title="导入jar包"></a>导入jar包</h2><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220114122812314.png" alt="image-20220114122812314"></p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220114123950892.png" alt="image-20220114123950892"></p><h2 id="邮箱参数配置"><a href="#邮箱参数配置" class="headerlink" title="邮箱参数配置"></a>邮箱参数配置</h2><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220114122954538.png" alt="image-20220114122954538"></p><p>password 处填写授权码</p><h2 id="使用-JavaMailSender-发送邮件"><a href="#使用-JavaMailSender-发送邮件" class="headerlink" title="使用 JavaMailSender 发送邮件"></a>使用 JavaMailSender 发送邮件</h2><p>community 包下 新建包util ，建类MailClient</p><p>JavaMailSender 是 Spring Email 的核心组件，负责发送邮件<br>MimeMessage 用于封装邮件的相关信息<br>MimeMessageHelper 用于辅助构建 MimeMessage 对象</p><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.nowcoder.community.util;import org.slf4j.Logger;import org.slf4j.LoggerFactory;import org.springframework.beans.factory.annotation.Autowired;import org.springframework.beans.factory.annotation.Value;import org.springframework.mail.javamail.JavaMailSender;import org.springframework.mail.javamail.MimeMessageHelper;import org.springframework.stereotype.Component;import javax.mail.MessagingException;import javax.mail.internet.MimeMessage;&#x2F;** * @author giegie * @create 2022-01-14-10:23 *&#x2F;@Componentpublic class MailClient &#123;    private static final Logger logger &#x3D; LoggerFactory.getLogger(MailClient.class);    @Autowired    private JavaMailSender mailSender;    @Value(&quot;$&#123;spring.mail.username&#125;&quot;)    private String from;    public void sendMail(String to,String subject,String content)&#123;        try &#123;            MimeMessage message &#x3D; mailSender.createMimeMessage();            MimeMessageHelper helper &#x3D; new MimeMessageHelper(message);            helper.setFrom(from);            helper.setTo(to);            helper.setSubject(subject);            helper.setText(content,true);            mailSender.send(helper.getMimeMessage());        &#125; catch (MessagingException e) &#123;            logger.error(&quot;发送邮件失败&quot;+e.getMessage());        &#125;    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>新建测试类 MailTests，使用 Thymeleaf 模板发送 HTML 邮件</p><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.nowcoder.community;import com.nowcoder.community.util.MailClient;import org.junit.jupiter.api.Test;import org.springframework.beans.factory.annotation.Autowired;import org.springframework.boot.test.context.SpringBootTest;import org.springframework.test.context.ContextConfiguration;import org.thymeleaf.TemplateEngine;import org.thymeleaf.context.Context;&#x2F;** * @author giegie * @create 2022-01-14-10:41 *&#x2F;@SpringBootTest@ContextConfiguration(classes &#x3D; CommunityApplication.class)public class MailTests &#123;    @Autowired    private MailClient mailClient;    @Autowired    private TemplateEngine templateEngine;    @Test    public void testTextMail()&#123;        mailClient.sendMail(&quot;2075314587@qq.com&quot;,&quot;TEST&quot;,&quot;HELLO.&quot;);    &#125;    @Test    public void testHtmlMail()&#123;        Context context &#x3D; new Context();        context.setVariable(&quot;username&quot;,&quot;sunday&quot;);        String content &#x3D; templateEngine.process(&quot;&#x2F;mail&#x2F;demo&quot;, context);        System.out.println(content);        mailClient.sendMail(&quot;2075314587@qq.com&quot;,&quot;HTML&quot;,content);    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220114125012558.png" alt="image-20220114125012558"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 基础 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 项目 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>项目调试技巧</title>
       <link href="/2022/01/12/xiang-mu-diao-shi-ji-qiao/"/>
       <url>/2022/01/12/xiang-mu-diao-shi-ji-qiao/</url>

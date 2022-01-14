@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="左神讲数据结构与算法, HTML,CSS,JavaScript,JQuery,java,linux等">
+    <meta name="keywords" content="初识spring, HTML,CSS,JavaScript,JQuery,java,linux等">
     <meta name="description" content="本网站是个人兴趣爱好，总结分享经验，记录生活点滴的平台，希望在以后的学习旅途中，走出自己的风景。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>左神讲数据结构与算法 | Xuan&#39;S Blog</title>
+    <title>初识spring | Xuan&#39;S Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -320,12 +320,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/wallhaven-nrk9w4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">左神讲数据结构与算法</h1>
+                    <h1 class="description center-align post-title">初识spring</h1>
                 </div>
             </div>
         </div>
@@ -441,12 +441,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                <span class="chip bg-color">算法</span>
-                            </a>
-                        
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-                                <span class="chip bg-color">数据结构</span>
+                            <a href="/tags/spring/">
+                                <span class="chip bg-color">spring</span>
                             </a>
                         
                     </div>
@@ -457,12 +453,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                算法
-                            </a>
-                        
-                            <a href="/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
-                                数据结构
+                            <a href="/categories/%E6%A1%86%E6%9E%B6/" class="post-category">
+                                框架
                             </a>
                         
                     </div>
@@ -474,21 +466,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-01
+                    2022-01-14
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-01
+                    2022-01-14
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    724
+                    443
                 </div>
                 
 
@@ -513,41 +505,26 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="左神讲解数据结构与算法基础（1）"><a href="#左神讲解数据结构与算法基础（1）" class="headerlink" title="左神讲解数据结构与算法基础（1）"></a>左神讲解数据结构与算法基础（1）</h1><h2 id="认识复杂度与简单排序"><a href="#认识复杂度与简单排序" class="headerlink" title="认识复杂度与简单排序"></a>认识复杂度与简单排序</h2><p><strong>异或</strong>运算-交换 a和b （运用<strong>交换律</strong>与<strong>结合律</strong>，相同为0，不同为1）</p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220101085534503.png" alt="image-20220101085534503"></p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F;一个数组中有两个数是奇数个，其余数是偶数个，求奇数个数的两数分别是多少
-int eor &#x3D; 0;
-for(int i &#x3D; 0 ; i &lt; arr.length ; i++)&#123;
-    eor ^&#x3D; arr[i];
-&#125;
-&#x2F;&#x2F;eor &#x3D; a ^ b
-&#x2F;&#x2F;eor !&#x3D; 0
-&#x2F;&#x2F;eor必然有一个位置上是1
-int rightOne &#x3D; eor &amp; (~eor + 1); &#x2F;&#x2F;提取出最右的1，常用的方法<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">int onlyOne &#x3D; 0;&#x2F;&#x2F;eor&#39;
-for(int cur : arr)&#123;
-    if((cur &amp; rightOne) &#x3D;&#x3D; 1)&#123;&#x2F;&#x2F;0或1都可
-        onlyOne ^&#x3D; cur;
-    &#125;
-&#125;
-System.out.println(&quot;一个数是：&quot;+onlyOne+&quot;另一个数是：&quot;+(onlyOne^eor));<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="冒泡排序（O（n平方））"><a href="#冒泡排序（O（n平方））" class="headerlink" title="冒泡排序（O（n平方））"></a>冒泡排序（O（n平方））</h2><p><a target="_blank" rel="noopener" href="http://javainterview.gitee.io/luffy/2021/09/01/11-%E7%AE%97%E6%B3%95/01.%20%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">参考1</a>，<a target="_blank" rel="noopener" href="https://github.com/CyC2018/CS-Notes/blob/master/notes/%E7%AE%97%E6%B3%95%20-%20%E6%8E%92%E5%BA%8F.md">参考2</a>，<a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/bubble-sort.html">参考3</a></p>
-<p>思路：从左往右，两两比较，大(小)放后面，第一次排序结束最大值(最小值)已经在数组末尾，n个数需要n-1趟</p>
-<p>实现：两层for循环，外层控制比较的趟数，内层是比较的次数，每比较一趟后，比较次数-1</p>
-<h2 id="选择排序（O（n平方））"><a href="#选择排序（O（n平方））" class="headerlink" title="选择排序（O（n平方））"></a>选择排序（O（n平方））</h2><p><a target="_blank" rel="noopener" href="http://javainterview.gitee.io/luffy/2021/09/01/11-%E7%AE%97%E6%B3%95/01.%20%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">参考1</a>，<a target="_blank" rel="noopener" href="https://github.com/CyC2018/CS-Notes/blob/master/notes/%E7%AE%97%E6%B3%95%20-%20%E6%8E%92%E5%BA%8F.md">参考2</a>，<a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/selection-sort.html">参考3</a></p>
-<p>思路：从数组中选择最小元素，将它与数组的第一个元素交换位置。再从数组剩下的元素中选择出最小的元素，将它与数组的第二个元素交换位置。不断进行这样的操作，直到将整个数组排序。</p>
-<p>实现：设第一个数是最小值，两层for循环，外层控制比较的趟数，内层找到当前趟数的最小值，与第一个数作比较，小于则进行交换</p>
-<h2 id="插入排序（时间复杂度按最差情况来估计）"><a href="#插入排序（时间复杂度按最差情况来估计）" class="headerlink" title="插入排序（时间复杂度按最差情况来估计）"></a>插入排序（时间复杂度按最差情况来估计）</h2><p><a target="_blank" rel="noopener" href="http://javainterview.gitee.io/luffy/2021/09/01/11-%E7%AE%97%E6%B3%95/01.%20%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">参考1</a>，<a target="_blank" rel="noopener" href="https://github.com/CyC2018/CS-Notes/blob/master/notes/%E7%AE%97%E6%B3%95%20-%20%E6%8E%92%E5%BA%8F.md">参考2</a>，<a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/insertion-sort.html">参考3</a></p>
-<p>思路：每次都将当前元素插入到左侧已经排序的数组中，使得插入之后左侧数组依然有序。</p>
-<p>举例：数组 {3, 5, 2, 4, 1}，从小到大排序，3先不动，从5开始与3比较（5&gt;3不动）：3,5,2,4,1；</p>
-<p>2与5比较（2&lt;5），5和2交换位置，2再与3比较（2&lt;3），3和2交换位置：2,3,5,4,1；</p>
-<p>4与5比较（4&lt;5），5和4交换位置，3再与4比较（4&gt;3），4不再与前面数字比较：2,3,4,5,1;</p>
-<p>1与5比较（1&lt;5），5和1交换位置，1再与4比较（1&lt;4），4和1交换位置，1再与3比较（1&lt;3），3和1交换为位置，1再与2比较（1&lt;2），2和1交换位置：1,2,3,4,5</p>
-<h2 id="二分法：O（logN）"><a href="#二分法：O（logN）" class="headerlink" title="二分法：O（logN）"></a>二分法：O（logN）</h2><p><a target="_blank" rel="noopener" href="https://programmercarl.com/0704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.html#_704-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE">示例</a></p>
-<p>一组有序数中查找一个数；一组有序数中查找最左侧&gt;=num的；一组有序数中查找最右侧&gt;=num的</p>
-<p><strong>注意</strong>：并非有序才能二分</p>
+                <p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220113195429108.png" alt="image-20220113195429108"></p>
+<p>spring 管理的对象称为 bean</p>
+<p> 若不用 IoC 自己管理对象，new对象A,对象B，A.set 使A和B产生联系，A调用B，缺点：A和B产生了耦合，项目规模变大，不易维护</p>
+<p>Spring Container是IoC容器要装两份数据：① 需要向其提供bean的类型 ② 配置文件，配置描述bean之间的关系<br>会自动实例化Bean 然后被调用，bean 之间不会产生直接关系，它们之间的关系体现在配置文件的配置中，降低了耦合度</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220113195809413.png" alt="image-20220113195809413"></p>
+<p>spring 应用运行启动，底层自动启动了tomcat，并创建了spring容器，容器会自动扫描某些包下的某些类，将这些Bean自动装配到容器中</p>
+<p>CommunityApplication 这个类就是配置文件，注解@SpringBootApplication 标识的类就是配置文件</p>
+<p><strong>进到@SpringBootApplication 底层</strong></p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220114080336197.png" alt="image-20220114080336197"></p>
+<p>@SpringBootConfiguration 表示这个类是个配置文件</p>
+<p>@EnableAutoConfiguration 表示启用自动配置</p>
+<p>@ComponentScan 表示主键扫描，会自动扫描某些包下的某些bean，装配到容器里，扫描配置类所在的包以及子包下的bean，并且<br>这些bean上需要有像@Controller这样的注解，才能被扫描<br>和@Controller等价的注解有@Service@Repository@Component，都是由@Component 来实现的</p>
+<p>如果开发业务组件用@Service标明，如果开发处理请求的组件用@Controller标识，如果开发数据库访问的组件用@Repository<br>如果开发的类在任何地方都能用，用@Component 通用</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220114082620382.png" alt="image-20220114082620382"></p>
+<p>①：加注解 @ContextConfiguration 使测试类启用 CommunityApplication 作为配置类</p>
+<p>②：哪个类要得到容器，就实现 ApplicationContextAware 这个接口</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220114083153895.png" alt="image-20220114083153895"></p>
+<p>BeanFactory是容器的顶层接口</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220114085343478.png" alt="image-20220114085343478"></p>
+<p>@Autowired 注入<br>spring 容器将AlphaDao 注入到 alphaDao 属性中，直接使用这个属性就可以</p>
 
                 
             </div>
@@ -574,7 +551,7 @@ System.out.println(&quot;一个数是：&quot;+onlyOne+&quot;另一个数是：&
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://giegiecode.github.io/2022/01/01/zuo-shen-jiang-shu-ju-jie-gou-yu-suan-fa/">https://giegiecode.github.io/2022/01/01/zuo-shen-jiang-shu-ju-jie-gou-yu-suan-fa/</a>
+                    <a href="https://giegiecode.github.io/2022/01/14/chu-shi-spring/">https://giegiecode.github.io/2022/01/14/chu-shi-spring/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -612,12 +589,8 @@ System.out.println(&quot;一个数是：&quot;+onlyOne+&quot;另一个数是：&
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                    <span class="chip bg-color">算法</span>
-                                </a>
-                            
-                                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-                                    <span class="chip bg-color">数据结构</span>
+                                <a href="/tags/spring/">
+                                    <span class="chip bg-color">spring</span>
                                 </a>
                             
                         </div>
@@ -665,13 +638,13 @@ System.out.println(&quot;一个数是：&quot;+onlyOne+&quot;另一个数是：&
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/01/12/niu-ke-xiang-mu/">
+                <a href="/2022/01/14/git-shi-yong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="牛客项目">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="git使用">
                         
-                        <span class="card-title">牛客项目</span>
+                        <span class="card-title">git使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -682,8 +655,57 @@ System.out.println(&quot;一个数是：&quot;+onlyOne+&quot;另一个数是：&
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-12
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-14
                         </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%9F%BA%E7%A1%80/" class="post-category">
+                                    基础
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%B7%A5%E5%85%B7/">
+                        <span class="chip bg-color">工具</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/01/14/niu-ke-xiang-mu-1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="牛客项目（发送邮件）">
+                        
+                        <span class="card-title">牛客项目（发送邮件）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-14
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -701,55 +723,6 @@ System.out.println(&quot;一个数是：&quot;+onlyOne+&quot;另一个数是：&
                     
                     <a href="/tags/%E9%A1%B9%E7%9B%AE/">
                         <span class="chip bg-color">项目</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/12/28/sql-yong-fa/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="sql 用法">
-                        
-                        <span class="card-title">sql 用法</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-28
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%9F%BA%E7%A1%80/" class="post-category">
-                                    基础
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/sql/">
-                        <span class="chip bg-color">sql</span>
                     </a>
                     
                 </div>
