@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>生成验证码</title>
+      <link href="/2022/01/16/niu-ke-xiang-mu-sheng-cheng-yan-zheng-ma/"/>
+      <url>/2022/01/16/niu-ke-xiang-mu-sheng-cheng-yan-zheng-ma/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220116083330183.png" alt="image-20220116083330183"></p><p>导入 jar 包</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220116084123482.png" alt="image-20220116084123482"></p><p>编写配置类（config 包下新建类 KaptchaConfig）</p><p>要实现 Producer 接口，</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220116084606993.png" alt="image-20220116084606993"></p><p>DefaultKaptcha 是这个接口的实现类</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220116084720082.png" alt="image-20220116084720082"></p><p>KaptchaConfig 配置类</p><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.nowcoder.community.config;import com.google.code.kaptcha.Producer;import com.google.code.kaptcha.impl.DefaultKaptcha;import com.google.code.kaptcha.util.Config;import org.springframework.context.annotation.Bean;import org.springframework.context.annotation.Configuration;import java.util.Properties;&#x2F;** * @author giegie * @create 2022-01-16-8:40 *&#x2F;@Configurationpublic class KaptchaConfig &#123;    @Bean &#x2F;&#x2F; 声明一个Bean,这个Bean将会被Spring容器所装配    public Producer kaptchaProducer() &#123;        Properties properties &#x3D; new Properties();        properties.setProperty(&quot;kaptcha.image.width&quot;, &quot;100&quot;);&#x2F;&#x2F; 宽        properties.setProperty(&quot;kaptcha.image.height&quot;, &quot;40&quot;);&#x2F;&#x2F; 高        properties.setProperty(&quot;kaptcha.textproducer.font.size&quot;, &quot;30&quot;);&#x2F;&#x2F; 字体大小        properties.setProperty(&quot;kaptcha.textproducer.font.color&quot;, &quot;0.0.0&quot;);&#x2F;&#x2F; 字体颜色        properties.setProperty(&quot;kaptcha.textproducer.char.string&quot;, &quot;0123456789abcdefghijklmnopqrstuvwxyz&quot;);&#x2F;&#x2F; 字符范围        properties.setProperty(&quot;kaptcha.textproducer.char.length&quot;, &quot;4&quot;);&#x2F;&#x2F; 字符长度        properties.setProperty(&quot;kaptcha.noise.impl&quot;, &quot;com.google.code.kaptcha.impl.NoNoise&quot;);&#x2F;&#x2F; 验证码干扰因素        DefaultKaptcha kaptcha &#x3D; new DefaultKaptcha();        Config config &#x3D; new Config(properties);        &#x2F;&#x2F; 给kaptcha传入一些参数，参数封装进Config对象，Config对象传入Properties对象        &#x2F;&#x2F; Properties对象里存的都是key-value及Map,Map里存的就是参数        kaptcha.setConfig(config);        return kaptcha;    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>服务启动 bean 被自动装配进容器里，通过容器得到一个Producer实例，实例有两个方法创建图片创建验证码</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220116145842259.png" alt="image-20220116145842259"></p><p>getLoginPage方法的目的是给浏览器返回一个html，html里会包含一个图片的路径，浏览器会依据路径再次访问服务器，获得这个图片，因此要单独写一个请求，向浏览器返回验证码图片</p><p>在 LoginController.java 增加一个请求提供获取验证码的方法</p><pre class="line-numbers language-java" data-language="java"><code class="language-java">@RequestMapping(path &#x3D; &quot;&#x2F;kaptcha&quot;,method &#x3D; RequestMethod.GET)public void getKaptcha(HttpServletResponse response, HttpSession session)&#123;    &#x2F;&#x2F; 生成验证码    String text &#x3D; kaptchaProducer.createText(); &#x2F;&#x2F; 生成4位随机字符串    BufferedImage image &#x3D; kaptchaProducer.createImage(text); &#x2F;&#x2F; 利用字符串生成一个与之对应的图片    &#x2F;&#x2F; 将验证码存入session中    session.setAttribute(&quot;kaptcha&quot;,text);    &#x2F;&#x2F; 将图片输出给浏览器    response.setContentType(&quot;image&#x2F;png&quot;); &#x2F;&#x2F; 声明给浏览器返回的什么类型的数据    try &#123;        OutputStream os &#x3D; response.getOutputStream(); &#x2F;&#x2F; 从response中获取输出流        ImageIO.write(image,&quot;png&quot;,os);        &#x2F;&#x2F; 向浏览器输出图片的工具ImageIo，image:输出的图片，png:输出格式，os:输出流        &#x2F;&#x2F; 流不用关闭，整个response是由SpringMVC来维护的，会自动关闭    &#125; catch (IOException e) &#123;        logger.error(&quot;响应验证码失败&quot;+e.getMessage());    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>把验证码应用到 login.html 页面，并通过 js 来实现点击刷新验证码按钮来刷新验证码的功能（JS 部分知识）</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220116143954545.png" alt="image-20220116143954545"></p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220116145045619.png" alt="image-20220116145045619"></p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220116145243941.png" alt="image-20220116145243941"></p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220116145210414.png" alt="image-20220116145210414"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 基础 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 项目 </tag>
+            
+            <tag> 验证码 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>会话管理</title>
       <link href="/2022/01/15/niu-ke-xiang-mu-hui-hua-guan-li/"/>
       <url>/2022/01/15/niu-ke-xiang-mu-hui-hua-guan-li/</url>
