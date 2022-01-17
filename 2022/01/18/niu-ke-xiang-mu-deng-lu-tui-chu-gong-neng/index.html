@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="git使用, HTML,CSS,JavaScript,JQuery,java,linux等">
+    <meta name="keywords" content="登录退出功能, HTML,CSS,JavaScript,JQuery,java,linux等">
     <meta name="description" content="本网站是个人兴趣爱好，总结分享经验，记录生活点滴的平台，希望在以后的学习旅途中，走出自己的风景。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>git使用 | Xuan&#39;S Blog</title>
+    <title>登录退出功能 | Xuan&#39;S Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -320,12 +320,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">git使用</h1>
+                    <h1 class="description center-align post-title">登录退出功能</h1>
                 </div>
             </div>
         </div>
@@ -441,8 +441,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%B7%A5%E5%85%B7/">
-                                <span class="chip bg-color">工具</span>
+                            <a href="/tags/%E9%A1%B9%E7%9B%AE/">
+                                <span class="chip bg-color">项目</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/">
+                                <span class="chip bg-color">登录功能</span>
                             </a>
                         
                     </div>
@@ -466,21 +470,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-14
+                    2022-01-18
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-14
+                    2022-01-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    24
+                    1.2k
                 </div>
                 
 
@@ -505,12 +509,109 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220113082458327.png" alt="image-20220113082458327"></p>
-<p>进入目录</p>
-<p>git init</p>
-<p>git add 增加</p>
-<p>git commit -m “注释语句” 提交</p>
-<p>git status 看状态</p>
+                <p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220117074744905.png" alt="image-20220117074744905"></p>
+<p>dao -&gt; service -&gt; controller</p>
+<p>包 entity 下新建实体类 LoginTicket 属性与表中的字段对应，并生成对应的set，get，tostring方法</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220117171204796.png" alt="image-20220117171204796"></p>
+<p>包 dao 下新建接口 LoginTicketMapper 声明 @Mapper 注解</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220117171613280.png" alt="image-20220117171613280"></p>
+<p>在方法上直接注入sql 语句 有别于.xml 方法</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220117173315324.png" alt="image-20220117173315324"></p>
+<p>整张表围绕 ticket 来设计，ticket 是凭证，发送 ticket 字符串给浏览器进行保存，其他数据服务端存一份</p>
+<p>客户端通过 cookie 存了 ticket 数据后，再次访问服务器会把 ticket 给服务器，服务端通过 ticket 查到整条数据</p>
+<p>写完 dao 进行测试</p>
+<p>在MapperTests里进行测试，注入LoginTicketMapper</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220117173851830.png" alt="image-20220117173851830"></p>
+<p>开发业务层，写登录业务，接收页面传入的条件，在 UserService 里写 service 注入 LoginTicketMapper ，登录方法返回值类型为 Map ，将多条信息放进去，参数为：用户名，密码，有效时间，先做空值处理，然后对账号、状态、密码进行验证，从客户端得到的密码要结合salt 值做md5 加密处理再和数据库中的密码进行比对，最后没问题就生成登录凭证，将 ticket 放进map 中并返回。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public Map&lt;String, Object&gt; login(String username, String password, long expiredSeconds) &#123;
+        Map&lt;String, Object&gt; map &#x3D; new HashMap&lt;&gt;();
+
+        &#x2F;&#x2F; 空值处理
+        if (StringUtils.isBlank(username)) &#123;
+            map.put(&quot;usernameMsg&quot;, &quot;账号不能为空&quot;);
+            return map;
+        &#125;
+        if (StringUtils.isBlank(password)) &#123;
+            map.put(&quot;password&quot;, &quot;密码不能为空&quot;);
+            return map;
+        &#125;
+
+        &#x2F;&#x2F; 验证账号
+        User user &#x3D; userMapper.selectByName(username);
+        if (user &#x3D;&#x3D; null) &#123;
+            map.put(&quot;usernameMsg&quot;, &quot;该账号不存在&quot;);
+            return map;
+        &#125;
+
+        &#x2F;&#x2F; 验证状态
+        if (user.getStatus() &#x3D;&#x3D; 0) &#123;
+            map.put(&quot;usernameMsg&quot;, &quot;该账号未激活&quot;);
+            return map;
+        &#125;
+
+        &#x2F;&#x2F; 验证密码,从客户端获取到的密码为明文，要进行md5加密，在与数据库中的密码进行比较
+        password &#x3D; CommunityUtil.md5(password + user.getSalt());
+        if (!user.getPassword().equals(password)) &#123;
+            map.put(&quot;passwordMsg&quot;, &quot;密码不正确&quot;);
+            return map;
+        &#125;
+
+        &#x2F;&#x2F; 生成登录凭证
+        LoginTicket loginTicket &#x3D; new LoginTicket();
+        loginTicket.setUserId(user.getId());
+        loginTicket.setTicket(CommunityUtil.generateUUID());
+        loginTicket.setStatus(0);
+        loginTicket.setExpired(new Date(System.currentTimeMillis() + expiredSeconds * 1000));
+
+        map.put(&quot;ticket&quot;,loginTicket.getTicket());
+        return map;
+    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>在 LoginController 里写 controller 路径“/login” 请求方式 post ,login方法的参数为 用户名，密码，验证码，是否记住，model，session，response。先判断验证码是否正确，然后检查账号和密码，调用service 里的 login 方法，传入参数，如果map 里包含了 ticket 就是成功，否则失败，成功重定向到首页，失败回到登录页面 。成功后发送 cookie 到浏览器进行保存，设置cookie 的有效路径，用户登录以后有效路径包含整个项目，路径不要写死，@Value 注入配置里的项目路径 text-path，设置cookie 的有效时间，通过response.add(cookie) 将cookie 发送给页面；失败后，将错误信息加入到 model 中带给登录页面</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">@RequestMapping(path &#x3D; &quot;&#x2F;login&quot;, method &#x3D; RequestMethod.POST)
+public String login(String username, String password, String code, boolean rememberme,
+                    Model model, HttpSession session, HttpServletResponse response) &#123;
+    &#x2F;&#x2F; 先检查验证码
+    String kaptcha &#x3D; (String) session.getAttribute(&quot;kaptcha&quot;);
+    if (StringUtils.isBlank(kaptcha) || StringUtils.isBlank(code) || !kaptcha.equalsIgnoreCase(code)) &#123;
+        model.addAttribute(&quot;codeMsg&quot;, &quot;验证码不正确！&quot;);
+        &#x2F;&#x2F; 错误信息放到model中带入到登录页面
+        return &quot;&#x2F;site&#x2F;login&quot;; &#x2F;&#x2F; 重回登录页面
+    &#125;
+
+    &#x2F;&#x2F; 检查账号，密码
+    int expiredSceonds &#x3D; rememberme ? REMEMBER_EXPIRED_SECONDS : DEFAULT_EXPIRED_SECONDS;
+    Map&lt;String,Object&gt; map &#x3D; userService.login(username,password,expiredSceonds);
+    if (map.containsKey(&quot;ticket&quot;))&#123;
+        Cookie cookie &#x3D; new Cookie(&quot;ticket&quot;,map.get(&quot;ticket&quot;).toString());
+        &#x2F;&#x2F;new一个cookie,cookie中要存取字符串
+        cookie.setPath(contextPath); &#x2F;&#x2F; 设置cookie的路径：整个项目
+        cookie.setMaxAge(expiredSceonds); &#x2F;&#x2F; 设置cookie的有效时间
+        response.addCookie(cookie); &#x2F;&#x2F; 给浏览器的响应带上cookie
+        return &quot;redirect:&#x2F;index&quot;; &#x2F;&#x2F; 重定向到首页
+    &#125;else &#123;
+        model.addAttribute(&quot;usernameMsg&quot;,map.get(&quot;usernameMsg&quot;));
+        model.addAttribute(&quot;passwordMsg&quot;,map.get(&quot;passwordMsg&quot;));
+        return &quot;&#x2F;site&#x2F;login&quot;;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>对登录页面进行设置，表单提交的方式，提交的路径，每个表单项增加一个 name ，name与controller 里的参数名要一致，对错误信息作一个展现，从请求的 Request 当中获取参数</p>
+<p>提交的方式，路径</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220117233626480.png" alt="image-20220117233626480"></p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220117233852084.png" alt="image-20220117233852084"></p>
+<p>①：判断usernameMsg 是否为空，若不为空，则输出 ${usernameMsg} 里的值<br>②：从请求 Request 中获取提交的 username，显示在登录页面的用户名输入框中<br>③：增加一个对应的 name 值与 controller 里的参数名相同<br>④：根据情况动态显示登录出现的错误</p>
+<p>退出登录</p>
+<p>service 层</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220118004914552.png" alt="image-20220118004914552"></p>
+<p>controller 层，重定向返回的默认是 get 方式的 login 登录页面</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220118004951388.png" alt="image-20220118004951388"></p>
+<p>在index 页面作设置</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220118005137804.png" alt="image-20220118005137804"></p>
 
                 
             </div>
@@ -537,7 +638,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://giegiecode.github.io/2022/01/14/git-shi-yong/">https://giegiecode.github.io/2022/01/14/git-shi-yong/</a>
+                    <a href="https://giegiecode.github.io/2022/01/18/niu-ke-xiang-mu-deng-lu-tui-chu-gong-neng/">https://giegiecode.github.io/2022/01/18/niu-ke-xiang-mu-deng-lu-tui-chu-gong-neng/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -575,8 +676,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%B7%A5%E5%85%B7/">
-                                    <span class="chip bg-color">工具</span>
+                                <a href="/tags/%E9%A1%B9%E7%9B%AE/">
+                                    <span class="chip bg-color">项目</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/">
+                                    <span class="chip bg-color">登录功能</span>
                                 </a>
                             
                         </div>
@@ -620,17 +725,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/01/15/niu-ke-xiang-mu-kai-fa-zhu-ce-gong-neng/">
+                <a href="/2022/01/18/niu-ke-xiang-mu-deng-lu-tui-chu-gong-neng/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="开发注册功能">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="登录退出功能">
                         
-                        <span class="card-title">开发注册功能</span>
+                        <span class="card-title">登录退出功能</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -640,9 +746,63 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-15
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-18
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%9F%BA%E7%A1%80/" class="post-category">
+                                    基础
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E9%A1%B9%E7%9B%AE/">
+                        <span class="chip bg-color">项目</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/">
+                        <span class="chip bg-color">登录功能</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/01/16/niu-ke-xiang-mu-sheng-cheng-yan-zheng-ma/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="生成验证码">
+                        
+                        <span class="card-title">生成验证码</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -662,53 +822,8 @@
                         <span class="chip bg-color">项目</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/01/14/chu-shi-spring/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="初识spring">
-                        
-                        <span class="card-title">初识spring</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-14
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E6%A1%86%E6%9E%B6/" class="post-category">
-                                    框架
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/spring/">
-                        <span class="chip bg-color">spring</span>
+                    <a href="/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/">
+                        <span class="chip bg-color">验证码</span>
                     </a>
                     
                 </div>
