@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>显示登陆信息</title>
+      <link href="/2022/01/18/niu-ke-xiang-mu-xian-shi-deng-lu-xin-xi/"/>
+      <url>/2022/01/18/niu-ke-xiang-mu-xian-shi-deng-lu-xin-xi/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220118084242965.png" alt="image-20220118084242965"></p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220118142149512.png" alt="image-20220118142149512"></p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220118171035706.png" alt="image-20220118171035706"></p><p>在Util 包下新建类CookieUtil 对浏览器发来的cookie 进行封装，从cookie中获取要查找的指定字符串</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220118161715578.png" alt="image-20220118161715578"></p><p>在UserService中增加一个方法，根据ticket 查找用户的凭证</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220118162158060.png" alt="image-20220118162158060"></p><h2 id="难点：多线程"><a href="#难点：多线程" class="headerlink" title="难点：多线程"></a>难点：多线程</h2><p>将user 用户存储起来，方便后面的使用</p><p>因为服务器会出现并发处理的情况，每一个线程要单独处理一个请求，服务器在处理请求的时候是一个多线程的环境，在多个线程中要隔离存储user 对象，使用 ThreadLocal工具作线程隔离操作，将这个对user 的操作封装进一个工具里，在 util包下新建 HostHolder类，对user进行隔离操作</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220118170908977.png" alt="image-20220118170908977"></p><p>在拦截器里对浏览器发送给服务器的请求进行处理，获取cookie中的ticket 根据凭证查到user 用户，将用户装进model 里，传给模板</p><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.nowcoder.community.controller.interceptor;import com.nowcoder.community.entity.LoginTicket;import com.nowcoder.community.entity.User;import com.nowcoder.community.service.UserService;import com.nowcoder.community.util.CookieUtil;import com.nowcoder.community.util.HostHolder;import org.springframework.beans.factory.annotation.Autowired;import org.springframework.stereotype.Component;import org.springframework.web.servlet.HandlerInterceptor;import org.springframework.web.servlet.ModelAndView;import javax.servlet.http.HttpServletRequest;import javax.servlet.http.HttpServletResponse;import java.util.Date;&#x2F;** * @author giegie * @create 2022-01-18-16:04 *&#x2F;@Componentpublic class LoginTicketInterceptor implements HandlerInterceptor &#123;    @Autowired    private UserService userService;    @Autowired    private HostHolder hostHolder;    @Override    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception &#123;        &#x2F;&#x2F; 从cookie中获取凭证        String ticket &#x3D; CookieUtil.getValue(request, &quot;ticket&quot;);        if (ticket !&#x3D; null) &#123;            &#x2F;&#x2F; 查询凭证            LoginTicket loginTicket &#x3D; userService.findLoginTicket(ticket);            &#x2F;&#x2F; 检查凭证是否有效            if (loginTicket !&#x3D; null &amp;&amp; loginTicket.getStatus() &#x3D;&#x3D; 0 &amp;&amp; loginTicket.getExpired().after(new Date())) &#123;                &#x2F;&#x2F; 根据凭证查询用户                User user &#x3D; userService.findUserById(loginTicket.getUserId());                &#x2F;&#x2F; 在本次请求中持有用户                hostHolder.setUser(user);            &#125;        &#125;        return true;    &#125;    @Override    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception &#123;        User user &#x3D; hostHolder.getUser();        if (user!&#x3D;null &amp;&amp; modelAndView!&#x3D;null)&#123;            modelAndView.addObject(&quot;loginUser&quot;,user);        &#125;    &#125;    @Override    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception &#123;        hostHolder.clear();    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>对拦截器进行相关的配置，不拦截静态的 css，js ….文件</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220118171526745.png" alt="image-20220118171526745"></p><p>对index 首页进行处理</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220118172446362.png" alt="image-20220118172446362"></p><p>判断loginUser 是否为空，若为空，则未登陆，页面头部应显示注册和登陆信息，不显示登录后的消息信息，不为空则反之，登录后从用户获取头像headerUrl 。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 基础 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 项目 </tag>
+            
+            <tag> 拦截器 </tag>
+            
+            <tag> 多线程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>登录退出功能</title>
       <link href="/2022/01/18/niu-ke-xiang-mu-deng-lu-tui-chu-gong-neng/"/>
       <url>/2022/01/18/niu-ke-xiang-mu-deng-lu-tui-chu-gong-neng/</url>
