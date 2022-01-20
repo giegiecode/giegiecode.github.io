@@ -4,6 +4,29 @@
   
     
     <entry>
+      <title>检查登录状态</title>
+      <link href="/2022/01/20/niu-ke-xiang-mu-jian-cha-deng-lu-zhuang-tai/"/>
+      <url>/2022/01/20/niu-ke-xiang-mu-jian-cha-deng-lu-zhuang-tai/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220120094641087.png" alt="image-20220120094641087"></p><p>@Target 注解声明自定义注解可以写在哪个位置，作用在哪个类型上（类，方法，属性）</p><p>@Retention 声明自定义注解保留的时间或有效的时间，编译有效还是运行有效</p><p>@Document 声明自定义注解在生成文档时，要不要带上</p><p>@Inherited 用于继承，子类继承于父类，父类上有自定义注解，子类是否要继承这些注解</p><p>Method.getDeclaredAnnotations() 获取这个方法上所有的注解</p><p>Method.getAnnotation(Class<T> annotationClass) 获取这个指定类型的注解</p><h2 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h2><p>community下新增一个包 annotation 新建一个自定义注解 LoginRequired </p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220120103726928.png" alt="image-20220120103726928"></p><h2 id="添加注解"><a href="#添加注解" class="headerlink" title="添加注解"></a>添加注解</h2><p>在需要登录后才能访问的方法上，加上自定义注解</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220120100126620.png" alt="image-20220120100126620"></p><h2 id="新增拦截器"><a href="#新增拦截器" class="headerlink" title="新增拦截器"></a>新增拦截器</h2><p>在 interceptor 包下新增一个拦截器 LoginRequiredInterceptor</p><ul><li>在程序中，可以通过反射的方式解析注解</li><li>通过Method 对象可以获取某方法上标注的所有注解</li><li>通过Method 对象可以获取某方法上指定类型的注解</li><li>Method 对象上还有很多其他的方法，可以获取该方法上标注的注解</li></ul><p>如果 loginRequired 不为空且获取不到当前的用户，则直接重定向到登录页面，return false意味着请求执行到此为止, 不会继续执行后续的部分了, 因为重定向已经完成了对这个请求的处理，</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220120104014444.png" alt="image-20220120104014444"></p><h2 id="配置拦截器"><a href="#配置拦截器" class="headerlink" title="配置拦截器"></a>配置拦截器</h2><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220120105812408.png" alt="image-20220120105812408"></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 项目 </tag>
+            
+            <tag> 拦截器 </tag>
+            
+            <tag> 登录状态 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>忘记密码</title>
       <link href="/2022/01/19/niu-ke-xiang-mu-wang-ji-mi-ma/"/>
       <url>/2022/01/19/niu-ke-xiang-mu-wang-ji-mi-ma/</url>
