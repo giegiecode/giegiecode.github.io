@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="git使用, HTML,CSS,JavaScript,JQuery,java,linux等">
+    <meta name="keywords" content="过滤敏感词, HTML,CSS,JavaScript,JQuery,java,linux等">
     <meta name="description" content="本网站是个人兴趣爱好，总结分享经验，记录生活点滴的平台，希望在以后的学习旅途中，走出自己的风景。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>git使用 | Xuan&#39;S Blog</title>
+    <title>过滤敏感词 | Xuan&#39;S Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -320,12 +320,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">git使用</h1>
+                    <h1 class="description center-align post-title">过滤敏感词</h1>
                 </div>
             </div>
         </div>
@@ -441,23 +441,18 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%B7%A5%E5%85%B7/">
-                                <span class="chip bg-color">工具</span>
+                            <a href="/tags/%E9%A1%B9%E7%9B%AE/">
+                                <span class="chip bg-color">项目</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%BF%87%E6%BB%A4/">
+                                <span class="chip bg-color">过滤</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/%E5%9F%BA%E7%A1%80/" class="post-category">
-                                基础
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -466,21 +461,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-14
+                    2022-01-21
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-14
+                    2022-01-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    24
+                    978
                 </div>
                 
 
@@ -505,12 +500,216 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220113082458327.png" alt="image-20220113082458327"></p>
-<p>进入目录</p>
-<p>git init</p>
-<p>git add 增加</p>
-<p>git commit -m “注释语句” 提交</p>
-<p>git status 看状态</p>
+                <p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220120111129041.png" alt="image-20220120111129041"></p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.nowcoder.community.util;
+
+import org.apache.commons.lang3.CharUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+
+&#x2F;**
+ * @author giegie
+ * @create 2022-01-20-15:20
+ *&#x2F;
+@Component
+public class SensitiveFilter &#123;
+
+    private static final Logger logger &#x3D; LoggerFactory.getLogger(SensitiveFilter.class);
+
+    &#x2F;&#x2F; 替换节点
+    private static final String REPLACEMENT &#x3D; &quot;***&quot;;
+
+    &#x2F;&#x2F; 根节点
+    private TrieNode rootNode &#x3D; new TrieNode();
+
+    @PostConstruct &#x2F;&#x2F; 程序编译时，初始化读取配置文件
+    public void init() &#123;
+        try (
+                InputStream is &#x3D; this.getClass().getClassLoader().getResourceAsStream(&quot;sensitive-words.txt&quot;);&#x2F;&#x2F; 获取文件的字节流
+                BufferedReader reader &#x3D; new BufferedReader(new InputStreamReader(is)); &#x2F;&#x2F; 字节流转变为字符流，字符流转变为缓冲流
+        ) &#123;
+            String keyword;
+            while ((keyword &#x3D; reader.readLine()) !&#x3D; null) &#123;
+                &#x2F;&#x2F; 添加到前缀树
+                this.addKeyword(keyword);
+            &#125;
+        &#125; catch (IOException e) &#123;
+            logger.error(&quot;加载敏感词文件失败：&quot; + e.getMessage());
+        &#125;
+    &#125;
+
+    &#x2F;&#x2F; 将一个敏感词添加到前缀树中
+    private void addKeyword(String keyword) &#123;
+        TrieNode tempNode &#x3D; rootNode;
+        for (int i &#x3D; 0; i &lt; keyword.length(); i++) &#123;
+            char c &#x3D; keyword.charAt(i); &#x2F;&#x2F; 获取敏感词每个字符
+            TrieNode subNode &#x3D; tempNode.getSubNode(c); &#x2F;&#x2F;根节点查看是否有该字符的子节点
+
+            if (subNode &#x3D;&#x3D; null) &#123;
+                &#x2F;&#x2F; 若没有对应的子节点，就初始化子节点
+                subNode &#x3D; new TrieNode();
+                tempNode.addSubNode(c, subNode); &#x2F;&#x2F; 将子节点挂到根节点上
+            &#125;
+
+            &#x2F;&#x2F; 指向子节点，进入下一轮循环
+            tempNode &#x3D; subNode;
+
+            &#x2F;&#x2F; 设置结束标识
+            if (i &#x3D;&#x3D; keyword.length() - 1) &#123;
+                tempNode.setKeywordEnd(true);
+            &#125;
+        &#125;
+    &#125;
+
+    &#x2F;**
+     * 过滤敏感词
+     *
+     * @param text 待过滤的文本
+     * @return 过滤后的文本
+     *&#x2F;
+    public String filter(String text) &#123;
+        if (StringUtils.isBlank(text)) &#123;
+            return null;
+        &#125;
+
+        &#x2F;&#x2F; 指针1
+        TrieNode tempNode &#x3D; rootNode;
+        &#x2F;&#x2F; 指针2
+        int begin &#x3D; 0;
+        &#x2F;&#x2F; 指针3
+        int position &#x3D; 0;
+        &#x2F;&#x2F; 结果
+        StringBuilder sb &#x3D; new StringBuilder();
+
+        while (position &lt; text.length()) &#123;
+            char c &#x3D; text.charAt(position);
+
+            &#x2F;&#x2F; 跳过符号
+            if (isSymbol(c)) &#123;
+                &#x2F;&#x2F; 若指针1处于根节点，就将此符号计入结果，让指针2向下走一步
+                if (tempNode &#x3D;&#x3D; rootNode) &#123;
+                    sb.append(c);
+                    begin++;
+                &#125;
+                &#x2F;&#x2F; 无论符号在开头或中间，指针3都向下走一步
+                position++;
+                continue;
+            &#125;
+
+            &#x2F;&#x2F; 检查下级节点
+            tempNode &#x3D; tempNode.getSubNode(c);
+            if (tempNode &#x3D;&#x3D; null)&#123;
+                &#x2F;&#x2F; 以begin开头的字符串不是敏感词
+                sb.append(text.charAt(begin));
+                &#x2F;&#x2F; 进入下一个位置
+                position &#x3D; ++begin;
+                &#x2F;&#x2F; 重新指向根节点
+                tempNode &#x3D; rootNode;
+            &#125; else if (tempNode.isKeywordEnd)&#123;
+                &#x2F;&#x2F; 发现敏感词，将begin~position字符串替换掉
+                sb.append(REPLACEMENT);
+                &#x2F;&#x2F; 进入下一个位置
+                begin&#x3D;++position;
+                &#x2F;&#x2F; 重新指向根节点
+                tempNode &#x3D; rootNode;
+            &#125; else &#123;
+                &#x2F;&#x2F; 检查下一个字符
+                position++;
+            &#125;
+        &#125;
+        &#x2F;&#x2F; 将最后一批字符计入结果
+        sb.append(text.substring(begin));
+
+        return sb.toString();
+    &#125;
+
+    &#x2F;&#x2F; 判断是否为符号
+    private boolean isSymbol(Character c) &#123;
+        &#x2F;&#x2F; 0x2E80~0x9FFF 是东亚文字范围
+        return !CharUtils.isAsciiAlphanumeric(c) &amp;&amp; (c &lt; 0x2E80 || c &gt; 0x9FFF);
+    &#125;
+
+    &#x2F;&#x2F; 前缀树
+    private class TrieNode &#123; &#x2F;&#x2F; 内部类
+
+        &#x2F;&#x2F; 关键词结束标识
+        private boolean isKeywordEnd &#x3D; false;
+
+        &#x2F;&#x2F; 子节点(key是下级字符，value是下级节点)
+        private Map&lt;Character, TrieNode&gt; subNodes &#x3D; new HashMap&lt;&gt;();
+
+        public boolean isKeywordEnd() &#123;
+            return isKeywordEnd;
+        &#125;
+
+        public void setKeywordEnd(boolean keywordEnd) &#123;
+            isKeywordEnd &#x3D; keywordEnd;
+        &#125;
+
+        &#x2F;&#x2F; 添加子节点
+        public void addSubNode(Character c, TrieNode node) &#123;
+            subNodes.put(c, node);
+        &#125;
+
+        &#x2F;&#x2F; 获取子节点的
+        public TrieNode getSubNode(Character c) &#123;
+            return subNodes.get(c);
+        &#125;
+
+    &#125;
+
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+<h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.nowcoder.community;
+
+import com.nowcoder.community.util.SensitiveFilter;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
+
+&#x2F;**
+ * @author giegie
+ * @create 2022-01-20-17:36
+ *&#x2F;
+
+@SpringBootTest
+@ContextConfiguration(classes &#x3D; CommunityApplication.class)
+public class SensitiveTests &#123;
+
+    @Autowired
+    private SensitiveFilter sensitiveFilter;
+
+    @Test
+    public void testSensitiveFilter()&#123;
+        String text &#x3D; &quot;这里可以赌博，可以嫖娼，可以开票，哈哈哈&quot;;
+        text &#x3D; sensitiveFilter.filter(text);
+        System.out.println(text);
+
+        text &#x3D; &quot;这里可以☆赌☆博☆,可以☆嫖☆娼☆,可以☆吸☆毒☆,可以☆开☆票☆,哈哈哈!&quot;;
+        text &#x3D; sensitiveFilter.filter(text);
+        System.out.println(text);
+    &#125;
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 
                 
             </div>
@@ -537,7 +736,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://giegiecode.github.io/2022/01/14/git-shi-yong/">https://giegiecode.github.io/2022/01/14/git-shi-yong/</a>
+                    <a href="https://giegiecode.github.io/2022/01/21/guo-lu-min-gan-ci/">https://giegiecode.github.io/2022/01/21/guo-lu-min-gan-ci/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -575,8 +774,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%B7%A5%E5%85%B7/">
-                                    <span class="chip bg-color">工具</span>
+                                <a href="/tags/%E9%A1%B9%E7%9B%AE/">
+                                    <span class="chip bg-color">项目</span>
+                                </a>
+                            
+                                <a href="/tags/%E8%BF%87%E6%BB%A4/">
+                                    <span class="chip bg-color">过滤</span>
                                 </a>
                             
                         </div>
@@ -624,13 +827,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/01/15/niu-ke-xiang-mu-kai-fa-zhu-ce-gong-neng/">
+                <a href="/2022/01/21/niu-ke-xiang-mu-fa-bu-tie-zi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="开发注册功能">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="发布帖子">
                         
-                        <span class="card-title">开发注册功能</span>
+                        <span class="card-title">发布帖子</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -641,16 +844,12 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-15
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-21
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%9F%BA%E7%A1%80/" class="post-category">
-                                    基础
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            code-轩
                             
                         </span>
                     </div>
@@ -673,13 +872,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/01/14/chu-shi-spring/">
+                <a href="/2022/01/20/niu-ke-xiang-mu-jian-cha-deng-lu-zhuang-tai/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="初识spring">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="检查登录状态">
                         
-                        <span class="card-title">初识spring</span>
+                        <span class="card-title">检查登录状态</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -690,16 +889,12 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-14
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-20
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E6%A1%86%E6%9E%B6/" class="post-category">
-                                    框架
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            code-轩
                             
                         </span>
                     </div>
@@ -707,8 +902,16 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/spring/">
-                        <span class="chip bg-color">spring</span>
+                    <a href="/tags/%E9%A1%B9%E7%9B%AE/">
+                        <span class="chip bg-color">项目</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%8B%A6%E6%88%AA%E5%99%A8/">
+                        <span class="chip bg-color">拦截器</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%99%BB%E5%BD%95%E7%8A%B6%E6%80%81/">
+                        <span class="chip bg-color">登录状态</span>
                     </a>
                     
                 </div>
