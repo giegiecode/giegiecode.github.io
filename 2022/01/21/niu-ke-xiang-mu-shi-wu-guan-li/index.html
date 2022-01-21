@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="项目调试技巧, HTML,CSS,JavaScript,JQuery,java,linux等">
+    <meta name="keywords" content="事务管理, HTML,CSS,JavaScript,JQuery,java,linux等">
     <meta name="description" content="本网站是个人兴趣爱好，总结分享经验，记录生活点滴的平台，希望在以后的学习旅途中，走出自己的风景。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>项目调试技巧 | Xuan&#39;S Blog</title>
+    <title>事务管理 | Xuan&#39;S Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -320,12 +320,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/152170.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">项目调试技巧</h1>
+                    <h1 class="description center-align post-title">事务管理</h1>
                 </div>
             </div>
         </div>
@@ -441,23 +441,22 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E8%B0%83%E8%AF%95/">
-                                <span class="chip bg-color">调试</span>
+                            <a href="/tags/%E9%A1%B9%E7%9B%AE/">
+                                <span class="chip bg-color">项目</span>
+                            </a>
+                        
+                            <a href="/tags/%E4%BA%8B%E5%8A%A1/">
+                                <span class="chip bg-color">事务</span>
+                            </a>
+                        
+                            <a href="/tags/%E9%94%81/">
+                                <span class="chip bg-color">锁</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/%E5%9F%BA%E7%A1%80/" class="post-category">
-                                基础
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -466,21 +465,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-12
+                    2022-01-21
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-12
+                    2022-01-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    101
+                    768
                 </div>
                 
 
@@ -505,19 +504,114 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220112214338461.png" alt="image-20220112214338461"></p>
-<h2 id="状态码："><a href="#状态码：" class="headerlink" title="状态码："></a>状态码：</h2><p>200：成功了</p>
-<p>302：重定向</p>
-<p>404：路径写错了</p>
-<p>500：服务器在处理的过程中发生了问题</p>
-<h2 id="打断点"><a href="#打断点" class="headerlink" title="打断点"></a>打断点</h2><p>F8：程序逐行向下执行</p>
-<p>F7：进入当前行所调方法的内部</p>
-<p>F9：程序向下执行直到执行到下一个断点为止</p>
-<p>客户端断点调试</p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220112220911302.png" alt="image-20220112220911302"></p>
-<p>F10：向下执行一行</p>
-<p>F11：进入代码</p>
-<p>F8：执行到底</p>
+                <p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220121153938704.png" alt="image-20220121153938704"></p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220121154336660.png" alt="image-20220121154336660"></p>
+<h2 id="第一类丢失更新"><a href="#第一类丢失更新" class="headerlink" title="第一类丢失更新"></a>第一类丢失更新</h2><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220121155032455.png" alt="image-20220121155032455"></p>
+<h2 id="第二类丢失更新"><a href="#第二类丢失更新" class="headerlink" title="第二类丢失更新"></a>第二类丢失更新</h2><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220121155102486.png" alt="image-20220121155102486"></p>
+<h2 id="脏读"><a href="#脏读" class="headerlink" title="脏读"></a>脏读</h2><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220121155236806.png" alt="image-20220121155236806"></p>
+<h2 id="不可重复读"><a href="#不可重复读" class="headerlink" title="不可重复读"></a>不可重复读</h2><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220121155257974.png" alt="image-20220121155257974"></p>
+<h2 id="幻读"><a href="#幻读" class="headerlink" title="幻读"></a>幻读</h2><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220121155415647.png" alt="image-20220121155415647"></p>
+<h2 id="事物隔离级别"><a href="#事物隔离级别" class="headerlink" title="事物隔离级别"></a>事物隔离级别</h2><p>主要用 read committed 和 repeatable read</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220121155637199.png" alt="image-20220121155637199"></p>
+<h2 id="实现机制"><a href="#实现机制" class="headerlink" title="实现机制"></a>实现机制</h2><p>锁要自己实现</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220121160027895.png" alt="image-20220121160027895"></p>
+<h2 id="Spring-事物管理"><a href="#Spring-事物管理" class="headerlink" title="Spring 事物管理"></a>Spring 事物管理</h2><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220121160402413.png" alt="image-20220121160402413"></p>
+<h2 id="测试（插入注解方法，常用）"><a href="#测试（插入注解方法，常用）" class="headerlink" title="测试（插入注解方法，常用）"></a>测试（插入注解方法，常用）</h2><p>在方法上加上注解 @Transactional </p>
+<ul>
+<li>isolation：隔离级别为…</li>
+<li>propagation：事物的传播机制</li>
+</ul>
+<p>传播机制：在写业务方法时有可能调用另外的业务组件方法即：业务方法 A 可能会调用业务方法 B ，两个方法都可能加上注解，去管理事物，如果 A 调了 B 那么事物以什么为准呢？（以 A 自身事务为准还是以 B 事务为准还是其他），涉及了两个事务交叉在一起的问题，事务传播机制就是解决这种交叉的问题</p>
+<ul>
+<li>REQUIRED：支持当前事务，A 调 B  B 要按照 A 的事务执行（对 B 来说 A 就是外部事务），如果不存在则创建新事务。</li>
+<li>REQUIRES_NEW：创建一个新事务，并且暂停当前事务（外部事务），A调B，B无视A的事务，创建新事务。</li>
+<li>NESTED：如果当前存在事务（外部事务），则嵌套在该事务中执行，A调B，A有事务，B嵌套在A的事务里执行（B有独立的提交和回滚），如果不存在就和 REQUIRED 一样创建新事务。</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">@Autowired
+private AlphaDao alphaDao;
+
+@Autowired
+private UserMapper userMapper;
+
+&#x2F;&#x2F; REQUIRED
+&#x2F;&#x2F; REQUIRES_NEW
+&#x2F;&#x2F; NESTED
+@Transactional(isolation &#x3D; Isolation.READ_COMMITTED,propagation &#x3D; Propagation.REQUIRED)
+public Object save1()&#123;
+    &#x2F;&#x2F; 新增用户
+    User user &#x3D; new User();
+    user.setUsername(&quot;alpha&quot;);
+    user.setSalt(CommunityUtil.generateUUID().substring(0,5));
+    user.setPassword(CommunityUtil.md5(&quot;123&quot;+user.getSalt()));
+    user.setEmail(&quot;alpha@qq.com&quot;);
+    user.setHeaderUrl(&quot;http:&#x2F;&#x2F;image.nowcoder.com&#x2F;head&#x2F;99t.png&quot;);
+    user.setCreateTime(new Date());
+    userMapper.insertUser(user);
+
+    &#x2F;&#x2F; 新增帖子
+    DiscussPost post &#x3D; new DiscussPost();
+    post.setUserId(user.getId());
+    post.setTitle(&quot;Hello&quot;);
+    post.setContent(&quot;新人报道！&quot;);
+    post.setCreateTime(new Date());
+    discussPostMapper.insertDiscussPostRows(post);
+
+    Integer.valueOf(&quot;abc&quot;);
+
+    return &quot;ok&quot;;
+
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public class TransactionTests &#123;
+
+    @Autowired
+    private AlphaService alphaService;
+
+    @Test
+    public void testSave1()&#123;
+        Object obj &#x3D; alphaService.save1();
+        System.out.println(obj);
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>程序报错，查看数据库，未插入数据（当程序出错时回滚，保证了业务的完整性）</p>
+<h2 id="测试（编程式）"><a href="#测试（编程式）" class="headerlink" title="测试（编程式）"></a>测试（编程式）</h2><p>业务逻辑比较复杂，只需管理其中一小部分的时候用</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public Object save2() &#123;
+    transactionTemplate.setIsolationLevel(TransactionDefinition.ISOLATION_READ_COMMITTED);
+    transactionTemplate.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+
+    return transactionTemplate.execute(new TransactionCallback&lt;Object&gt;() &#123;
+        @Override
+        public Object doInTransaction(TransactionStatus status) &#123;
+            &#x2F;&#x2F; 这个方法是一个回调方法，是由template底层自动调的，但逻辑是自己提供的
+            &#x2F;&#x2F; 在方法里实现想要的逻辑，template在调方法时，实现事务的自动管理，status自动传入
+
+            &#x2F;&#x2F; 新增用户
+            User user &#x3D; new User();
+            user.setUsername(&quot;beta&quot;);
+            user.setSalt(CommunityUtil.generateUUID().substring(0, 5));
+            user.setPassword(CommunityUtil.md5(&quot;123&quot; + user.getSalt()));
+            user.setEmail(&quot;alpha@qq.com&quot;);
+            user.setHeaderUrl(&quot;http:&#x2F;&#x2F;image.nowcoder.com&#x2F;head&#x2F;999t.png&quot;);
+            user.setCreateTime(new Date());
+            userMapper.insertUser(user);
+
+            &#x2F;&#x2F; 新增帖子
+            DiscussPost post &#x3D; new DiscussPost();
+            post.setUserId(user.getId());
+            post.setTitle(&quot;Hello world !&quot;);
+            post.setContent(&quot;I am new here ！&quot;);
+            post.setCreateTime(new Date());
+            discussPostMapper.insertDiscussPostRows(post);
+
+            Integer.valueOf(&quot;abc&quot;);
+
+            return &quot;ok &quot;;
+        &#125;
+    &#125;);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -544,7 +638,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://giegiecode.github.io/2022/01/12/xiang-mu-diao-shi-ji-qiao/">https://giegiecode.github.io/2022/01/12/xiang-mu-diao-shi-ji-qiao/</a>
+                    <a href="https://giegiecode.github.io/2022/01/21/niu-ke-xiang-mu-shi-wu-guan-li/">https://giegiecode.github.io/2022/01/21/niu-ke-xiang-mu-shi-wu-guan-li/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -582,8 +676,16 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E8%B0%83%E8%AF%95/">
-                                    <span class="chip bg-color">调试</span>
+                                <a href="/tags/%E9%A1%B9%E7%9B%AE/">
+                                    <span class="chip bg-color">项目</span>
+                                </a>
+                            
+                                <a href="/tags/%E4%BA%8B%E5%8A%A1/">
+                                    <span class="chip bg-color">事务</span>
+                                </a>
+                            
+                                <a href="/tags/%E9%94%81/">
+                                    <span class="chip bg-color">锁</span>
                                 </a>
                             
                         </div>
@@ -627,17 +729,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/01/14/niu-ke-xiang-mu-1/">
+                <a href="/2022/01/21/niu-ke-xiang-mu-shi-wu-guan-li/">
                     <div class="card-image">
                         
+                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/152170.jpg" class="responsive-img" alt="事务管理">
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="牛客项目（发送邮件）">
-                        
-                        <span class="card-title">牛客项目（发送邮件）</span>
+                        <span class="card-title">事务管理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -647,26 +749,31 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-14
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-21
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%9F%BA%E7%A1%80/" class="post-category">
-                                    基础
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            code-轩
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
                     <a href="/tags/%E9%A1%B9%E7%9B%AE/">
                         <span class="chip bg-color">项目</span>
+                    </a>
+                    
+                    <a href="/tags/%E4%BA%8B%E5%8A%A1/">
+                        <span class="chip bg-color">事务</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%94%81/">
+                        <span class="chip bg-color">锁</span>
                     </a>
                     
                 </div>
@@ -680,13 +787,12 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/01/12/mybatis/">
+                <a href="/2022/01/21/niu-ke-xiang-mu-tie-zi-xiang-qing/">
                     <div class="card-image">
                         
+                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/152131.jpg" class="responsive-img" alt="帖子详情">
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="初学mybatis">
-                        
-                        <span class="card-title">初学mybatis</span>
+                        <span class="card-title">帖子详情</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -697,16 +803,12 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-21
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%9F%BA%E7%A1%80/" class="post-category">
-                                    基础
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            code-轩
                             
                         </span>
                     </div>
@@ -714,8 +816,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/mybatis/">
-                        <span class="chip bg-color">mybatis</span>
+                    <a href="/tags/%E9%A1%B9%E7%9B%AE/">
+                        <span class="chip bg-color">项目</span>
                     </a>
                     
                 </div>
