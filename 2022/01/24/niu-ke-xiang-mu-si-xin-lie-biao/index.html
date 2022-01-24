@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="帖子详情, HTML,CSS,JavaScript,JQuery,java,linux等">
+    <meta name="keywords" content="牛客项目-私信列表, HTML,CSS,JavaScript,JQuery,java,linux等">
     <meta name="description" content="本网站是个人兴趣爱好，总结分享经验，记录生活点滴的平台，希望在以后的学习旅途中，走出自己的风景。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>帖子详情 | Xuan&#39;S Blog</title>
+    <title>牛客项目-私信列表 | Xuan&#39;S Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -320,12 +320,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/152131.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/157667.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">帖子详情</h1>
+                    <h1 class="description center-align post-title">牛客项目-私信列表</h1>
                 </div>
             </div>
         </div>
@@ -457,21 +457,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-21
+                    2022-01-24
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-21
+                    2022-01-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    478
+                    919
                 </div>
                 
 
@@ -496,58 +496,228 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220121111045307.png" alt="image-20220121111045307"></p>
-<p>用th:text不会解析html，用th:utext会解析html，在页面中显示相应的样式</p>
-<p>用户在发帖时，可能带有标签，用utext 可以正常显示标签的样子，若不用utext 会显示转义的字符</p>
-<h2 id="DAO层"><a href="#DAO层" class="headerlink" title="DAO层"></a>DAO层</h2><p>增加方法根据帖子id 查询帖子</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">DiscussPost selectDiscussPostById(int id);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220122195843689.png" alt="image-20220122195843689"></p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220124212625275.png" alt="image-20220124212625275"></p>
+<h2 id="Dao层"><a href="#Dao层" class="headerlink" title="Dao层"></a>Dao层</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Mapper
+public interface MessageMapper &#123;
 
-<p>在discusspost-mapper内编写对应的sql语句</p>
-<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectDiscussPostById<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>DiscussPost<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    select
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>include</span> <span class="token attr-name">refid</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectFields<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>include</span><span class="token punctuation">></span></span>
-    from discuss_post
-    where id = #&#123;id&#125;
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    &#x2F;&#x2F; 查询当前用户的会话列表，针对每个会话只返回一条最新的私信
+    List&lt;Message&gt; selectConversations(int userId, int offset, int limit);
 
-<h2 id="Service层"><a href="#Service层" class="headerlink" title="Service层"></a>Service层</h2><p>DiscussPostService中增加对应的查询帖子业务</p>
-<pre class="line-numbers language-jade" data-language="jade"><code class="language-jade">public DiscussPost findDiscussPostById(int id)&#123;
-return discussPostMapper.selectDiscussPostById(id);
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+    &#x2F;&#x2F; 查询当前用户的会话数量
+    int selectConversationCount(int userId);
 
-<h2 id="Controller层"><a href="#Controller层" class="headerlink" title="Controller层"></a>Controller层</h2><p>ontroller负责请求转发，接受页面过来的参数，传给Service处理，接到返回值，再传给页面。controller层一般会和前台的js文件进行数据的交互， controller层是前台数据的接收器，后台处理好的数据也是通过controller层传递到前台显示的。</p>
-<p>路径：/detail/{discussPostId} ，discussPostId 帖子id，变化的值，请求方式get</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011410529/article/details/66974974">@RequestParam，@PathParam，@PathVariable等注解区别</a></p>
-<p>@PathVariable 这个注解能够识别URL里面的一个模板</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">@Autowired
-private UserService userService;
-@Autowired
-private DiscussPostService discussPostService;
+    &#x2F;&#x2F; 查询某个会话所包含的私信列表
+    List&lt;Message&gt; selectLetters(String conversationId, int offset, int limit);
 
-@RequestMapping(path &#x3D; &quot;&#x2F;detail&#x2F;&#123;discussPostId&#125;&quot;, method &#x3D; RequestMethod.GET)
-public String getDiscussPost(@PathVariable(&quot;discussPostId&quot;) int discussPostId, Model model) &#123;
-    &#x2F;&#x2F; 帖子
-    DiscussPost post &#x3D; discussPostService.findDiscussPostById(discussPostId);
-    model.addAttribute(&quot;post&quot;, post);
-    &#x2F;&#x2F; 作者
-    User user &#x3D; userService.findUserById(post.getUserId());
-    model.addAttribute(&quot;user&quot;, user);
+    &#x2F;&#x2F; 查询某个会话所包含的私信数量
+    int selectLetterCount(String conversationId);
 
-    return &quot;&#x2F;site&#x2F;discuss-detail&quot;; &#x2F;&#x2F; 跳转到帖子的详情页
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    &#x2F;&#x2F; 查询未读私信的数量
+    int selectLetterUnreadCount(int userId, String conversationId);
 
-<h2 id="在首页上的帖子标题增加访问链接"><a href="#在首页上的帖子标题增加访问链接" class="headerlink" title="在首页上的帖子标题增加访问链接"></a>在首页上的帖子标题增加访问链接</h2><p>处理静态资源的访问路径，获取帖子的 id 使用到社区首页开发的内容</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name"><span class="token namespace">th:</span>href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@&#123;|/discuss/detail/$&#123;map.post.id&#125;|&#125;<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">th:</span>utext</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>$&#123;map.post.title&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>备战春招，面试刷题跟他复习，一个月全搞定！<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="帖子详情页"><a href="#帖子详情页" class="headerlink" title="帖子详情页"></a>帖子详情页</h2><h3 id="thymeleaf-模板处理"><a href="#thymeleaf-模板处理" class="headerlink" title="thymeleaf 模板处理"></a>thymeleaf 模板处理</h3><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220121130318490.png" alt="image-20220121130318490"></p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220121130332697.png" alt="image-20220121130332697"></p>
-<h3 id="复用首页的头部"><a href="#复用首页的头部" class="headerlink" title="复用首页的头部"></a>复用首页的头部</h3><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220121130421889.png" alt="image-20220121130421889"></p>
-<h3 id="修改或增加thymeleaf-模板处理方法"><a href="#修改或增加thymeleaf-模板处理方法" class="headerlink" title="修改或增加thymeleaf 模板处理方法"></a>修改或增加thymeleaf 模板处理方法</h3><p>获取对应帖子和作者对象里的属性</p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220121130617442.png" alt="image-20220121130617442"></p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220121130649781.png" alt="image-20220121130649781"></p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220121130714680.png" alt="image-20220121130714680"></p>
+
+
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8" ?></span>
+<span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">mapper</span>
+        <span class="token name">PUBLIC</span> <span class="token string">"-//mybatis.org//DTD Mapper 3.0//EN"</span>
+        <span class="token string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mapper</span> <span class="token attr-name">namespace</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.nowcoder.community.dao.MessageMapper<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>sql</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectFields<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        id
+        ,from_id,to_id,conversation_id,content,status,create_time
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>sql</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectConversations<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Message<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        select
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>include</span> <span class="token attr-name">refid</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectFields<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>include</span><span class="token punctuation">></span></span>
+        from message
+        where id in (
+        select max(id) from message
+        where status != 2
+        and from_id != 1
+        and (from_id = #&#123;userId&#125; or to_id = #&#123;userId&#125;)
+        group by conversation_id
+        )
+        order by id desc
+        limit #&#123;offset&#125;,#&#123;limit&#125;
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectConversationCount<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>int<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        select count(m.maxid)
+        from (
+            select max(id) as maxid
+            from message
+            where status !=2
+            and from_id != 1
+            and (from_id = #&#123;userId&#125;
+            or to_id = #&#123;userId&#125;)
+            group by conversation_id
+             ) as m
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectLetters<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Message<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        select
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>include</span> <span class="token attr-name">refid</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectFields<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>include</span><span class="token punctuation">></span></span>
+        from message
+        where status != 2
+        and from_id != 1
+        and conversation_id = #&#123;conversationId&#125;
+        order by id desc
+        limit #&#123;offset&#125;,#&#123;limit&#125;
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectLetterCount<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>int<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        select count(id)
+        from message
+        where status != 2
+        and from_id != 1
+        and conversation_id = #&#123;conversationId&#125;
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectLetterUnreadCount<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>int<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        select count(id)
+        from message
+        where status = 0
+        and from_id != 1
+        and to_id = #&#123;userId&#125;
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>if</span> <span class="token attr-name">test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>conversationId!=null<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            and conversation_id = #&#123;conversationId&#125;
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mapper</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="Service层"><a href="#Service层" class="headerlink" title="Service层"></a>Service层</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service
+public class MessageService &#123;
+
+    @Autowired
+    private MessageMapper messageMapper;
+
+    public List&lt;Message&gt; findConversations(int userId, int offset, int limit) &#123;
+        return messageMapper.selectConversations(userId, offset, limit);
+    &#125;
+
+    public int findConversationCount(int userId) &#123;
+        return messageMapper.selectConversationCount(userId);
+    &#125;
+
+    public List&lt;Message&gt; findLetters(String conversationId, int offset, int limit) &#123;
+        return messageMapper.selectLetters(conversationId, offset, limit);
+    &#125;
+
+    public int findLetterCount(String conversationId) &#123;
+        return messageMapper.selectLetterCount(conversationId);
+    &#125;
+
+    public int findLetterUnreadCount(int userId, String conversationId) &#123;
+        return messageMapper.selectLetterUnreadCount(userId, conversationId);
+    &#125;
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Controller层"><a href="#Controller层" class="headerlink" title="Controller层"></a>Controller层</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Controller
+public class MessageController &#123;
+
+    @Autowired
+    private MessageService messageService;
+
+    @Autowired
+    private HostHolder hostHolder;
+
+    @Autowired
+    private UserService userService;
+
+    @RequestMapping(path &#x3D; &quot;&#x2F;letter&#x2F;list&quot;, method &#x3D; RequestMethod.GET)
+    public String getLetterList(Model model, Page page) &#123;
+        User user &#x3D; hostHolder.getUser();
+        &#x2F;&#x2F;分页信息
+        page.setLimit(5);
+        page.setPath(&quot;&#x2F;letter&#x2F;list&quot;);
+        page.setRows(messageService.findConversationCount(user.getId()));
+
+        &#x2F;&#x2F;会话列表
+        List&lt;Message&gt; conversationList &#x3D; messageService.findConversations(
+                user.getId(), page.getOffset(), page.getLimit());
+        List&lt;Map&lt;String, Object&gt;&gt; conversations &#x3D; new ArrayList&lt;&gt;();
+        if (conversationList !&#x3D; null) &#123;
+            for (Message message : conversationList) &#123;
+                Map&lt;String, Object&gt; map &#x3D; new HashMap&lt;&gt;();
+                map.put(&quot;conversation&quot;, message);
+                map.put(&quot;letterCount&quot;, messageService.findLetterCount(message.getConversationId()));
+                map.put(&quot;unreadCount&quot;, messageService.findLetterUnreadCount(user.getId(), message.getConversationId()));
+                int targetId &#x3D; user.getId() &#x3D;&#x3D; message.getFromId() ? message.getToId() : message.getFromId();
+                map.put(&quot;target&quot;, userService.findUserById(targetId));
+
+                conversations.add(map);
+            &#125;
+        &#125;
+        model.addAttribute(&quot;conversations&quot;, conversations);
+
+        &#x2F;&#x2F; 查询未读的消息数量
+        int letterUnreadCount &#x3D; messageService.findLetterUnreadCount(user.getId(), null);
+        model.addAttribute(&quot;letterUnreadCount&quot;, letterUnreadCount);
+
+        return &quot;&#x2F;site&#x2F;letter&quot;;
+    &#125;
+
+    @RequestMapping(path &#x3D; &quot;&#x2F;letter&#x2F;detail&#x2F;&#123;conversationId&#125;&quot;, method &#x3D; RequestMethod.GET)
+    public String getLetterDetail(@PathVariable(&quot;conversationId&quot;) String conversationId, Page page, Model model) &#123;
+        &#x2F;&#x2F; 分页信息
+        page.setLimit(5);
+        page.setPath(&quot;&#x2F;letter&#x2F;detail&#x2F;&quot; + conversationId);
+        page.setRows(messageService.findLetterCount(conversationId));
+
+        &#x2F;&#x2F; 私信列表
+        List&lt;Message&gt; letterList &#x3D; messageService.findLetters(conversationId, page.getOffset(), page.getLimit());
+        List&lt;Map&lt;String, Object&gt;&gt; letters &#x3D; new ArrayList&lt;&gt;();
+        if (letterList !&#x3D; null) &#123;
+            for (Message message : letterList) &#123;
+                Map&lt;String, Object&gt; map &#x3D; new HashMap&lt;&gt;();
+                map.put(&quot;letter&quot;, message);
+                map.put(&quot;fromUser&quot;, userService.findUserById(message.getFromId()));
+                letters.add(map);
+            &#125;
+        &#125;
+        model.addAttribute(&quot;letters&quot;, letters);
+
+        &#x2F;&#x2F; 私信目标
+        model.addAttribute(&quot;target&quot;, getLetterTarget(conversationId));
+
+        return &quot;&#x2F;site&#x2F;letter-detail&quot;;
+    &#125;
+
+    private User getLetterTarget(String conversationId) &#123;
+        String[] ids &#x3D; conversationId.split(&quot;_&quot;);
+        int id0 &#x3D; Integer.parseInt(ids[0]);
+        int id1 &#x3D; Integer.parseInt(ids[1]);
+
+        if (hostHolder.getUser().getId() &#x3D;&#x3D; id0) &#123;
+            return userService.findUserById(id1);
+        &#125; else &#123;
+            return userService.findUserById(id0);
+        &#125;
+    &#125;
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="处理页面模板"><a href="#处理页面模板" class="headerlink" title="处理页面模板"></a>处理页面模板</h2><h3 id="letter-页面处理"><a href="#letter-页面处理" class="headerlink" title="letter 页面处理"></a>letter 页面处理</h3><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220124213944033.png" alt="image-20220124213944033"></p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220124214314923.png" alt="image-20220124214314923"></p>
+<p>复用首页的分页</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220124214815481.png" alt="image-20220124214815481"></p>
+<p>如果未读消息不为0则显示</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220124214940575.png" alt="image-20220124214940575"></p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220124220018443.png" alt="image-20220124220018443"></p>
+<h3 id="letter-detail-页面处理"><a href="#letter-detail-页面处理" class="headerlink" title="letter-detail 页面处理"></a>letter-detail 页面处理</h3><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220124221436190.png" alt="image-20220124221436190"></p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220124221751526.png" alt="image-20220124221751526"></p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220124221620832.png" alt="image-20220124221620832"></p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220124222346336.png" alt="image-20220124222346336"></p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220124222548418.png" alt="image-20220124222548418"></p>
 
                 
             </div>
@@ -574,7 +744,7 @@ public String getDiscussPost(@PathVariable(&quot;discussPostId&quot;) int discus
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://giegiecode.github.io/2022/01/21/niu-ke-xiang-mu-tie-zi-xiang-qing/">https://giegiecode.github.io/2022/01/21/niu-ke-xiang-mu-tie-zi-xiang-qing/</a>
+                    <a href="https://giegiecode.github.io/2022/01/24/niu-ke-xiang-mu-si-xin-lie-biao/">https://giegiecode.github.io/2022/01/24/niu-ke-xiang-mu-si-xin-lie-biao/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -657,16 +827,17 @@ public String getDiscussPost(@PathVariable(&quot;discussPostId&quot;) int discus
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/01/21/niu-ke-xiang-mu-shi-wu-guan-li/">
+                <a href="/2022/01/24/niu-ke-xiang-mu-si-xin-lie-biao/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/152170.jpg" class="responsive-img" alt="事务管理">
+                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/157667.jpg" class="responsive-img" alt="牛客项目-私信列表">
                         
-                        <span class="card-title">事务管理</span>
+                        <span class="card-title">牛客项目-私信列表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -676,9 +847,9 @@ public String getDiscussPost(@PathVariable(&quot;discussPostId&quot;) int discus
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-24
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -687,19 +858,12 @@ public String getDiscussPost(@PathVariable(&quot;discussPostId&quot;) int discus
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
                     <a href="/tags/%E9%A1%B9%E7%9B%AE/">
                         <span class="chip bg-color">项目</span>
-                    </a>
-                    
-                    <a href="/tags/%E4%BA%8B%E5%8A%A1/">
-                        <span class="chip bg-color">事务</span>
-                    </a>
-                    
-                    <a href="/tags/%E9%94%81/">
-                        <span class="chip bg-color">锁</span>
                     </a>
                     
                 </div>
@@ -713,12 +877,12 @@ public String getDiscussPost(@PathVariable(&quot;discussPostId&quot;) int discus
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/01/21/niu-ke-xiang-mu-fa-bu-tie-zi/">
+                <a href="/2022/01/24/niu-ke-xiang-mu-tian-jia-ping-lun/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/微距1.jpg" class="responsive-img" alt="发布帖子">
+                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/156712.jpg" class="responsive-img" alt="牛客项目-添加评论">
                         
-                        <span class="card-title">发布帖子</span>
+                        <span class="card-title">牛客项目-添加评论</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -729,7 +893,7 @@ public String getDiscussPost(@PathVariable(&quot;discussPostId&quot;) int discus
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-21
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-24
                             </span>
                         <span class="publish-author">
                             
@@ -744,26 +908,6 @@ public String getDiscussPost(@PathVariable(&quot;discussPostId&quot;) int discus
                     
                     <a href="/tags/%E9%A1%B9%E7%9B%AE/">
                         <span class="chip bg-color">项目</span>
-                    </a>
-                    
-                    <a href="/tags/AJAX/">
-                        <span class="chip bg-color">AJAX</span>
-                    </a>
-                    
-                    <a href="/tags/js/">
-                        <span class="chip bg-color">js</span>
-                    </a>
-                    
-                    <a href="/tags/json/">
-                        <span class="chip bg-color">json</span>
-                    </a>
-                    
-                    <a href="/tags/jQuery/">
-                        <span class="chip bg-color">jQuery</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%A2%9E%E9%87%8F%E6%9B%B4%E6%96%B0/">
-                        <span class="chip bg-color">增量更新</span>
                     </a>
                     
                 </div>
