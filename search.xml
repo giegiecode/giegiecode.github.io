@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>初识Redis</title>
+      <link href="/2022/01/25/chu-shi-redis/"/>
+      <url>/2022/01/25/chu-shi-redis/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220125084537778.png" alt="image-20220125084537778"></p><p>RDB 是以快照的形式，将内存中的数据整体拷贝到硬盘上</p><p>执行RDB存储时会产生阻塞，因此RDB不适合实时备份，而适合定时备份</p><p><a href="https://github.com/microsoftarchive/redis">redis windows 安装</a></p><p>往 redis 库中添加 String 类型的数据 ：set，nosql 中的key 有两个单词相连用：key 的名字为 test:count</p><p>String 类型的存入取出加减</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220125093823952.png" alt="image-20220125093823952"></p><p>hash 类型的存入取出</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220125094052057.png" alt="image-20220125094052057"></p><p>list 列表类型左进右出式存取</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220125094731620.png" alt="image-20220125094731620"></p><p>无序集合类型，弹出的值是随机的，可用于抽奖，scard：统计多少个数据，smembers key 查看剩余的内容</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220125095116393.png" alt="image-20220125095116393"></p><p>有序集合，给每个值增加了一个附加的分数，按这个分数排序，</p><ul><li>zscore：查询某个值的分数，</li><li>zrank：返回某个值的排名，</li><li>zrange：取某个范围内的数据</li></ul><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220125095923995.png" alt="image-20220125095923995"></p><p>全局命令(针对所有的类型都有效)：</p><p>keys *：查询当前库里有多少个 key </p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220125100500346.png" alt="image-20220125100500346"></p><p>key test*：查询库里以 test 开头的key 有多少个</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220125100520946.png" alt="image-20220125100520946"></p><p>type test:key：看某个 key 的类型</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220125100649320.png" alt="image-20220125100649320"></p><p>exists test:user：看某个 key 是否存在 1：true，0：false</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220125100813080.png" alt="image-20220125100813080"></p><p>过 * 秒自动删除 key ，用于处理验证码，多少秒过期</p><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220125101109977.png" alt="image-20220125101109977"></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> NOSQL </tag>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>统一记录日志</title>
       <link href="/2022/01/24/tong-yi-ji-lu-ri-zhi/"/>
       <url>/2022/01/24/tong-yi-ji-lu-ri-zhi/</url>
