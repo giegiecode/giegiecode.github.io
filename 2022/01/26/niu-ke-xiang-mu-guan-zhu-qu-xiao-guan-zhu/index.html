@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="生成验证码, HTML,CSS,JavaScript,JQuery,java,linux等">
+    <meta name="keywords" content="牛客项目-关注/取消关注, HTML,CSS,JavaScript,JQuery,java,linux等">
     <meta name="description" content="本网站是个人兴趣爱好，总结分享经验，记录生活点滴的平台，希望在以后的学习旅途中，走出自己的风景。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>生成验证码 | Xuan&#39;S Blog</title>
+    <title>牛客项目-关注/取消关注 | Xuan&#39;S Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -320,12 +320,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/434217.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/591539.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">生成验证码</h1>
+                    <h1 class="description center-align post-title">牛客项目-关注/取消关注</h1>
                 </div>
             </div>
         </div>
@@ -441,27 +441,22 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/">
-                                <span class="chip bg-color">验证码</span>
+                            <a href="/tags/%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/">
+                                <span class="chip bg-color">异步请求</span>
                             </a>
                         
                             <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
                                 <span class="chip bg-color">牛客项目</span>
                             </a>
                         
+                            <a href="/tags/redis/">
+                                <span class="chip bg-color">redis</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/%E5%9F%BA%E7%A1%80/" class="post-category">
-                                基础
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -470,7 +465,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-16
+                    2022-01-26
                 </div>
                 
 
@@ -484,7 +479,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    685
+                    835
                 </div>
                 
 
@@ -509,86 +504,178 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220116083330183.png" alt="image-20220116083330183"></p>
-<p>导入 jar 包</p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220116084123482.png" alt="image-20220116084123482"></p>
-<p>编写配置类（config 包下新建类 KaptchaConfig）</p>
-<p>要实现 Producer 接口，</p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220116084606993.png" alt="image-20220116084606993"></p>
-<p>DefaultKaptcha 是这个接口的实现类</p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220116084720082.png" alt="image-20220116084720082"></p>
-<p>KaptchaConfig 配置类</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.nowcoder.community.config;
+                <p><img src="C:\Users\QX\AppData\Roaming\Typora\typora-user-images\image-20220126151251930.png" alt="image-20220126151251930"></p>
+<p>声明两个前缀，意味着要存两份数据，与点赞类似，一个是存与业务相关的数据，一个是为了统计方便</p>
+<p>我关注了某人，要把这个目标存下来，另一方面，我关注的那个人，以他为 key 把我作为粉丝存进去</p>
+<p>我的角度：followee，他的粉丝：follower</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220126154439375.png" alt="image-20220126154439375"></p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220126154456415.png" alt="image-20220126154456415"></p>
+<h2 id="Service层"><a href="#Service层" class="headerlink" title="Service层"></a>Service层</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Service
+public class FollowService &#123;
 
-import com.google.code.kaptcha.Producer;
-import com.google.code.kaptcha.impl.DefaultKaptcha;
-import com.google.code.kaptcha.util.Config;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
-import java.util.Properties;
+    &#x2F;&#x2F; 两个操作同时进行，用事务管理
+    public void follow(int userId, int entityType, int entityId) &#123;
+        redisTemplate.execute(new SessionCallback() &#123;
+            @Override
+            public Object execute(RedisOperations operations) throws DataAccessException &#123;
+                String followeeKey &#x3D; RedisKeyUtil.getFolloweeKey(userId, entityType);
+                String followerKey &#x3D; RedisKeyUtil.getFollowerKey(entityType, entityId);
 
-&#x2F;**
- * @author giegie
- * @create 2022-01-16-8:40
- *&#x2F;
-@Configuration
-public class KaptchaConfig &#123;
+                operations.multi(); &#x2F;&#x2F; 启动事务
 
-    @Bean &#x2F;&#x2F; 声明一个Bean,这个Bean将会被Spring容器所装配
-    public Producer kaptchaProducer() &#123;
-        Properties properties &#x3D; new Properties();
-        properties.setProperty(&quot;kaptcha.image.width&quot;, &quot;100&quot;);&#x2F;&#x2F; 宽
-        properties.setProperty(&quot;kaptcha.image.height&quot;, &quot;40&quot;);&#x2F;&#x2F; 高
-        properties.setProperty(&quot;kaptcha.textproducer.font.size&quot;, &quot;30&quot;);&#x2F;&#x2F; 字体大小
-        properties.setProperty(&quot;kaptcha.textproducer.font.color&quot;, &quot;0.0.0&quot;);&#x2F;&#x2F; 字体颜色
-        properties.setProperty(&quot;kaptcha.textproducer.char.string&quot;, &quot;0123456789abcdefghijklmnopqrstuvwxyz&quot;);&#x2F;&#x2F; 字符范围
-        properties.setProperty(&quot;kaptcha.textproducer.char.length&quot;, &quot;4&quot;);&#x2F;&#x2F; 字符长度
-        properties.setProperty(&quot;kaptcha.noise.impl&quot;, &quot;com.google.code.kaptcha.impl.NoNoise&quot;);&#x2F;&#x2F; 验证码干扰因素
+                operations.opsForZSet().add(followeeKey, entityId, System.currentTimeMillis());
+                operations.opsForZSet().add(followerKey, userId, System.currentTimeMillis());
 
-        DefaultKaptcha kaptcha &#x3D; new DefaultKaptcha();
-        Config config &#x3D; new Config(properties);
-        &#x2F;&#x2F; 给kaptcha传入一些参数，参数封装进Config对象，Config对象传入Properties对象
-        &#x2F;&#x2F; Properties对象里存的都是key-value及Map,Map里存的就是参数
-        kaptcha.setConfig(config);
-        return kaptcha;
-    &#125;
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>服务启动 bean 被自动装配进容器里，通过容器得到一个Producer实例，实例有两个方法创建图片创建验证码</p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220116145842259.png" alt="image-20220116145842259"></p>
-<p>getLoginPage方法的目的是给浏览器返回一个html，html里会包含一个图片的路径，浏览器会依据路径再次访问服务器，获得这个图片，因此要单独写一个请求，向浏览器返回验证码图片</p>
-<p>在 LoginController.java 增加一个请求提供获取验证码的方法</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">@RequestMapping(path &#x3D; &quot;&#x2F;kaptcha&quot;,method &#x3D; RequestMethod.GET)
-public void getKaptcha(HttpServletResponse response, HttpSession session)&#123;
-    &#x2F;&#x2F; 生成验证码
-    String text &#x3D; kaptchaProducer.createText(); &#x2F;&#x2F; 生成4位随机字符串
-    BufferedImage image &#x3D; kaptchaProducer.createImage(text); &#x2F;&#x2F; 利用字符串生成一个与之对应的图片
-
-    &#x2F;&#x2F; 将验证码存入session中
-    session.setAttribute(&quot;kaptcha&quot;,text);
-
-    &#x2F;&#x2F; 将图片输出给浏览器
-    response.setContentType(&quot;image&#x2F;png&quot;); &#x2F;&#x2F; 声明给浏览器返回的什么类型的数据
-    try &#123;
-        OutputStream os &#x3D; response.getOutputStream(); &#x2F;&#x2F; 从response中获取输出流
-        ImageIO.write(image,&quot;png&quot;,os);
-        &#x2F;&#x2F; 向浏览器输出图片的工具ImageIo，image:输出的图片，png:输出格式，os:输出流
-        &#x2F;&#x2F; 流不用关闭，整个response是由SpringMVC来维护的，会自动关闭
-    &#125; catch (IOException e) &#123;
-        logger.error(&quot;响应验证码失败&quot;+e.getMessage());
+                return operations.exec();
+            &#125;
+        &#125;);
     &#125;
 
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    public void unfollow(int userId, int entityType, int entityId) &#123;
+        redisTemplate.execute(new SessionCallback() &#123;
+            @Override
+            public Object execute(RedisOperations operations) throws DataAccessException &#123;
+                String followeeKey &#x3D; RedisKeyUtil.getFolloweeKey(userId, entityType);
+                String followerKey &#x3D; RedisKeyUtil.getFollowerKey(entityType, entityId);
+
+                operations.multi();
+
+                operations.opsForZSet().remove(followeeKey, entityId);
+                operations.opsForZSet().remove(followerKey, userId);
+
+                return operations.exec();
+            &#125;
+        &#125;);
+    &#125;
+
+    &#x2F;&#x2F; 查询某用户关注的实体的数量
+    public long findFolloweeCount(int userId, int entityType) &#123;
+        String followeeKey &#x3D; RedisKeyUtil.getFolloweeKey(userId, entityType);
+        return redisTemplate.opsForZSet().zCard(followeeKey);
+    &#125;
+
+    &#x2F;&#x2F; 查询实体的粉丝数量
+    public long findFollowerCount(int entityType, int entityId) &#123;
+        String followerKey &#x3D; RedisKeyUtil.getFollowerKey(entityType, entityId);
+        return redisTemplate.opsForZSet().zCard(followerKey);
+    &#125;
+
+    &#x2F;&#x2F; 查询当前用户是否已关注该实体
+    public boolean hasFollowed(int userId, int entityType, int entityId) &#123;
+        String followeeKey &#x3D; RedisKeyUtil.getFolloweeKey(userId, entityType);
+        return redisTemplate.opsForZSet().score(followeeKey, entityId) !&#x3D; null;
+    &#125;
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<p>把验证码应用到 login.html 页面，并通过 js 来实现点击刷新验证码按钮来刷新验证码的功能（JS 部分知识）</p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220116143954545.png" alt="image-20220116143954545"></p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220116145045619.png" alt="image-20220116145045619"></p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220116145243941.png" alt="image-20220116145243941"></p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220116145210414.png" alt="image-20220116145210414"></p>
+<h2 id="Controller层"><a href="#Controller层" class="headerlink" title="Controller层"></a>Controller层</h2><p>异步请求</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">@Controller
+public class FollowController &#123;
+
+    @Autowired
+    private FollowService followService;
+
+    @Autowired
+    private HostHolder hostHolder;
+
+    @RequestMapping(path &#x3D; &quot;&#x2F;follow&quot;, method &#x3D; RequestMethod.POST)
+    @ResponseBody
+    public String follow(int entityType, int entityId) &#123;
+        User user &#x3D; hostHolder.getUser(); &#x2F;&#x2F; 如果没登录，用拦截器做一个检查，强制登录才能访问
+
+        followService.follow(user.getId(), entityType, entityId);
+
+        return CommunityUtil.getJSONString(0, &quot;已关注！&quot;);
+    &#125;
+
+    @RequestMapping(path &#x3D; &quot;&#x2F;unfollow&quot;, method &#x3D; RequestMethod.POST)
+    @ResponseBody
+    public String unfollow(int entityType, int entityId) &#123;
+        User user &#x3D; hostHolder.getUser(); &#x2F;&#x2F; 如果没登录，用拦截器做一个检查，强制登录才能访问
+
+        followService.unfollow(user.getId(), entityType, entityId);
+
+        return CommunityUtil.getJSONString(0, &quot;已取消关注！&quot;);
+    &#125;
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="处理异步请求"><a href="#处理异步请求" class="headerlink" title="处理异步请求"></a>处理异步请求</h2><pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token function">$</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+   <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">".follow-btn"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span>follow<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">follow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   <span class="token keyword">var</span> btn <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+   <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">$</span><span class="token punctuation">(</span>btn<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hasClass</span><span class="token punctuation">(</span><span class="token string">"btn-info"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">// 如果当前按钮的样式是这个样式(蓝色),没关注</span>
+      <span class="token comment">// 关注TA</span>
+      $<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span>
+         <span class="token constant">CONTEXT_PATH</span><span class="token operator">+</span><span class="token string">"/follow"</span><span class="token punctuation">,</span>
+         <span class="token punctuation">&#123;</span><span class="token string">"entityType"</span><span class="token operator">:</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token string">"entityId"</span><span class="token operator">:</span><span class="token function">$</span><span class="token punctuation">(</span>btn<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">prev</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+         <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            data <span class="token operator">=</span> $<span class="token punctuation">.</span><span class="token function">parseJSON</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>data<span class="token punctuation">.</span>code <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+               window<span class="token punctuation">.</span>location<span class="token punctuation">.</span><span class="token function">reload</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span><span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+               <span class="token function">alert</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+         <span class="token punctuation">&#125;</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// $(btn).text("已关注").removeClass("btn-info").addClass("btn-secondary");</span>
+   <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span> <span class="token comment">// 灰色样式，可以取消关注</span>
+      <span class="token comment">// 取消关注</span>
+      $<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span>
+         <span class="token constant">CONTEXT_PATH</span><span class="token operator">+</span><span class="token string">"/unfollow"</span><span class="token punctuation">,</span>
+         <span class="token punctuation">&#123;</span><span class="token string">"entityType"</span><span class="token operator">:</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token string">"entityId"</span><span class="token operator">:</span><span class="token function">$</span><span class="token punctuation">(</span>btn<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">prev</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+         <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            data <span class="token operator">=</span> $<span class="token punctuation">.</span><span class="token function">parseJSON</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>data<span class="token punctuation">.</span>code <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+               window<span class="token punctuation">.</span>location<span class="token punctuation">.</span><span class="token function">reload</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span><span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+               <span class="token function">alert</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+         <span class="token punctuation">&#125;</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// $(btn).text("关注TA").removeClass("btn-secondary").addClass("btn-info");</span>
+   <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="UserController"><a href="#UserController" class="headerlink" title="UserController"></a>UserController</h2><p>增加用户主页的设置</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 个人主页
+@RequestMapping(path &#x3D; &quot;&#x2F;profile&#x2F;&#123;userId&#125;&quot;, method &#x3D; RequestMethod.GET)
+public String getProfilePage(@PathVariable(&quot;userId&quot;) int userId, Model model) &#123;
+    User user &#x3D; userService.findUserById(userId);
+    if (user &#x3D;&#x3D; null) &#123;
+        throw new RuntimeException(&quot;该用户不存在！&quot;);
+    &#125;
+
+    &#x2F;&#x2F; 用户
+    model.addAttribute(&quot;user&quot;, user);
+    &#x2F;&#x2F; 点赞数量
+    int likeCount &#x3D; likeService.findUserLikeCount(userId);
+    model.addAttribute(&quot;likeCount&quot;, likeCount);
+
+    &#x2F;&#x2F; 关注数量
+    long followeeCount &#x3D; followService.findFolloweeCount(userId, ENTITY_TYPE_USER);
+    model.addAttribute(&quot;followeeCount&quot;, followeeCount);
+    &#x2F;&#x2F; 粉丝数量
+    long followerCount &#x3D; followService.findFollowerCount(ENTITY_TYPE_USER, userId);
+    model.addAttribute(&quot;followerCount&quot;, followerCount);
+    &#x2F;&#x2F; 是否已关注
+    boolean hasFollowed &#x3D; false;
+    if (hostHolder.getUser() !&#x3D; null) &#123;
+        hasFollowed &#x3D; followService.hasFollowed(hostHolder.getUser().getId(), ENTITY_TYPE_USER, userId);
+    &#125;
+    model.addAttribute(&quot;hasFollowed&quot;, hasFollowed);
+
+    return &quot;&#x2F;site&#x2F;profile&quot;;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="页面模板设置"><a href="#页面模板设置" class="headerlink" title="页面模板设置"></a>页面模板设置</h2><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220126201133795.png" alt="image-20220126201133795"></p>
 
                 
             </div>
@@ -615,7 +702,7 @@ public void getKaptcha(HttpServletResponse response, HttpSession session)&#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://giegiecode.github.io/2022/01/16/niu-ke-xiang-mu-sheng-cheng-yan-zheng-ma/">https://giegiecode.github.io/2022/01/16/niu-ke-xiang-mu-sheng-cheng-yan-zheng-ma/</a>
+                    <a href="https://giegiecode.github.io/2022/01/26/niu-ke-xiang-mu-guan-zhu-qu-xiao-guan-zhu/">https://giegiecode.github.io/2022/01/26/niu-ke-xiang-mu-guan-zhu-qu-xiao-guan-zhu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -653,12 +740,16 @@ public void getKaptcha(HttpServletResponse response, HttpSession session)&#123;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/">
-                                    <span class="chip bg-color">验证码</span>
+                                <a href="/tags/%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/">
+                                    <span class="chip bg-color">异步请求</span>
                                 </a>
                             
                                 <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
                                     <span class="chip bg-color">牛客项目</span>
+                                </a>
+                            
+                                <a href="/tags/redis/">
+                                    <span class="chip bg-color">redis</span>
                                 </a>
                             
                         </div>
@@ -702,16 +793,17 @@ public void getKaptcha(HttpServletResponse response, HttpSession session)&#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/01/18/niu-ke-xiang-mu-deng-lu-tui-chu-gong-neng/">
+                <a href="/2022/01/26/niu-ke-xiang-mu-guan-zhu-qu-xiao-guan-zhu/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/544050.jpg" class="responsive-img" alt="登录退出功能">
+                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/591539.jpg" class="responsive-img" alt="牛客项目-关注/取消关注">
                         
-                        <span class="card-title">登录退出功能</span>
+                        <span class="card-title">牛客项目-关注/取消关注</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -721,30 +813,31 @@ public void getKaptcha(HttpServletResponse response, HttpSession session)&#123;
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-18
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-26
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%9F%BA%E7%A1%80/" class="post-category">
-                                    基础
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            code-轩
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/">
-                        <span class="chip bg-color">登录功能</span>
+                    <a href="/tags/%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/">
+                        <span class="chip bg-color">异步请求</span>
                     </a>
                     
                     <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
                         <span class="chip bg-color">牛客项目</span>
+                    </a>
+                    
+                    <a href="/tags/redis/">
+                        <span class="chip bg-color">redis</span>
                     </a>
                     
                 </div>
@@ -758,12 +851,12 @@ public void getKaptcha(HttpServletResponse response, HttpSession session)&#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/01/15/niu-ke-xiang-mu-hui-hua-guan-li/">
+                <a href="/2022/01/26/niu-ke-xiang-mu-wo-shou-dao-de-zan/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/543303.jpg" class="responsive-img" alt="会话管理">
+                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/168913.jpg" class="responsive-img" alt="牛客项目-我收到的赞">
                         
-                        <span class="card-title">会话管理</span>
+                        <span class="card-title">牛客项目-我收到的赞</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -774,16 +867,12 @@ public void getKaptcha(HttpServletResponse response, HttpSession session)&#123;
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-26
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%9F%BA%E7%A1%80/" class="post-category">
-                                    基础
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            code-轩
                             
                         </span>
                     </div>
@@ -791,16 +880,16 @@ public void getKaptcha(HttpServletResponse response, HttpSession session)&#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/cookie/">
-                        <span class="chip bg-color">cookie</span>
-                    </a>
-                    
-                    <a href="/tags/session/">
-                        <span class="chip bg-color">session</span>
+                    <a href="/tags/Redis/">
+                        <span class="chip bg-color">Redis</span>
                     </a>
                     
                     <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
                         <span class="chip bg-color">牛客项目</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%87%8D%E6%9E%84/">
+                        <span class="chip bg-color">重构</span>
                     </a>
                     
                 </div>
