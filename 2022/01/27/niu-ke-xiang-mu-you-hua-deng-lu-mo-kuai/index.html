@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="牛客项目-点赞, HTML,CSS,JavaScript,JQuery,java,linux等">
+    <meta name="keywords" content="牛客项目-优化登录模块, HTML,CSS,JavaScript,JQuery,java,linux等">
     <meta name="description" content="本网站是个人兴趣爱好，总结分享经验，记录生活点滴的平台，希望在以后的学习旅途中，走出自己的风景。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>牛客项目-点赞 | Xuan&#39;S Blog</title>
+    <title>牛客项目-优化登录模块 | Xuan&#39;S Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -320,12 +320,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/167163.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/592434.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">牛客项目-点赞</h1>
+                    <h1 class="description center-align post-title">牛客项目-优化登录模块</h1>
                 </div>
             </div>
         </div>
@@ -441,16 +441,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/">
-                                <span class="chip bg-color">异步请求</span>
-                            </a>
-                        
-                            <a href="/tags/Redis/">
-                                <span class="chip bg-color">Redis</span>
-                            </a>
-                        
                             <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
                                 <span class="chip bg-color">牛客项目</span>
+                            </a>
+                        
+                            <a href="/tags/%E9%87%8D%E6%9E%84/">
+                                <span class="chip bg-color">重构</span>
                             </a>
                         
                     </div>
@@ -465,21 +461,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-26
+                    2022-01-27
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-26
+                    2022-01-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    888
+                    643
                 </div>
                 
 
@@ -504,132 +500,102 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220125210802161.png" alt="image-20220125210802161"></p>
-<p>将数据存到 Redis 中来提升性能</p>
-<p>在向 Redis 中存数据、取数据和操作数据的过程中，是以 key 为关键的，面向 key 编程，为了让 key 方便复用，给 Redis 写一个工具，专门用来生成 key </p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">public class RedisKeyUtil &#123;
+                <p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220127144715171.png" alt="image-20220127144715171"></p>
+<h2 id="使用Redis存储验证码"><a href="#使用Redis存储验证码" class="headerlink" title="使用Redis存储验证码"></a>使用Redis存储验证码</h2><h3 id="增加key的定义及方法"><a href="#增加key的定义及方法" class="headerlink" title="增加key的定义及方法"></a>增加key的定义及方法</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">private static final String RPEFIX_KAPTCHA &#x3D; &quot;kaptcha&quot;;
 
-    private static final String SPLIT &#x3D; &quot;:&quot;;
-    &#x2F;&#x2F; 帖子和评论统称为实体，要存实体的赞
-    private static final String PREFIX_ENTITY_LIKE &#x3D; &quot;like:entity&quot;;
+&#x2F;&#x2F; 登录验证码
+&#x2F;&#x2F; 用户打开登录页面看到验证码，还没有登录，不知道userId,需要识别用户是谁
+&#x2F;&#x2F; 在用户访问登录页面时，给他发一个凭证（随机生成的字符串），存到Cookie里，以这个字符串来标识这个用户，之后很快过期
+public static String getKapthchaKey(String owner) &#123;
+    return RPEFIX_KAPTCHA + SPLIT + owner;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-    &#x2F;&#x2F; 某个实体的赞,实体的赞对应的是一个集合，方便以后有其它需求如：看谁点的赞，存int就实现不了
-    &#x2F;&#x2F; like:entity:entityType:entityId -&gt; set(userId)
-    public static String getEntityLikeKey(int entityType, int entityId) &#123;
-        return PREFIX_ENTITY_LIKE + SPLIT + entityType + SPLIT + entityId; &#x2F;&#x2F; 返回key
-    &#125;
+<h3 id="重构"><a href="#重构" class="headerlink" title="重构"></a>重构</h3><ul>
+<li><p>在LoginController 中将获取验证码的方法进行重构，原来是将验证码存进 Session 中</p>
+</li>
+<li><p>将验证码存进 Redis 中，将生成的随机凭证装进cookie里并发送给客户端，cookie有效时间为 60s</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220127153314654.png" alt="image-20220127153314654"></p>
+<ul>
+<li>从客户端得到的 cookie 中取到用户的凭证，根据凭证生成 key，通过key 获取 redis 中的验证码</li>
+</ul>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220127153821240.png" alt="image-20220127153821240"></p>
+<h2 id="使用Redis存储登录凭证"><a href="#使用Redis存储登录凭证" class="headerlink" title="使用Redis存储登录凭证"></a>使用Redis存储登录凭证</h2><h3 id="增加key的定义及方法-1"><a href="#增加key的定义及方法-1" class="headerlink" title="增加key的定义及方法"></a>增加key的定义及方法</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">private static final String RPEFIX_TICKET &#x3D; &quot;ticket&quot;;
 
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="Service-层"><a href="#Service-层" class="headerlink" title="Service 层"></a>Service 层</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
- * @author giegie
- * @create 2022-01-25-21:40
- *&#x2F;
-@Service
-public class LikeService &#123;
+&#x2F;&#x2F; 登录的凭证
+public static String getTicketKey(String ticket) &#123;
+    return RPEFIX_TICKET + SPLIT + ticket;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-    @Autowired
-    private RedisTemplate redisTemplate;
+<ul>
+<li>因为要将凭证存进 redis 中，之前的 LoginTicketMapper 就废弃了</li>
+</ul>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220127155555866.png" alt="image-20220127155555866"></p>
+<h3 id="重构-1"><a href="#重构-1" class="headerlink" title="重构"></a>重构</h3><p>重构之前使用这个 bean 的地方</p>
+<ul>
+<li>保存 ticket 凭证</li>
+</ul>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220127160938740.png" alt="image-20220127160938740"></p>
+<ul>
+<li>退出登录，修改 ticket 凭证的状态</li>
+</ul>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220127161521396.png" alt="image-20220127161521396"></p>
+<ul>
+<li>查找凭证</li>
+</ul>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220127161720846.png" alt="image-20220127161720846"></p>
+<h2 id="使用Redis缓存用户信息"><a href="#使用Redis缓存用户信息" class="headerlink" title="使用Redis缓存用户信息"></a>使用Redis缓存用户信息</h2><p>缓存步骤：</p>
+<ul>
+<li><p>在查询user 的时候，先尝试从缓存中取值，取到就用，取不到说明缓存中的数据没有初始化进去，就做初始化；这两件事就把 findUserById 重构了</p>
+</li>
+<li><p>有些地方会改变用户的数据，需要将缓存更新有两种做法，一种更新缓存，另一种删除缓存。常用删除方式，删除后，再访问用户就又重查了一遍，如果更新数据会比较麻烦、可能有并发的问题（两人同时更新）</p>
+</li>
+</ul>
+<h3 id="增加key的定义及方法-2"><a href="#增加key的定义及方法-2" class="headerlink" title="增加key的定义及方法"></a>增加key的定义及方法</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">private static final String RPEFIX_USER &#x3D; &quot;user&quot;;
 
-    &#x2F;&#x2F; 点赞
-    public void like(int userId, int entityType, int entityId) &#123;
-        &#x2F;&#x2F; 生成key
-        String entityLikeKey &#x3D; RedisKeyUtil.getEntityLikeKey(entityType, entityId);
-        &#x2F;&#x2F; 查看集合中是否有用户的id,以此作为点赞还是取消已赞的判断
-        Boolean isMember &#x3D; redisTemplate.opsForSet().isMember(entityLikeKey, userId);
-        if (isMember) &#123;
-            &#x2F;&#x2F; 如果已经有这个用户的id，就实现取消点赞的功能,将这个用户移除集合
-            redisTemplate.opsForSet().remove(entityLikeKey, userId);
-        &#125; else &#123;
-            &#x2F;&#x2F; 如果没有用户id，就添加这个用户
-            redisTemplate.opsForSet().add(entityLikeKey, userId);
-        &#125;
-    &#125;
+&#x2F;&#x2F; 用户
+public static String getUserKey(int userId) &#123;
+    return RPEFIX_USER + SPLIT + userId;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-    &#x2F;&#x2F; 查询某实体点赞的数量
-    public long findEntityLikeCount(int entityType, int entityId) &#123;
-        String entityLikeKey &#x3D; RedisKeyUtil.getEntityLikeKey(entityType, entityId);
-        return redisTemplate.opsForSet().size(entityLikeKey);
-    &#125;
-
-    &#x2F;&#x2F; 查询某人对某个实体的点赞状态
-    public int findEntityLikeStatus(int userId, int entityType, int entityId) &#123;
-        String entityLikeKey &#x3D; RedisKeyUtil.getEntityLikeKey(entityType, entityId);
-        return redisTemplate.opsForSet().isMember(entityLikeKey, userId) ? 1 : 0;
-    &#125;
-
+<h3 id="redis缓存相关方法"><a href="#redis缓存相关方法" class="headerlink" title="redis缓存相关方法"></a>redis缓存相关方法</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 1.优先从缓存中取值
+private User getCache(int userId) &#123;
+    String redisKey &#x3D; RedisKeyUtil.getUserKey(userId);
+    return (User) redisTemplate.opsForValue().get(userId);
 &#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+&#x2F;&#x2F; 2.取不到时初始化缓存数据
+private User initCache(int userId) &#123;
+    User user &#x3D; userMapper.selectById(userId); &#x2F;&#x2F; 从mysql中查到user
+    String redisKey &#x3D; RedisKeyUtil.getUserKey(userId);
+    redisTemplate.opsForValue().set(redisKey, user, 3600, TimeUnit.SECONDS); &#x2F;&#x2F; 保存1h
+    return user;
+&#125;
 
+&#x2F;&#x2F; 3.数据变更时清除缓存数据
+private void clearCache(int userId) &#123;
+    String redisKey &#x3D; RedisKeyUtil.getUserKey(userId);
+    redisTemplate.delete(redisKey);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="Controller层"><a href="#Controller层" class="headerlink" title="Controller层"></a>Controller层</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">@Controller
-public class LikeController &#123;
-
-    @Autowired
-    private LikeService likeService;
-
-    @Autowired
-    private HostHolder hostHolder;
-
-    @RequestMapping(path &#x3D; &quot;&#x2F;like&quot;, method &#x3D; RequestMethod.POST)
-    @ResponseBody
-    public String like(int entityType, int entityId) &#123;
-        User user &#x3D; hostHolder.getUser();
-
-        &#x2F;&#x2F; 点赞
-        likeService.like(user.getId(), entityType, entityId);
-
-        &#x2F;&#x2F; 数量
-        long likeCount &#x3D; likeService.findEntityLikeCount(entityType, entityId);
-        &#x2F;&#x2F; 状态
-        int likeStatus &#x3D; likeService.findEntityLikeStatus(user.getId(), entityType, entityId);
-        &#x2F;&#x2F; 返回的结果
-        Map&lt;String, Object&gt; map &#x3D; new HashMap&lt;&gt;();
-        map.put(&quot;likeCount&quot;, likeCount);
-        map.put(&quot;likeStatus&quot;, likeStatus);
-
-        return CommunityUtil.getJSONString(0, null, map);
-    &#125;
-
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h3 id="处理异步请求"><a href="#处理异步请求" class="headerlink" title="处理异步请求"></a>处理异步请求</h3><p>点击超链接时访问服务器，因为是异步请求，要提供一个 js 方法来实现点赞提交请求的逻辑，在超链接上写 js 目前为空，定义一个单击事件，将超链接当一个按钮来用，onclick 里面调 js 方法来发送请求，这个方法需要传一些变量，因此在 onclick 前加上 th ，方法名 like() 是静态的，this：是超链接，因为当前页面有三个赞，点击任何一个赞调的方法都是 like() 用于复用，传 this 知道当前点的是哪个 a </p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220125231510444.png" alt="image-20220125231510444"></p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220126093813033.png" alt="image-20220126093813033"></p>
-<p>增加一个discuss.js文件</p>
-<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">like</span><span class="token punctuation">(</span><span class="token parameter">btn<span class="token punctuation">,</span>entityType<span class="token punctuation">,</span>entityId</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span> <span class="token comment">//第一个参代表超链接(按钮)</span>
-    $<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span> <span class="token comment">// 向服务器发送异步请求</span>
-        <span class="token constant">CONTEXT_PATH</span> <span class="token operator">+</span> <span class="token string">"/like"</span><span class="token punctuation">,</span> <span class="token comment">// 功能的访问路径</span>
-        <span class="token punctuation">&#123;</span><span class="token string">"entityType"</span><span class="token operator">:</span>entityType<span class="token punctuation">,</span><span class="token string">"entityId"</span><span class="token operator">:</span>entityId<span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token comment">// 携带的参数</span>
-        <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-            data <span class="token operator">=</span> $<span class="token punctuation">.</span><span class="token function">parseJSON</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 返回的字符串转为js对象</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>data<span class="token punctuation">.</span>code <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span> <span class="token comment">// 判断code==0表示成功</span>
-                <span class="token comment">// 通过传进来的按钮可以得到下级的b标签和i标签，获取子节点</span>
-                <span class="token function">$</span><span class="token punctuation">(</span>btn<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">children</span><span class="token punctuation">(</span><span class="token string">"i"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>likeCount<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 改变赞里面的数量，改字赞还是已赞</span>
-                <span class="token function">$</span><span class="token punctuation">(</span>btn<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">children</span><span class="token punctuation">(</span><span class="token string">"b"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>likeStatus<span class="token operator">==</span><span class="token number">1</span><span class="token operator">?</span><span class="token string">'已赞'</span><span class="token operator">:</span><span class="token string">'赞'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span> <span class="token keyword">else</span><span class="token punctuation">&#123;</span>
-                <span class="token function">alert</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="首页"><a href="#首页" class="headerlink" title="首页"></a>首页</h2><p>显示帖子点赞数</p>
-<p>Controller层添加处理</p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220126094005327.png" alt="image-20220126094005327"></p>
-<p>处理首页页面</p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220126094240991.png" alt="image-20220126094240991"></p>
-<h2 id="帖子详情页"><a href="#帖子详情页" class="headerlink" title="帖子详情页"></a>帖子详情页</h2><p>增加相应的点赞数量和状态的处理</p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220126094441697.png" alt="image-20220126094441697"></p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220126094458249.png" alt="image-20220126094458249"></p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220126094515321.png" alt="image-20220126094515321"></p>
-<p>处理帖子详情页，显示赞的数量，赞还是已赞的状态</p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220126094617854.png" alt="image-20220126094617854"></p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220126094653270.png" alt="image-20220126094653270"></p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220126094713199.png" alt="image-20220126094713199"></p>
+<h3 id="重构-2"><a href="#重构-2" class="headerlink" title="重构"></a>重构</h3><ul>
+<li>查找用户方法</li>
+</ul>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220127170434584.png" alt="image-20220127170434584"></p>
+<ul>
+<li>激活方法</li>
+</ul>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220127170904633.png" alt="image-20220127170904633"></p>
+<ul>
+<li>更新头像</li>
+</ul>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220127171527449.png" alt="image-20220127171527449"></p>
+<ul>
+<li>修改密码</li>
+</ul>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220127185808109.png" alt="image-20220127185808109"></p>
 
                 
             </div>
@@ -656,7 +622,7 @@ public class LikeController &#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://giegiecode.github.io/2022/01/26/niu-ke-xiang-mu-dian-zan/">https://giegiecode.github.io/2022/01/26/niu-ke-xiang-mu-dian-zan/</a>
+                    <a href="https://giegiecode.github.io/2022/01/27/niu-ke-xiang-mu-you-hua-deng-lu-mo-kuai/">https://giegiecode.github.io/2022/01/27/niu-ke-xiang-mu-you-hua-deng-lu-mo-kuai/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -694,16 +660,12 @@ public class LikeController &#123;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/">
-                                    <span class="chip bg-color">异步请求</span>
-                                </a>
-                            
-                                <a href="/tags/Redis/">
-                                    <span class="chip bg-color">Redis</span>
-                                </a>
-                            
                                 <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
                                     <span class="chip bg-color">牛客项目</span>
+                                </a>
+                            
+                                <a href="/tags/%E9%87%8D%E6%9E%84/">
+                                    <span class="chip bg-color">重构</span>
                                 </a>
                             
                         </div>
@@ -747,16 +709,17 @@ public class LikeController &#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/01/26/niu-ke-xiang-mu-wo-shou-dao-de-zan/">
+                <a href="/2022/01/27/niu-ke-xiang-mu-you-hua-deng-lu-mo-kuai/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/168913.jpg" class="responsive-img" alt="牛客项目-我收到的赞">
+                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/592434.jpg" class="responsive-img" alt="牛客项目-优化登录模块">
                         
-                        <span class="card-title">牛客项目-我收到的赞</span>
+                        <span class="card-title">牛客项目-优化登录模块</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -766,9 +729,9 @@ public class LikeController &#123;
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-26
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -777,12 +740,9 @@ public class LikeController &#123;
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/Redis/">
-                        <span class="chip bg-color">Redis</span>
-                    </a>
                     
                     <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
                         <span class="chip bg-color">牛客项目</span>
@@ -803,12 +763,12 @@ public class LikeController &#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/01/25/spring-zheng-he-redis/">
+                <a href="/2022/01/27/niu-ke-xiang-mu-guan-zhu-lie-biao-fen-si-lie-biao/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/166868.jpg" class="responsive-img" alt="Spring整合Redis">
+                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/592379.jpg" class="responsive-img" alt="牛客项目-关注列表/粉丝列表">
                         
-                        <span class="card-title">Spring整合Redis</span>
+                        <span class="card-title">牛客项目-关注列表/粉丝列表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -819,7 +779,7 @@ public class LikeController &#123;
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-27
                             </span>
                         <span class="publish-author">
                             
@@ -832,8 +792,8 @@ public class LikeController &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Redis/">
-                        <span class="chip bg-color">Redis</span>
+                    <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
+                        <span class="chip bg-color">牛客项目</span>
                     </a>
                     
                 </div>
