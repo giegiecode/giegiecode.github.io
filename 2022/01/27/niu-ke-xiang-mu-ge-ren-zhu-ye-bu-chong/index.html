@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="统一记录日志, HTML,CSS,JavaScript,JQuery,java,linux等">
+    <meta name="keywords" content="牛客项目-个人主页补充, HTML,CSS,JavaScript,JQuery,java,linux等">
     <meta name="description" content="本网站是个人兴趣爱好，总结分享经验，记录生活点滴的平台，希望在以后的学习旅途中，走出自己的风景。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>统一记录日志 | Xuan&#39;S Blog</title>
+    <title>牛客项目-个人主页补充 | Xuan&#39;S Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -320,12 +320,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/163976.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/817002.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">统一记录日志</h1>
+                    <h1 class="description center-align post-title">牛客项目-个人主页补充</h1>
                 </div>
             </div>
         </div>
@@ -441,10 +441,6 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%97%A5%E5%BF%97/">
-                                <span class="chip bg-color">日志</span>
-                            </a>
-                        
                             <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
                                 <span class="chip bg-color">牛客项目</span>
                             </a>
@@ -461,21 +457,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-24
+                    2022-01-27
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-26
+                    2022-01-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    288
+                    554
                 </div>
                 
 
@@ -500,29 +496,124 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220124095247250.png" alt="image-20220124095247250"></p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220124095603189.png" alt="image-20220124095603189"></p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220124095958948.png" alt="image-20220124095958948"></p>
-<p>程序中已经开发好处理业务逻辑的一个一个 bean ，称之为目标对象</p>
-<p>目标对象上有很多可以被织入代码的地方，这些地方统称为连接点：Joinpoint</p>
-<p>aop 解决统一处理这些系统需求的方式是将代码定义到一个额外的Bean ，叫方面主键里</p>
-<p>这个方面主键在程序运行的时候或之前就需要被框架织入到某些连接点之上</p>
-<p>方面主键里需要通过 Pointcut：切点 声明代码到底需要织入到哪些对象的哪些位置，需要再写上通知 Advice 方法，来声明这个方面主键到底处理什么样的逻辑</p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220124103004028.png" alt="image-20220124103004028"></p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220124103712521.png" alt="image-20220124103712521"></p>
-<p>在 community 下新增一个包 aspect </p>
-<p>示例：AlphaAspect 将方面主键声明为一个 Bean 加上一个 @Component 注解 再加一个 @Aspect 注解标明这是个方面主键</p>
-<ul>
-<li>@Pointcut 表明是切点 </li>
-<li>execution：固定的关键字 </li>
-<li>*：方法的返回值，</li>
-<li>com.nowcoder.community.service：包名，</li>
-<li>*：service 包下的所有的类，所有的业务组件</li>
-<li>*：所有的 service 组件里的所有方法</li>
-<li>. . ：所有的参数</li>
+                <h2 id="Dao层"><a href="#Dao层" class="headerlink" title="Dao层"></a>Dao层</h2><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220127225838306.png" alt="image-20220127225838306"></p>
+<h3 id="对应方法的-sql-语句"><a href="#对应方法的-sql-语句" class="headerlink" title="对应方法的 sql 语句"></a>对应方法的 sql 语句</h3><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectCommentById<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Comment<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    select <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>include</span> <span class="token attr-name">refid</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectFields<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>include</span><span class="token punctuation">></span></span>
+    from comment
+    where id = #&#123;id&#125;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectCommentsByUser<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Comment<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    select <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>include</span> <span class="token attr-name">refid</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectFields<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>include</span><span class="token punctuation">></span></span>
+    from comment
+    where status != 1
+    and user_id = #&#123;userId&#125;
+    and entity_type = 1
+    and exists (
+    select id from discuss_post where id = comment.entity_id and status != 2
+    )
+    order by create_time desc
+    limit #&#123;offset&#125;, #&#123;limit&#125;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectCountByUser<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>int<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    select count(id) from comment
+    where status != 1
+    and user_id = #&#123;userId&#125;
+      and entity_type = 1
+      and exists (
+        select id from discuss_post where id = comment.entity_id and status != 2
+        )
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Service层"><a href="#Service层" class="headerlink" title="Service层"></a>Service层</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">public Comment findCommentById(int id) &#123;
+    return commentMapper.selectCommentById(id);
+&#125;
+
+public List&lt;Comment&gt; findUserComments(int userId, int offset, int limit) &#123;
+    return commentMapper.selectCommentsByUser(userId, offset, limit);
+&#125;
+
+public int findUserCount(int userId) &#123;
+    return commentMapper.selectCountByUser(userId);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Controller层"><a href="#Controller层" class="headerlink" title="Controller层"></a>Controller层</h2><p>在 UserController 中补充</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 我的帖子
+@RequestMapping(path &#x3D; &quot;&#x2F;mypost&#x2F;&#123;userId&#125;&quot;, method &#x3D; RequestMethod.GET)
+public String getMyPost(@PathVariable(&quot;userId&quot;) int userId, Page page, Model model) &#123;
+    User user &#x3D; userService.findUserById(userId);
+    if (user &#x3D;&#x3D; null) &#123;
+        throw new RuntimeException(&quot;该用户不存在！&quot;);
+    &#125;
+    model.addAttribute(&quot;user&quot;, user);
+
+    &#x2F;&#x2F; 分页信息
+    page.setPath(&quot;&#x2F;user&#x2F;mypost&#x2F;&quot; + userId);
+    page.setRows(discussPostService.findDiscussPostRows(userId));
+
+    &#x2F;&#x2F; 帖子列表
+    List&lt;DiscussPost&gt; discussList &#x3D; discussPostService
+            .findDiscussPosts(userId, page.getOffset(), page.getLimit());
+    List&lt;Map&lt;String, Object&gt;&gt; discussVOList &#x3D; new ArrayList&lt;&gt;();
+    if (discussList !&#x3D; null) &#123;
+        for (DiscussPost post : discussList) &#123;
+            Map&lt;String, Object&gt; map &#x3D; new HashMap&lt;&gt;();
+            map.put(&quot;discussPost&quot;, post);
+            map.put(&quot;likeCount&quot;, likeService.findEntityLikeCount(ENTITY_TYPE_POST, post.getId()));
+            discussVOList.add(map);
+        &#125;
+    &#125;
+    model.addAttribute(&quot;discussPosts&quot;, discussVOList);
+
+    return &quot;&#x2F;site&#x2F;my-post&quot;;
+&#125;
+
+&#x2F;&#x2F; 我的回复
+@RequestMapping(path &#x3D; &quot;&#x2F;myreply&#x2F;&#123;userId&#125;&quot;, method &#x3D; RequestMethod.GET)
+public String getMyReply(@PathVariable(&quot;userId&quot;) int userId, Page page, Model model) &#123;
+    User user &#x3D; userService.findUserById(userId);
+    if (user &#x3D;&#x3D; null) &#123;
+        throw new RuntimeException(&quot;该用户不存在！&quot;);
+    &#125;
+    model.addAttribute(&quot;user&quot;, user);
+
+    &#x2F;&#x2F; 分页信息
+    page.setPath(&quot;&#x2F;user&#x2F;myreply&#x2F;&quot; + userId);
+    page.setRows(commentService.findUserCount(userId));
+
+    &#x2F;&#x2F; 回复列表
+    List&lt;Comment&gt; commentList &#x3D; commentService.findUserComments(userId, page.getOffset(), page.getLimit());
+    List&lt;Map&lt;String, Object&gt;&gt; commentVOList &#x3D; new ArrayList&lt;&gt;();
+    if (commentList !&#x3D; null) &#123;
+        for (Comment comment : commentList) &#123;
+            Map&lt;String, Object&gt; map &#x3D; new HashMap&lt;&gt;();
+            map.put(&quot;comment&quot;, comment);
+            DiscussPost post &#x3D; discussPostService.findDiscussPostById(comment.getEntityId());
+            map.put(&quot;discussPost&quot;, post);
+            commentVOList.add(map);
+        &#125;
+    &#125;
+    model.addAttribute(&quot;comments&quot;, commentVOList);
+
+    return &quot;&#x2F;site&#x2F;my-reply&quot;;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="修改页面"><a href="#修改页面" class="headerlink" title="修改页面"></a>修改页面</h2><h3 id="profile页面"><a href="#profile页面" class="headerlink" title="profile页面"></a>profile页面</h3><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220127230455970.png" alt="image-20220127230455970"></p>
+<h3 id="myreply页面"><a href="#myreply页面" class="headerlink" title="myreply页面"></a>myreply页面</h3><ul>
+<li>做 thymeleaf 模板处理</li>
 </ul>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220124151929974.png" alt="image-20220124151929974"></p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220124165631181.png" alt="image-20220124165631181"></p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220127230645034.png" alt="image-20220127230645034"></p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220127230626893.png" alt="image-20220127230626893"></p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220127230754268.png" alt="image-20220127230754268"></p>
+<h3 id="mypost页面"><a href="#mypost页面" class="headerlink" title="mypost页面"></a>mypost页面</h3><ul>
+<li>做模板处理，与myreply相似</li>
+</ul>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220127231006469.png" alt="image-20220127231006469"></p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220127231030141.png" alt="image-20220127231030141"></p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220127231101355.png" alt="image-20220127231101355"></p>
 
                 
             </div>
@@ -549,7 +640,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://giegiecode.github.io/2022/01/24/tong-yi-ji-lu-ri-zhi/">https://giegiecode.github.io/2022/01/24/tong-yi-ji-lu-ri-zhi/</a>
+                    <a href="https://giegiecode.github.io/2022/01/27/niu-ke-xiang-mu-ge-ren-zhu-ye-bu-chong/">https://giegiecode.github.io/2022/01/27/niu-ke-xiang-mu-ge-ren-zhu-ye-bu-chong/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -586,10 +677,6 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/%E6%97%A5%E5%BF%97/">
-                                    <span class="chip bg-color">日志</span>
-                                </a>
                             
                                 <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
                                     <span class="chip bg-color">牛客项目</span>
@@ -636,16 +723,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/01/25/chu-shi-redis/">
+                <a href="/2022/01/27/niu-ke-xiang-mu-ge-ren-zhu-ye-bu-chong/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/165877.jpg" class="responsive-img" alt="初识Redis">
+                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/817002.jpg" class="responsive-img" alt="牛客项目-个人主页补充">
                         
-                        <span class="card-title">初识Redis</span>
+                        <span class="card-title">牛客项目-个人主页补充</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -655,9 +743,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -666,15 +754,12 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/NOSQL/">
-                        <span class="chip bg-color">NOSQL</span>
-                    </a>
-                    
-                    <a href="/tags/Redis/">
-                        <span class="chip bg-color">Redis</span>
+                    <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
+                        <span class="chip bg-color">牛客项目</span>
                     </a>
                     
                 </div>
@@ -688,12 +773,12 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/01/24/yi-chang-chu-li/">
+                <a href="/2022/01/27/niu-ke-xiang-mu-you-hua-deng-lu-mo-kuai/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/162641.jpg" class="responsive-img" alt="异常处理">
+                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/592434.jpg" class="responsive-img" alt="牛客项目-优化登录模块">
                         
-                        <span class="card-title">异常处理</span>
+                        <span class="card-title">牛客项目-优化登录模块</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -704,7 +789,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-27
                             </span>
                         <span class="publish-author">
                             
@@ -717,12 +802,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">
-                        <span class="chip bg-color">异常处理</span>
-                    </a>
-                    
                     <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
                         <span class="chip bg-color">牛客项目</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%87%8D%E6%9E%84/">
+                        <span class="chip bg-color">重构</span>
                     </a>
                     
                 </div>
