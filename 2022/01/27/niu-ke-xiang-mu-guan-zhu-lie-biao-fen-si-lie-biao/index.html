@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="牛客项目（发送邮件）, HTML,CSS,JavaScript,JQuery,java,linux等">
+    <meta name="keywords" content="牛客项目-关注列表/粉丝列表, HTML,CSS,JavaScript,JQuery,java,linux等">
     <meta name="description" content="本网站是个人兴趣爱好，总结分享经验，记录生活点滴的平台，希望在以后的学习旅途中，走出自己的风景。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>牛客项目（发送邮件） | Xuan&#39;S Blog</title>
+    <title>牛客项目-关注列表/粉丝列表 | Xuan&#39;S Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -320,12 +320,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/592379.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">牛客项目（发送邮件）</h1>
+                    <h1 class="description center-align post-title">牛客项目-关注列表/粉丝列表</h1>
                 </div>
             </div>
         </div>
@@ -450,15 +450,6 @@
                 </div>
                 <div class="col s5 right-align">
                     
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/%E5%9F%BA%E7%A1%80/" class="post-category">
-                                基础
-                            </a>
-                        
-                    </div>
-                    
                 </div>
             </div>
 
@@ -466,21 +457,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-14
+                    2022-01-27
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-26
+                    2022-01-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    384
+                    1.1k
                 </div>
                 
 
@@ -505,103 +496,152 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220114102208602.png" alt="image-20220114102208602"></p>
-<h2 id="开启SMTP服务"><a href="#开启SMTP服务" class="headerlink" title="开启SMTP服务"></a>开启SMTP服务</h2><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220114122601574.png" alt="image-20220114122601574"></p>
-<h2 id="导入jar包"><a href="#导入jar包" class="headerlink" title="导入jar包"></a>导入jar包</h2><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220114122812314.png" alt="image-20220114122812314"></p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220114123950892.png" alt="image-20220114123950892"></p>
-<h2 id="邮箱参数配置"><a href="#邮箱参数配置" class="headerlink" title="邮箱参数配置"></a>邮箱参数配置</h2><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220114122954538.png" alt="image-20220114122954538"></p>
-<p>password 处填写授权码</p>
-<h2 id="使用-JavaMailSender-发送邮件"><a href="#使用-JavaMailSender-发送邮件" class="headerlink" title="使用 JavaMailSender 发送邮件"></a>使用 JavaMailSender 发送邮件</h2><p>community 包下 新建包util ，建类MailClient</p>
-<p>JavaMailSender 是 Spring Email 的核心组件，负责发送邮件<br>MimeMessage 用于封装邮件的相关信息<br>MimeMessageHelper 用于辅助构建 MimeMessage 对象</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.nowcoder.community.util;
+                <p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220126201728514.png" alt="image-20220126201728514"></p>
+<h2 id="Service层"><a href="#Service层" class="headerlink" title="Service层"></a>Service层</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 查询某用户关注的人
+&#x2F;&#x2F; 集合中存的是关注的人或粉丝的id,但传给页面的不能只是id,需要有user和关注的时间,是user对象和时间整合在一起的数据
+public List&lt;Map&lt;String, Object&gt;&gt; findFollowees(int userId, int offset, int limit) &#123;
+    String followeeKey &#x3D; RedisKeyUtil.getFolloweeKey(userId, ENTITY_TYPE_USER);
+    &#x2F;&#x2F; 查多条数据按范围来查，按倒叙查，最新的时间在前面
+    Set&lt;Integer&gt; targetIds &#x3D; redisTemplate.opsForZSet().reverseRange(followeeKey, offset, offset + limit - 1);
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Component;
+    &#x2F;&#x2F; 查到数据后，对集合作判断是否为空
+    if (targetIds &#x3D;&#x3D; null) &#123;
+        return null;
+    &#125;
+    &#x2F;&#x2F; 实例化List
+    List&lt;Map&lt;String, Object&gt;&gt; list &#x3D; new ArrayList&lt;&gt;(); &#x2F;&#x2F; 将更详细的数据存到集合里
+    for (Integer targetId:targetIds)&#123; &#x2F;&#x2F; 遍历targetIds,把每个用户和相关数据取到
+        &#x2F;&#x2F; 实例化map
+        Map&lt;String,Object&gt; map &#x3D; new HashMap&lt;&gt;(); &#x2F;&#x2F; 查到对应用户后，封装进map里
+        User user &#x3D; userService.findUserById(targetId);
+        map.put(&quot;user&quot;,user);
+        Double score &#x3D; redisTemplate.opsForZSet().score(followeeKey,targetId); &#x2F;&#x2F; 取分数，得到的是小数
+        map.put(&quot;followTime&quot;,new Date(score.longValue())); &#x2F;&#x2F; 毫秒数转化为时间
+        list.add(map);
+    &#125;
+    return list;
+&#125;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
+&#x2F;&#x2F; 查询某用户的粉丝
+public List&lt;Map&lt;String,Object&gt;&gt; findFollowers(int userId,int offset,int limit)&#123;
+    String followerKey &#x3D; RedisKeyUtil.getFollowerKey(ENTITY_TYPE_USER,userId);
+    Set&lt;Integer&gt; targetIds &#x3D; redisTemplate.opsForZSet().reverseRange(followerKey,offset,offset+limit-1);
 
-&#x2F;**
- * @author giegie
- * @create 2022-01-14-10:23
- *&#x2F;
+    if (targetIds &#x3D;&#x3D; null)&#123;
+        return null;
+    &#125;
 
-@Component
-public class MailClient &#123;
+    List&lt;Map&lt;String,Object&gt;&gt; list &#x3D; new ArrayList&lt;&gt;();
+    for (Integer targetId:targetIds)&#123;
+        Map&lt;String,Object&gt; map &#x3D; new HashMap&lt;&gt;();
+        User user &#x3D; userService.findUserById(targetId);
+        map.put(&quot;user&quot;,user);
+        Double score &#x3D; redisTemplate.opsForZSet().score(followerKey,targetId);
+        map.put(&quot;followTime&quot;,new Date(score.longValue()));
+        list.add(map);
+    &#125;
+    return list;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-    private static final Logger logger &#x3D; LoggerFactory.getLogger(MailClient.class);
 
-    @Autowired
-    private JavaMailSender mailSender;
 
-    @Value(&quot;$&#123;spring.mail.username&#125;&quot;)
-    private String from;
+<h2 id="Controller层"><a href="#Controller层" class="headerlink" title="Controller层"></a>Controller层</h2><p>在FollowerController里增加</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">@RequestMapping(path &#x3D; &quot;&#x2F;followees&#x2F;&#123;userId&#125;&quot;,method &#x3D; RequestMethod.GET)
+public String getFollowees(@PathVariable(&quot;userId&quot;) int userId, Page page, Model model)&#123;
+    User user &#x3D; userService.findUserById(userId);
+    if (user &#x3D;&#x3D; null)&#123;
+        throw new RuntimeException(&quot;该用户不存在！&quot;);
+    &#125;
+    model.addAttribute(&quot;user&quot;,user);
 
-    public void sendMail(String to,String subject,String content)&#123;
+    page.setLimit(5);
+    page.setPath(&quot;&#x2F;followees&#x2F;&quot;+userId);
+    page.setRows((int) followService.findFolloweeCount(userId,ENTITY_TYPE_USER));
 
-        try &#123;
-            MimeMessage message &#x3D; mailSender.createMimeMessage();
-            MimeMessageHelper helper &#x3D; new MimeMessageHelper(message);
-            helper.setFrom(from);
-            helper.setTo(to);
-            helper.setSubject(subject);
-            helper.setText(content,true);
-            mailSender.send(helper.getMimeMessage());
-        &#125; catch (MessagingException e) &#123;
-            logger.error(&quot;发送邮件失败&quot;+e.getMessage());
+    List&lt;Map&lt;String,Object&gt;&gt; userList &#x3D; followService.findFollowees(userId,page.getOffset(),page.getLimit());
+    if (userList !&#x3D; null)&#123;
+        for (Map&lt;String,Object&gt; map : userList)&#123;
+            User u &#x3D; (User) map.get(&quot;user&quot;);
+            map.put(&quot;hasFollowed&quot;,hasFollowed(u.getId()));
         &#125;
     &#125;
+    model.addAttribute(&quot;users&quot;,userList);
+
+    return &quot;&#x2F;site&#x2F;followee&quot;;
 &#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>新建测试类 MailTests，使用 Thymeleaf 模板发送 HTML 邮件</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">package com.nowcoder.community;
+@RequestMapping(path &#x3D; &quot;&#x2F;followers&#x2F;&#123;userId&#125;&quot;,method &#x3D; RequestMethod.GET)
+public String getFollowers(@PathVariable(&quot;userId&quot;) int userId, Page page, Model model)&#123;
+    User user &#x3D; userService.findUserById(userId);
+    if (user &#x3D;&#x3D; null)&#123;
+        throw new RuntimeException(&quot;该用户不存在！&quot;);
+    &#125;
+    model.addAttribute(&quot;user&quot;,user);
 
-import com.nowcoder.community.util.MailClient;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
+    page.setLimit(5);
+    page.setPath(&quot;&#x2F;followers&#x2F;&quot;+userId);
+    page.setRows((int) followService.findFollowerCount(ENTITY_TYPE_USER,userId));
 
-&#x2F;**
- * @author giegie
- * @create 2022-01-14-10:41
- *&#x2F;
-@SpringBootTest
-@ContextConfiguration(classes &#x3D; CommunityApplication.class)
-public class MailTests &#123;
-    @Autowired
-    private MailClient mailClient;
+    List&lt;Map&lt;String,Object&gt;&gt; userList &#x3D; followService.findFollowers(userId,page.getOffset(),page.getLimit());
+    if (userList !&#x3D; null)&#123;
+        for (Map&lt;String,Object&gt; map : userList)&#123;
+            User u &#x3D; (User) map.get(&quot;user&quot;);
+            map.put(&quot;hasFollowed&quot;,hasFollowed(u.getId()));
+        &#125;
+    &#125;
+    model.addAttribute(&quot;users&quot;,userList);
 
-    @Autowired
-    private TemplateEngine templateEngine;
+    return &quot;&#x2F;site&#x2F;follower&quot;;
+&#125;
 
-    @Test
-    public void testTextMail()&#123;
-        mailClient.sendMail(&quot;2075314587@qq.com&quot;,&quot;TEST&quot;,&quot;HELLO.&quot;);
+&#x2F;&#x2F; 工具，判断当前用户是否为空，当前用户是否是已关注的实体
+private boolean hasFollowed(int userId)&#123;
+    if (hostHolder.getUser() &#x3D;&#x3D; null)&#123;
+        return false;
     &#125;
 
-    @Test
-    public void testHtmlMail()&#123;
-        Context context &#x3D; new Context();
-        context.setVariable(&quot;username&quot;,&quot;sunday&quot;);
+    return followService.hasFollowed(hostHolder.getUser().getId(),ENTITY_TYPE_USER,userId);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-        String content &#x3D; templateEngine.process(&quot;&#x2F;mail&#x2F;demo&quot;, context);
-        System.out.println(content);
 
-        mailClient.sendMail(&quot;2075314587@qq.com&quot;,&quot;HTML&quot;,content);
-    &#125;
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220114125012558.png" alt="image-20220114125012558"></p>
+<h2 id="页面处理"><a href="#页面处理" class="headerlink" title="页面处理"></a>页面处理</h2><p>followee和follower</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>position-relative<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token comment">&lt;!-- 选项 --></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nav nav-tabs mb-3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nav-item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nav-link position-relative<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">th:</span>href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@&#123;|/followees/$&#123;user.id&#125;|&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text-info<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">th:</span>utext</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>$&#123;user.username&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Nowcoder<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">></span></span> 关注的人<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nav-item<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nav-link position-relative active<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">th:</span>href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@&#123;|/followers/$&#123;user.id&#125;|&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            关注 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text-info<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">th:</span>utext</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>$&#123;user.username&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Nowcoder<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">></span></span> 的人<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name"><span class="token namespace">th:</span>href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@&#123;|/user/profile/$&#123;user.id&#125;|&#125;<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text-muted position-absolute rt-0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>返回个人主页<span class="token entity named-entity" title="&gt;">&amp;gt;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token comment">&lt;!-- 粉丝列表 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>list-unstyled<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>media pb-3 pt-3 mb-3 border-bottom position-relative<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">th:</span>each</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>map:$&#123;users&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name"><span class="token namespace">th:</span>href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@&#123;|/user/profile/$&#123;map.user.id&#125;|&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name"><span class="token namespace">th:</span>src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>$&#123;map.user.headerUrl&#125;<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mr-4 rounded-circle user-header<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>用户头像<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>media-body<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h6</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mt-0 mb-3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text-success<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">th:</span>utext</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>$&#123;map.user.username&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>落基山脉下的闲人<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>float-right text-muted font-size-12<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>关注于
+               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name"><span class="token namespace">th:</span>text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>$&#123;#dates.format(map.followTime,<span class="token punctuation">'</span>yyyy-MM-dd HH:mm:ss<span class="token punctuation">'</span>)&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>2019-04-28 14:13:25<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h6</span><span class="token punctuation">></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>entityId<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">th:</span>value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>$&#123;map.user.id&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">th:</span>class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>|btn $&#123;map.hasFollowed?<span class="token punctuation">'</span>btn-secondary<span class="token punctuation">'</span>:<span class="token punctuation">'</span>btn-info<span class="token punctuation">'</span>&#125; btn-sm float-right follow-btn|<span class="token punctuation">"</span></span>
+                  <span class="token attr-name"><span class="token namespace">th:</span>if</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>$&#123;loginUser!=null &amp;&amp; loginUser.id!=map.user.id&#125;<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">th:</span>text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>$&#123;map.hasFollowed?<span class="token punctuation">'</span>已关注<span class="token punctuation">'</span>:<span class="token punctuation">'</span>关注他<span class="token punctuation">'</span>&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>关注TA<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -628,7 +668,7 @@ public class MailTests &#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://giegiecode.github.io/2022/01/14/niu-ke-xiang-mu-1/">https://giegiecode.github.io/2022/01/14/niu-ke-xiang-mu-1/</a>
+                    <a href="https://giegiecode.github.io/2022/01/27/niu-ke-xiang-mu-guan-zhu-lie-biao-fen-si-lie-biao/">https://giegiecode.github.io/2022/01/27/niu-ke-xiang-mu-guan-zhu-lie-biao-fen-si-lie-biao/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -711,16 +751,17 @@ public class MailTests &#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/01/14/chu-shi-spring/">
+                <a href="/2022/01/27/niu-ke-xiang-mu-guan-zhu-lie-biao-fen-si-lie-biao/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/589839.jpg" class="responsive-img" alt="初识spring">
+                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/592379.jpg" class="responsive-img" alt="牛客项目-关注列表/粉丝列表">
                         
-                        <span class="card-title">初识spring</span>
+                        <span class="card-title">牛客项目-关注列表/粉丝列表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -730,26 +771,23 @@ public class MailTests &#123;
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-14
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-27
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E6%A1%86%E6%9E%B6/" class="post-category">
-                                    框架
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            code-轩
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/spring/">
-                        <span class="chip bg-color">spring</span>
+                    <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
+                        <span class="chip bg-color">牛客项目</span>
                     </a>
                     
                 </div>
@@ -763,12 +801,12 @@ public class MailTests &#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/01/12/xiang-mu-diao-shi-ji-qiao/">
+                <a href="/2022/01/26/niu-ke-xiang-mu-guan-zhu-qu-xiao-guan-zhu/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/187829.jpg" class="responsive-img" alt="项目调试技巧">
+                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/591539.jpg" class="responsive-img" alt="牛客项目-关注/取消关注">
                         
-                        <span class="card-title">项目调试技巧</span>
+                        <span class="card-title">牛客项目-关注/取消关注</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -779,16 +817,12 @@ public class MailTests &#123;
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-26
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%9F%BA%E7%A1%80/" class="post-category">
-                                    基础
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            code-轩
                             
                         </span>
                     </div>
@@ -796,8 +830,16 @@ public class MailTests &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%B0%83%E8%AF%95/">
-                        <span class="chip bg-color">调试</span>
+                    <a href="/tags/%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/">
+                        <span class="chip bg-color">异步请求</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
+                        <span class="chip bg-color">牛客项目</span>
+                    </a>
+                    
+                    <a href="/tags/redis/">
+                        <span class="chip bg-color">redis</span>
                     </a>
                     
                 </div>
