@@ -376,11 +376,11 @@
                 
                 
                 
-                <a href="/categories/%E5%9F%BA%E7%A1%80/" title="基础: 13">
+                <a href="/categories/%E5%9F%BA%E7%A1%80/" title="基础: 4">
                     <span class="chip center-align waves-effect waves-light
                              chip-active "
                             style="background-color: #F9EBEA;">基础
-                        <span class="tag-length">13</span>
+                        <span class="tag-length">4</span>
                     </span>
                 </a>
                 
@@ -412,6 +412,15 @@
                 </a>
                 
                 
+                <a href="/categories/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/" title="牛客项目: 28">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #FEF9E7;">牛客项目
+                        <span class="tag-length">28</span>
+                    </span>
+                </a>
+                
+                
             </div>
         </div>
     </div>
@@ -422,390 +431,6 @@
 
     <article id="articles" class="container articles">
         <div class="row tags-posts">
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2022/01/19/niu-ke-xiang-mu-wang-ji-mi-ma/">
-                        <div class="card-image tag-image">
-                            
-                            <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/433685.jpg" class="responsive-img" alt="忘记密码">
-                            
-                            <span class="card-title">忘记密码</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                页面跳转登录页面点击忘记密码跳转到 forget 页面，请求的方式为 get，再处理登录页面，使点击可以跳转到忘记密码页面
-
-
-service 层service 层增加重置密码的业务，接收参数为邮箱和密码，先进行空值处理，验证邮箱：根据传入
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-19
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%9F%BA%E7%A1%80/" class="post-category">
-                                    基础
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
-                            <span class="chip bg-color">牛客项目</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2022/01/19/niu-ke-xiang-mu-zhang-hao-she-zhi/">
-                        <div class="card-image tag-image">
-                            
-                            <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/303822.jpg" class="responsive-img" alt="账号设置">
-                            
-                            <span class="card-title">账号设置</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                修改上传头像
-跳转账户设置页面登录后点击首页的账号设置能跳转到setting 页面
-在 controller 包下新建一个UserController，处理与用户个人有关的设置
-增加访问路径和请求方式，返回账号设置页面
-对首页的账号设置按钮
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-19
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%9F%BA%E7%A1%80/" class="post-category">
-                                    基础
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E8%B4%A6%E5%8F%B7%E8%AE%BE%E7%BD%AE/">
-                            <span class="chip bg-color">账号设置</span>
-                        </a>
-                        
-                        <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
-                            <span class="chip bg-color">牛客项目</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2022/01/18/niu-ke-xiang-mu-xian-shi-deng-lu-xin-xi/">
-                        <div class="card-image tag-image">
-                            
-                            <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/399970.jpg" class="responsive-img" alt="显示登陆信息">
-                            
-                            <span class="card-title">显示登陆信息</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-
-
-在Util 包下新建类CookieUtil 对浏览器发来的cookie 进行封装，从cookie中获取要查找的指定字符串
-
-在UserService中增加一个方法，根据ticket 查找用户的凭证
-
-难点：多线程将user 用户存储起
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-18
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%9F%BA%E7%A1%80/" class="post-category">
-                                    基础
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E6%8B%A6%E6%88%AA%E5%99%A8/">
-                            <span class="chip bg-color">拦截器</span>
-                        </a>
-                        
-                        <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
-                            <span class="chip bg-color">多线程</span>
-                        </a>
-                        
-                        <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
-                            <span class="chip bg-color">牛客项目</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2022/01/18/niu-ke-xiang-mu-deng-lu-tui-chu-gong-neng/">
-                        <div class="card-image tag-image">
-                            
-                            <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/544050.jpg" class="responsive-img" alt="登录退出功能">
-                            
-                            <span class="card-title">登录退出功能</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-dao -&gt; service -&gt; controller
-包 entity 下新建实体类 LoginTicket 属性与表中的字段对应，并生成对应的set，get，tostring方法
-
-包 dao 下新建接口 LoginTi
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-18
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%9F%BA%E7%A1%80/" class="post-category">
-                                    基础
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD/">
-                            <span class="chip bg-color">登录功能</span>
-                        </a>
-                        
-                        <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
-                            <span class="chip bg-color">牛客项目</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2022/01/16/niu-ke-xiang-mu-sheng-cheng-yan-zheng-ma/">
-                        <div class="card-image tag-image">
-                            
-                            <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/434217.jpg" class="responsive-img" alt="生成验证码">
-                            
-                            <span class="card-title">生成验证码</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-导入 jar 包
-
-编写配置类（config 包下新建类 KaptchaConfig）
-要实现 Producer 接口，
-
-DefaultKaptcha 是这个接口的实现类
-
-KaptchaConfig 配置类
-package com.n
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-16
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%9F%BA%E7%A1%80/" class="post-category">
-                                    基础
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/">
-                            <span class="chip bg-color">验证码</span>
-                        </a>
-                        
-                        <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
-                            <span class="chip bg-color">牛客项目</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2022/01/15/niu-ke-xiang-mu-hui-hua-guan-li/">
-                        <div class="card-image tag-image">
-                            
-                            <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/543303.jpg" class="responsive-img" alt="会话管理">
-                            
-                            <span class="card-title">会话管理</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-
-
-cookie
-
-session 优点：数据存在服务端安全；缺点：有些内存上的压力
-
-
-用户变多，服务器分布式部署
-nginx：用于负载均衡
-问题：第一次访问服务器①，生成session，第二次访问服务器③，就要重新生成session
-
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-15
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%9F%BA%E7%A1%80/" class="post-category">
-                                    基础
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/cookie/">
-                            <span class="chip bg-color">cookie</span>
-                        </a>
-                        
-                        <a href="/tags/session/">
-                            <span class="chip bg-color">session</span>
-                        </a>
-                        
-                        <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
-                            <span class="chip bg-color">牛客项目</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2022/01/15/niu-ke-xiang-mu-kai-fa-zhu-ce-gong-neng/">
-                        <div class="card-image tag-image">
-                            
-                            <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/533646.jpg" class="responsive-img" alt="开发注册功能">
-                            
-                            <span class="card-title">开发注册功能</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-访问注册页面：点击顶部区域内的链接，打开注册页面在controller包下新建LoginControllerpackage com.nowcoder.community.controller;
-
-import org.springfram
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-15
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%9F%BA%E7%A1%80/" class="post-category">
-                                    基础
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
-                            <span class="chip bg-color">牛客项目</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
@@ -851,59 +476,6 @@ git status 看状态
                         
                         <a href="/tags/%E5%B7%A5%E5%85%B7/">
                             <span class="chip bg-color">工具</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2022/01/14/niu-ke-xiang-mu-1/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="牛客项目（发送邮件）">
-                            
-                            <span class="card-title">牛客项目（发送邮件）</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-开启SMTP服务
-导入jar包
-
-邮箱参数配置
-password 处填写授权码
-使用 JavaMailSender 发送邮件community 包下 新建包util ，建类MailClient
-JavaMailSender 是 Sprin
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-14
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%9F%BA%E7%A1%80/" class="post-category">
-                                    基础
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
-                            <span class="chip bg-color">牛客项目</span>
                         </a>
                         
                     </div>
@@ -1017,28 +589,29 @@ mapper映射器：user-mapper.xml&lt;?xml version="1.0" encoding="UTF-8" ?>
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2022/01/12/niu-ke-xiang-mu/">
+                    <a href="/2021/12/28/sql-yong-fa/">
                         <div class="card-image tag-image">
                             
+                            <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/171474.jpg" class="responsive-img" alt="sql 用法">
                             
-                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="牛客项目">
-                            
-                            <span class="card-title">牛客项目</span>
+                            <span class="card-title">sql 用法</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                
-DAO层实体类（DiscussPost.java）entity包
-DAO接口（DiscussPostMapper.java）写方法dao包package com.nowcoder.community.dao;
+                                尝试通过typro来写博客，试试水，检查看看有没有什么问题
+sql 语句
+column_name as 别名
 
-import com.no
+ROUND(colum_name,decimals) #ROUND()函数用于把数值字段舍入为指定的小数位
+
+LIMIT N O
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-28
                             </span>
                             <span class="publish-author">
                                 
@@ -1056,8 +629,8 @@ import com.no
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/">
-                            <span class="chip bg-color">牛客项目</span>
+                        <a href="/tags/sql/">
+                            <span class="chip bg-color">sql</span>
                         </a>
                         
                     </div>
@@ -1068,30 +641,6 @@ import com.no
         </div>
     </article>
 </main>
-
-
-<div class="container paging">
-    <div class="row">
-        <div class="col s6 m4 l4">
-            
-            <a class="left btn-floating btn-large disabled">
-                <i class="fas fa-angle-left"></i>
-            </a>
-            
-        </div>
-        <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">1 / 2</div>
-        </div>
-        <div class="col s6 m4 l4">
-            
-            <a href="/categories/%E5%9F%BA%E7%A1%80/page/2/"
-               class="right btn-floating btn-large waves-effect waves-light bg-color">
-                <i class="fas fa-angle-right"></i>
-            </a>
-            
-        </div>
-    </div>
-</div>
 
 
 
@@ -1165,7 +714,7 @@ import com.no
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">23.7k</span>&nbsp;字
+                class="white-color">25.5k</span>&nbsp;字
             
             
             
