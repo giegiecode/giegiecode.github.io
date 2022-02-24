@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="初始Elasticsearch, HTML,CSS,JavaScript,JQuery,java,linux等">
+    <meta name="keywords" content="牛客项目-置顶、加精、删除, HTML,CSS,JavaScript,JQuery,java,linux等">
     <meta name="description" content="本网站是个人兴趣爱好，总结分享经验，记录生活点滴的平台，希望在以后的学习旅途中，走出自己的风景。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>初始Elasticsearch | Xuan&#39;S Blog</title>
+    <title>牛客项目-置顶、加精、删除 | Xuan&#39;S Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -320,12 +320,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">初始Elasticsearch</h1>
+                    <h1 class="description center-align post-title">牛客项目-置顶、加精、删除</h1>
                 </div>
             </div>
         </div>
@@ -441,14 +441,23 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Elasticsearch/">
-                                <span class="chip bg-color">Elasticsearch</span>
+                            <a href="/tags/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/">
+                                <span class="chip bg-color">权限管理</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/" class="post-category">
+                                牛客项目
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -457,21 +466,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-02-23
+                    2022-02-25
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-23
+                    2022-02-25
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    122
+                    1.5k
                 </div>
                 
 
@@ -496,16 +505,215 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220129223933845.png" alt="image-20220129223933845"></p>
-<ul>
-<li>索引：相当于数据库里的库 database</li>
-<li>类型：相当于数据库里的表 table</li>
-<li>文档：相当于表里的一行(条)数据，数据结构通常采用 json</li>
-<li>字段：json 中的每一个属性，相当于表中的一列</li>
-</ul>
-<p>最新：索引对应表，文档对应行，字段对应列，类型逐渐废弃</p>
-<p>把索引分片来存储，提高并发能力</p>
-<p>副本是对分片的备份，一个分片可以包含多个副本</p>
+                <p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220224164457653.png" alt="image-20220224164457653"></p>
+<p>导包,thymeleaf security </p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.thymeleaf.extras<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>thymeleaf-extras-springsecurity5<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="DAO层"><a href="#DAO层" class="headerlink" title="DAO层"></a>DAO层</h2><p>在 DiscussPostMapper 中增加两个方法，更改帖子的类型和状态</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">int updateType(int id,int type);
+
+int updateStatus(int id,int status);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>在 discusspost-mapper 中增加对应的 sql 处理</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>update</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>updateType<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    update discuss_post set type = #&#123;type&#125; where id = #&#123;id&#125;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>update</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>update</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>updateStatus<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    update discuss_post set status = #&#123;status&#125; where id = #&#123;id&#125;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>update</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="Service层"><a href="#Service层" class="headerlink" title="Service层"></a>Service层</h2><p>在 DiscussPostService 中增加对应的处理</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">public int updateType(int id,int type)&#123;
+    return discussPostMapper.updateType(id,type);
+&#125;
+
+public int updateStatus(int id,int status)&#123;
+    return discussPostMapper.updateStatus(id,status);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="Controller层"><a href="#Controller层" class="headerlink" title="Controller层"></a>Controller层</h2><p>在 DiscussPostController 中增加 置顶、加精、删除的处理请求</p>
+<h3 id="置顶操作"><a href="#置顶操作" class="headerlink" title="置顶操作"></a>置顶操作</h3><p>更改帖子类型后，要触发发帖事件，将帖子存入ES服务器</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 置顶
+@RequestMapping(path &#x3D; &quot;&#x2F;top&quot;,method &#x3D; RequestMethod.POST)
+@ResponseBody
+public String setTop(int id)&#123;
+    discussPostService.updateType(id,1);
+
+    &#x2F;&#x2F; 触发发帖事件，将新发布的帖子存到ES服务器里
+    Event event &#x3D; new Event()
+            .setTopic(TOPIC_PUBLISH) &#x2F;&#x2F; 设置主题
+            .setUserId(hostHolder.getUser().getId()) &#x2F;&#x2F; 谁触发了这个事件
+            .setEntityType(ENTITY_TYPE_POST) &#x2F;&#x2F; 事件是关于哪个实体类型的
+            .setEntityId(id); &#x2F;&#x2F; 帖子的id
+    eventProducer.fireEvent(event); &#x2F;&#x2F; 触发这个事件
+
+    return CommunityUtil.getJSONString(0);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="加精操作（同上操作）"><a href="#加精操作（同上操作）" class="headerlink" title="加精操作（同上操作）"></a>加精操作（同上操作）</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 加精
+@RequestMapping(path &#x3D; &quot;&#x2F;wonderful&quot;,method &#x3D; RequestMethod.POST)
+@ResponseBody
+public String setWonderful(int id)&#123;
+    discussPostService.updateStatus(id,1);
+
+    &#x2F;&#x2F; 触发发帖事件，将新发布的帖子存到ES服务器里
+    Event event &#x3D; new Event()
+            .setTopic(TOPIC_PUBLISH) &#x2F;&#x2F; 设置主题
+            .setUserId(hostHolder.getUser().getId()) &#x2F;&#x2F; 谁触发了这个事件
+            .setEntityType(ENTITY_TYPE_POST) &#x2F;&#x2F; 事件是关于哪个实体类型的
+            .setEntityId(id); &#x2F;&#x2F; 帖子的id
+    eventProducer.fireEvent(event); &#x2F;&#x2F; 触发这个事件
+
+    return CommunityUtil.getJSONString(0);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h3><p>更改帖子状态后，要触发删帖事件，将帖子从ES服务器中删除</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 删帖
+@RequestMapping(path &#x3D; &quot;&#x2F;delete&quot;,method &#x3D; RequestMethod.POST)
+@ResponseBody
+public String setDelete(int id)&#123;
+    discussPostService.updateStatus(id,2);
+
+    &#x2F;&#x2F; 触发删帖事件，将帖子从ES服务器中删除
+    Event event &#x3D; new Event()
+            .setTopic(TOPIC_DELETE) &#x2F;&#x2F; 设置主题
+            .setUserId(hostHolder.getUser().getId()) &#x2F;&#x2F; 谁触发了这个事件
+            .setEntityType(ENTITY_TYPE_POST) &#x2F;&#x2F; 事件是关于哪个实体类型的
+            .setEntityId(id); &#x2F;&#x2F; 帖子的id
+    eventProducer.fireEvent(event); &#x2F;&#x2F; 触发这个事件
+
+    return CommunityUtil.getJSONString(0);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>由于之前没有删帖事件，所以先在 CommunityConstant 中增加一个删帖的主题</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;**
+ * 主题：删帖
+ *&#x2F;
+String TOPIC_DELETE &#x3D; &quot;delete&quot;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>因为删帖事件是新加的事件，之前没有处理过，所以要在消费者里，将这个事件做消费处理</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 消费删帖事件
+@KafkaListener(topics &#x3D; &#123;TOPIC_DELETE)
+public void handleDeleteMessage(ConsumerRecord record)&#123;
+    if (record &#x3D;&#x3D; null || record.value() &#x3D;&#x3D; null) &#123;
+        logger.error(&quot;消息的内容为空！&quot;);
+        return;
+    &#125;
+
+    Event event &#x3D; JSONObject.parseObject(record.value().toString(), Event.class); &#x2F;&#x2F; 接收json字符串，以及对应的具体类型
+    if (event &#x3D;&#x3D; null) &#123;
+        logger.error(&quot;消息的格式错误！&quot;);
+        return;
+    &#125;
+    
+    elasticsearchService.deleteDiscussPost(event.getEntityId());
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="页面处理"><a href="#页面处理" class="headerlink" title="页面处理"></a>页面处理</h2><p>在 discuss-detail 中对置顶、加精、删除做处理</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220224212648526.png" alt="image-20220224212648526"></p>
+<p>异步请求，对JS 做处理</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token function">$</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span> <span class="token comment">// 页面加载完以后，调用该函数</span>
+    <span class="token comment">// 声明了点这三个按钮，分别调用这三个方法</span>
+    <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#topBtn"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span>setTop<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#wonderfulBtn"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span>setWonderful<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#deleteBtn"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span>setDelete<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">function</span> <span class="token function">like</span><span class="token punctuation">(</span><span class="token parameter">btn<span class="token punctuation">,</span> entityType<span class="token punctuation">,</span> entityId<span class="token punctuation">,</span> entityUserId<span class="token punctuation">,</span> postId</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">//第一个参代表超链接(按钮)</span>
+    $<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span> <span class="token comment">// 向服务器发送异步请求</span>
+        <span class="token constant">CONTEXT_PATH</span> <span class="token operator">+</span> <span class="token string">"/like"</span><span class="token punctuation">,</span> <span class="token comment">// 功能的访问路径</span>
+        <span class="token punctuation">&#123;</span><span class="token string">"entityType"</span><span class="token operator">:</span> entityType<span class="token punctuation">,</span> <span class="token string">"entityId"</span><span class="token operator">:</span> entityId<span class="token punctuation">,</span> <span class="token string">"entityUserId"</span><span class="token operator">:</span> entityUserId<span class="token punctuation">,</span> <span class="token string">"postId"</span><span class="token operator">:</span> postId<span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token comment">// 携带的参数</span>
+        <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            data <span class="token operator">=</span> $<span class="token punctuation">.</span><span class="token function">parseJSON</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 返回的字符串转为js对象</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>data<span class="token punctuation">.</span>code <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">// 判断code==0表示成功</span>
+                <span class="token comment">// 通过传进来的按钮可以得到下级的b标签和i标签，获取子节点</span>
+                <span class="token function">$</span><span class="token punctuation">(</span>btn<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">children</span><span class="token punctuation">(</span><span class="token string">"i"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>likeCount<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 改变赞里面的数量，改字,赞还是已赞</span>
+                <span class="token function">$</span><span class="token punctuation">(</span>btn<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">children</span><span class="token punctuation">(</span><span class="token string">"b"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>likeStatus <span class="token operator">==</span> <span class="token number">1</span> <span class="token operator">?</span> <span class="token string">'已赞'</span> <span class="token operator">:</span> <span class="token string">'赞'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+                <span class="token function">alert</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 置顶</span>
+<span class="token keyword">function</span> <span class="token function">setTop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 发出异步的post请求访问服务器传参</span>
+    $<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span>
+        <span class="token constant">CONTEXT_PATH</span> <span class="token operator">+</span> <span class="token string">"/discuss/top"</span><span class="token punctuation">,</span> <span class="token comment">// 路径</span>
+        <span class="token punctuation">&#123;</span><span class="token string">"id"</span><span class="token operator">:</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#postId"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token comment">// 参数</span>
+        <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">// 处理响应过来的结果</span>
+            data <span class="token operator">=</span> $<span class="token punctuation">.</span><span class="token function">parseJSON</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 结果是一个普通的字符串，但是满足JSON格式，可以解析成JS对象</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>data<span class="token punctuation">.</span>code <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token comment">// 置顶按钮点过后，要设置成不可用，不能再点第二次</span>
+                <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#topBtn"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token string">"disabled"</span><span class="token punctuation">,</span><span class="token string">"disabled"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// attr：按钮属性</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+                <span class="token function">alert</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 失败了给个提示</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 加精</span>
+<span class="token keyword">function</span> <span class="token function">setWonderful</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 发出异步的post请求访问服务器传参</span>
+    $<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span>
+        <span class="token constant">CONTEXT_PATH</span> <span class="token operator">+</span> <span class="token string">"/discuss/wonderful"</span><span class="token punctuation">,</span> <span class="token comment">// 路径</span>
+        <span class="token punctuation">&#123;</span><span class="token string">"id"</span><span class="token operator">:</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#postId"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token comment">// 参数</span>
+        <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">// 处理响应过来的结果</span>
+            data <span class="token operator">=</span> $<span class="token punctuation">.</span><span class="token function">parseJSON</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 结果是一个普通的字符串，但是满足JSON格式，可以解析成JS对象</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>data<span class="token punctuation">.</span>code <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token comment">// 加精按钮点过后，要设置成不可用，不能再点第二次</span>
+                <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#wonderfulBtn"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token string">"disabled"</span><span class="token punctuation">,</span><span class="token string">"disabled"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// attr：按钮属性</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+                <span class="token function">alert</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 失败了给个提示</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 删除</span>
+<span class="token keyword">function</span> <span class="token function">setDelete</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 发出异步的post请求访问服务器传参</span>
+    $<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span>
+        <span class="token constant">CONTEXT_PATH</span> <span class="token operator">+</span> <span class="token string">"/discuss/delete"</span><span class="token punctuation">,</span> <span class="token comment">// 路径</span>
+        <span class="token punctuation">&#123;</span><span class="token string">"id"</span><span class="token operator">:</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#postId"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token comment">// 参数</span>
+        <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">// 处理响应过来的结果</span>
+            data <span class="token operator">=</span> $<span class="token punctuation">.</span><span class="token function">parseJSON</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 结果是一个普通的字符串，但是满足JSON格式，可以解析成JS对象</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>data<span class="token punctuation">.</span>code <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token comment">// 删除按钮点过后，跳转到首页</span>
+                location<span class="token punctuation">.</span>href <span class="token operator">=</span> <span class="token constant">CONTEXT_PATH</span> <span class="token operator">+</span> <span class="token string">"/index"</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+                <span class="token function">alert</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 失败了给个提示</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>小处理，如果已经 置顶、加精或删除，要使其按钮状态为不可用</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220224213131692.png" alt="image-20220224213131692"></p>
+<h2 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h2><p>在 SecurityConfig 中增加权限处理</p>
+<p>只有版主有置顶和加精的权限，只有管理员有删除的权限</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220224215044575.png" alt="image-20220224215044575"></p>
+<h2 id="按钮显示"><a href="#按钮显示" class="headerlink" title="按钮显示"></a>按钮显示</h2><p>在页面头部增加 xmlns:sec….，只有版主才能看到置顶和加精，只有管理员才能看到删除，没有对应权限的看不见</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220224215659783.png" alt="image-20220224215659783"></p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220224215546166.png" alt="image-20220224215546166"></p>
+<h2 id="思考：权限管理包括两个层面"><a href="#思考：权限管理包括两个层面" class="headerlink" title="思考：权限管理包括两个层面"></a>思考：权限管理包括两个层面</h2><ol>
+<li>服务端层面，能够真正过滤掉没有权限的用户，不让其访问这个功能</li>
+<li>页面上，友好点，不能访问就别看见</li>
+</ol>
 
                 
             </div>
@@ -532,7 +740,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://giegiecode.github.io/2022/02/23/chu-shi-elasticsearch/">https://giegiecode.github.io/2022/02/23/chu-shi-elasticsearch/</a>
+                    <a href="https://giegiecode.github.io/2022/02/25/niu-ke-xiang-mu-zhi-ding-jia-jing-shan-chu/">https://giegiecode.github.io/2022/02/25/niu-ke-xiang-mu-zhi-ding-jia-jing-shan-chu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -570,8 +778,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Elasticsearch/">
-                                    <span class="chip bg-color">Elasticsearch</span>
+                                <a href="/tags/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/">
+                                    <span class="chip bg-color">权限管理</span>
                                 </a>
                             
                         </div>
@@ -615,17 +823,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/02/23/spring-zheng-he-es/">
+                <a href="/2022/02/25/niu-ke-xiang-mu-zhi-ding-jia-jing-shan-chu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Spring整合ES">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="牛客项目-置顶、加精、删除">
                         
-                        <span class="card-title">Spring整合ES</span>
+                        <span class="card-title">牛客项目-置顶、加精、删除</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -635,22 +844,27 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-23
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-25
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            code-轩
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/" class="post-category">
+                                    牛客项目
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Elasticsearch/">
-                        <span class="chip bg-color">Elasticsearch</span>
+                    <a href="/tags/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/">
+                        <span class="chip bg-color">权限管理</span>
                     </a>
                     
                 </div>
@@ -664,13 +878,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/02/23/niu-ke-xiang-mu-xian-shi-xi-tong-tong-zhi/">
+                <a href="/2022/02/24/niu-ke-xiang-mu-quan-xian-kong-zhi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="牛客项目-显示系统通知">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="牛客项目-权限控制">
                         
-                        <span class="card-title">牛客项目-显示系统通知</span>
+                        <span class="card-title">牛客项目-权限控制</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -681,7 +895,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-24
                             </span>
                         <span class="publish-author">
                             
@@ -694,6 +908,14 @@
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Security/">
+                        <span class="chip bg-color">Security</span>
+                    </a>
+                    
                 </div>
                 
             </div>
