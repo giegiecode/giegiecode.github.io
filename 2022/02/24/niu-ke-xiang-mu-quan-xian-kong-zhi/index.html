@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="检查登录状态, HTML,CSS,JavaScript,JQuery,java,linux等">
+    <meta name="keywords" content="牛客项目-权限控制, HTML,CSS,JavaScript,JQuery,java,linux等">
     <meta name="description" content="本网站是个人兴趣爱好，总结分享经验，记录生活点滴的平台，希望在以后的学习旅途中，走出自己的风景。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>检查登录状态 | Xuan&#39;S Blog</title>
+    <title>牛客项目-权限控制 | Xuan&#39;S Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -320,12 +320,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/538914.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">检查登录状态</h1>
+                    <h1 class="description center-align post-title">牛客项目-权限控制</h1>
                 </div>
             </div>
         </div>
@@ -441,12 +441,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%8B%A6%E6%88%AA%E5%99%A8/">
-                                <span class="chip bg-color">拦截器</span>
-                            </a>
-                        
-                            <a href="/tags/%E7%99%BB%E5%BD%95%E7%8A%B6%E6%80%81/">
-                                <span class="chip bg-color">登录状态</span>
+                            <a href="/tags/Security/">
+                                <span class="chip bg-color">Security</span>
                             </a>
                         
                     </div>
@@ -470,21 +466,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-20
+                    2022-02-24
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-29
+                    2022-02-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    363
+                    816
                 </div>
                 
 
@@ -509,27 +505,130 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220120094641087.png" alt="image-20220120094641087"></p>
-<p>@Target 注解声明自定义注解可以写在哪个位置，作用在哪个类型上（类，方法，属性）</p>
-<p>@Retention 声明自定义注解保留的时间或有效的时间，编译有效还是运行有效</p>
-<p>@Document 声明自定义注解在生成文档时，要不要带上</p>
-<p>@Inherited 用于继承，子类继承于父类，父类上有自定义注解，子类是否要继承这些注解</p>
-<p>Method.getDeclaredAnnotations() 获取这个方法上所有的注解</p>
-<p>Method.getAnnotation(Class<T> annotationClass) 获取这个指定类型的注解</p>
-<h2 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h2><p>community下新增一个包 annotation 新建一个自定义注解 LoginRequired </p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220120103726928.png" alt="image-20220120103726928"></p>
-<h2 id="添加注解"><a href="#添加注解" class="headerlink" title="添加注解"></a>添加注解</h2><p>在需要登录后才能访问的方法上，加上自定义注解</p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220120100126620.png" alt="image-20220120100126620"></p>
-<h2 id="新增拦截器"><a href="#新增拦截器" class="headerlink" title="新增拦截器"></a>新增拦截器</h2><p>在 interceptor 包下新增一个拦截器 LoginRequiredInterceptor</p>
-<ul>
-<li>在程序中，可以通过反射的方式解析注解</li>
-<li>通过Method 对象可以获取某方法上标注的所有注解</li>
-<li>通过Method 对象可以获取某方法上指定类型的注解</li>
-<li>Method 对象上还有很多其他的方法，可以获取该方法上标注的注解</li>
-</ul>
-<p>如果 loginRequired 不为空且获取不到当前的用户，则直接重定向到登录页面，return false意味着请求执行到此为止, 不会继续执行后续的部分了, 因为重定向已经完成了对这个请求的处理，</p>
-<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220120104014444.png" alt="image-20220120104014444"></p>
-<h2 id="配置拦截器"><a href="#配置拦截器" class="headerlink" title="配置拦截器"></a>配置拦截器</h2><p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220120105812408.png" alt="image-20220120105812408"></p>
+                <p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220223110930576.png" alt="image-20220223110930576"></p>
+<p>1.导包</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-security<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>2.使原来的拦截器不生效，在配置中注释掉原来的配置</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220223105917945.png" alt="image-20220223105917945"></p>
+<p>3.设置常量</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220223111403564.png" alt="image-20220223111403564"></p>
+<p>4.配置 security (与授权有关)</p>
+<p>新增配置类 SecurityConfig 继承 父类WebSecurityConfigurerAdapter 并实现常量接口</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220223111726741.png" alt="image-20220223111726741"></p>
+<p>重写父类的三个方法</p>
+<p>绕过第二个方法认证规则，因为之前已经写过相关的认证方法</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">@Configuration
+public class SecurityConfig extends WebSecurityConfigurerAdapter implements CommunityConstant &#123;
+
+    &#x2F;&#x2F; 忽略对静态资源的拦截
+    @Override
+    public void configure(WebSecurity web) throws Exception &#123;
+        web.ignoring().antMatchers(&quot;&#x2F;resources&#x2F;**&quot;);
+    &#125;
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception &#123;
+        &#x2F;&#x2F; 授权
+        http.authorizeRequests()
+                .antMatchers(
+                        &quot;&#x2F;user&#x2F;setting&quot;,
+                        &quot;&#x2F;user&#x2F;upload&quot;,
+                        &quot;&#x2F;discuss&#x2F;add&quot;,
+                        &quot;&#x2F;comment&#x2F;add&#x2F;**&quot;,
+                        &quot;&#x2F;letter&#x2F;**&quot;,
+                        &quot;&#x2F;notice&#x2F;**&quot;,
+                        &quot;&#x2F;like&quot;,
+                        &quot;&#x2F;follow&quot;,
+                        &quot;&#x2F;unfollow&quot;
+                )
+                .hasAnyAuthority(
+                        AUTHORITY_USER,
+                        AUTHORITY_ADMIN,
+                        AUTHORITY_MODERATOR
+                )
+                .anyRequest().permitAll()
+                .and().csrf().disable();
+
+        &#x2F;&#x2F; 权限不够时的处理
+        http.exceptionHandling()
+                .authenticationEntryPoint(new AuthenticationEntryPoint() &#123;
+                    &#x2F;&#x2F; 没有登录时的处理
+                    &#x2F;&#x2F; 普通请求，跳转登录页面；异步请求，返回JSON字符串给个提示
+                    @Override
+                    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException &#123;
+                        String xRequestedWith &#x3D; request.getHeader(&quot;x-requested-with&quot;);
+                        if (&quot;XMLHttpRequest&quot;.equals(xRequestedWith))&#123; &#x2F;&#x2F; 判断是不是异步请求
+                            response.setContentType(&quot;application&#x2F;plain;charset&#x3D;utf-8&quot;); &#x2F;&#x2F; 给浏览器响应JSON字符串
+                            PrintWriter writer &#x3D; response.getWriter();
+                            writer.write(CommunityUtil.getJSONString(403,&quot;你还没有登录！&quot;)); &#x2F;&#x2F; 向前台返回字符串
+                        &#125; else &#123;
+                            response.sendRedirect(request.getContextPath() + &quot;&#x2F;login&quot;); &#x2F;&#x2F; 普通请求，重定向到登录页面
+                        &#125;
+                    &#125;
+                &#125;)
+                .accessDeniedHandler(new AccessDeniedHandler() &#123;
+                    &#x2F;&#x2F; 登录权限不足时的处理
+                    @Override
+                    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException e) throws IOException, ServletException &#123;
+                        String xRequestedWith &#x3D; request.getHeader(&quot;x-requested-with&quot;);
+                        if (&quot;XMLHttpRequest&quot;.equals(xRequestedWith))&#123; &#x2F;&#x2F; 判断是不是异步请求
+                            response.setContentType(&quot;application&#x2F;plain;charset&#x3D;utf-8&quot;); &#x2F;&#x2F; 给浏览器响应JSON字符串
+                            PrintWriter writer &#x3D; response.getWriter();
+                            writer.write(CommunityUtil.getJSONString(403,&quot;你没有访问此功能的权限！&quot;)); &#x2F;&#x2F; 向前台返回字符串
+                        &#125; else &#123;
+                            response.sendRedirect(request.getContextPath() + &quot;&#x2F;denied&quot;); &#x2F;&#x2F; 普通请求，重定向到登录页面
+                        &#125;
+                    &#125;
+                &#125;);
+
+        &#x2F;&#x2F; Security底层默认会拦截&#x2F;logout请求，进行退出管理
+        &#x2F;&#x2F; 覆盖它默认的逻辑，才能执行我们自己的退出代码
+        http.logout().logoutUrl(&quot;&#x2F;securitylogout&quot;);
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>在HomeController中增加</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 拒绝访问时的提示页面
+@RequestMapping(path &#x3D; &quot;&#x2F;denied&quot;, method &#x3D; RequestMethod.GET)
+public String getDeniedPage() &#123;
+    return &quot;&#x2F;error&#x2F;404&quot;;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在UserService中补充方法</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F; 返回用户的权限，因为一个用户可能有多个权限，所以返回的是一个集合
+&#x2F;&#x2F; GrantedAuthority 是一个接口，集合中装它的实现类
+public Collection&lt;? extends GrantedAuthority&gt; getAuthorities(int userId)&#123;
+    User user &#x3D; this.findUserById(userId);
+
+    List&lt;GrantedAuthority&gt; list &#x3D; new ArrayList&lt;&gt;();
+    list.add(new GrantedAuthority() &#123; &#x2F;&#x2F; 实现接口里带的方法
+        @Override
+        public String getAuthority() &#123; &#x2F;&#x2F; 每一个 GrantedAuthority 通过这个方法封装一个权限，多个GrantedAuthority 代表多个权限
+            switch (user.getType()) &#123;
+                case 1:
+                    return AUTHORITY_ADMIN;
+                case 2:
+                    return AUTHORITY_MODERATOR;
+                default:
+                    return AUTHORITY_USER;
+            &#125;
+        &#125;
+    &#125;);
+    return list;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在 LoginTicketInterceptor 中补充，将认证结果添加到了SecurityContextHolder里</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220223193628990.png" alt="image-20220223193628990"></p>
+<p>清理保存权限</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220223193954083.png" alt="image-20220223193954083"></p>
+<p>退出时，在LoginController中清理认证的结果</p>
+<p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220223194354194.png" alt="image-20220223194354194"></p>
 
                 
             </div>
@@ -556,7 +655,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://giegiecode.github.io/2022/01/20/niu-ke-xiang-mu-jian-cha-deng-lu-zhuang-tai/">https://giegiecode.github.io/2022/01/20/niu-ke-xiang-mu-jian-cha-deng-lu-zhuang-tai/</a>
+                    <a href="https://giegiecode.github.io/2022/02/24/niu-ke-xiang-mu-quan-xian-kong-zhi/">https://giegiecode.github.io/2022/02/24/niu-ke-xiang-mu-quan-xian-kong-zhi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -594,12 +693,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%8B%A6%E6%88%AA%E5%99%A8/">
-                                    <span class="chip bg-color">拦截器</span>
-                                </a>
-                            
-                                <a href="/tags/%E7%99%BB%E5%BD%95%E7%8A%B6%E6%80%81/">
-                                    <span class="chip bg-color">登录状态</span>
+                                <a href="/tags/Security/">
+                                    <span class="chip bg-color">Security</span>
                                 </a>
                             
                         </div>
@@ -643,16 +738,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/01/21/guo-lu-min-gan-ci/">
+                <a href="/2022/02/24/niu-ke-xiang-mu-quan-xian-kong-zhi/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/564740.jpg" class="responsive-img" alt="过滤敏感词">
                         
-                        <span class="card-title">过滤敏感词</span>
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="牛客项目-权限控制">
+                        
+                        <span class="card-title">牛客项目-权限控制</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -662,9 +759,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-24
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -677,11 +774,12 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%BF%87%E6%BB%A4/">
-                        <span class="chip bg-color">过滤</span>
+                    <a href="/tags/Security/">
+                        <span class="chip bg-color">Security</span>
                     </a>
                     
                 </div>
@@ -695,12 +793,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/01/19/niu-ke-xiang-mu-wang-ji-mi-ma/">
+                <a href="/2022/02/23/chu-shi-spring-security/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/433685.jpg" class="responsive-img" alt="忘记密码">
                         
-                        <span class="card-title">忘记密码</span>
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="初识Spring Security">
+                        
+                        <span class="card-title">初识Spring Security</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -711,16 +810,12 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-23
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/" class="post-category">
-                                    牛客项目
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            code-轩
                             
                         </span>
                     </div>
