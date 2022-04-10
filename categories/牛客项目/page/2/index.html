@@ -385,19 +385,10 @@
                 </a>
                 
                 
-                <a href="/categories/%E6%A1%86%E6%9E%B6/" title="框架: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #F5EEF8;">框架
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/categories/%E7%AE%97%E6%B3%95/" title="算法: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #D5F5E3;">算法
+                            style="background-color: #F5EEF8;">算法
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -406,8 +397,17 @@
                 <a href="/categories/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/" title="牛客项目: 33">
                     <span class="chip center-align waves-effect waves-light
                              chip-active "
-                            style="background-color: #E8F8F5;">牛客项目
+                            style="background-color: #D5F5E3;">牛客项目
                         <span class="tag-length">33</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/%E6%A1%86%E6%9E%B6/" title="框架: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #E8F8F5;">框架
+                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
@@ -446,9 +446,14 @@
                         <div class="summary block-with-text">
                             
                                 
+
+
+
+
+
 将数据存到 Redis 中来提升性能
 在向 Redis 中存数据、取数据和操作数据的过程中，是以 key 为关键的，面向 key 编程，为了让 key 方便复用，给 Redis 写一个工具，专门用来生成 key 
-public class
+public 
                             
                         </div>
                         <div class="publish-info">
@@ -500,9 +505,12 @@ public class
                                 
 
 
+
+
+
 程序中已经开发好处理业务逻辑的一个一个 bean ，称之为目标对象
 目标对象上有很多可以被织入代码的地方，这些地方统称为连接点：Joinpoint
-aop 解决统一处理这些系统需求的方式是将代码定义到一个额外的Bean ，叫方面主键里
+aop 解决统一处理这些系统需求的方式是将代码定义到一个额外的Bean ，叫方面
                             
                         </div>
                         <div class="publish-info">
@@ -548,8 +556,11 @@ aop 解决统一处理这些系统需求的方式是将代码定义到一个额�
                         <div class="summary block-with-text">
                             
                                 
+
+
+
 错误异常从数据层到业务层再到表现层，层层往上抛，最终汇集到表现层。因此抓住表现层，对表现层捕获异常、处理异常，就能处理所有的异常，所以统一处理异常是针对表现层的
-springboot 提供的处理方法：在项目的某个特定的路径下，加上对应特定
+springboot 提供的处理方法：在项目的某个特定的路径下，加上对
                             
                         </div>
                         <div class="publish-info">
@@ -595,11 +606,14 @@ springboot 提供的处理方法：在项目的某个特定的路径下，加上
                         <div class="summary block-with-text">
                             
                                 
+
+
+
 Dao层&#x2F;&#x2F; 新增消息
 int insertMessage(Message message);
 
 &#x2F;&#x2F; 修改消息的状态
-int updateStatus(List&lt;Integer&gt; id
+int updateStatus(List&lt;Integer&gt;
                             
                         </div>
                         <div class="publish-info">
@@ -646,11 +660,14 @@ int updateStatus(List&lt;Integer&gt; id
                             
                                 
 
+
+
+
 Dao层@Mapper
 public interface MessageMapper &#123;
 
     &#x2F;&#x2F; 查询当前用户的会话列表，针对每个会话只返回一条最新的私信
-    List&lt;Message&g
+    List&lt;Messag
                             
                         </div>
                         <div class="publish-info">
@@ -696,12 +713,17 @@ public interface MessageMapper &#123;
                         <div class="summary block-with-text">
                             
                                 
+
+
+
+
+
 Dao层增加插入评论的方法
 int insertComment(Comment comment);
 
 &lt;sql id="insertFields">
     user_id
-    ,entity_type,entity_id,ta
+    ,entity_type,entity_
                             
                         </div>
                         <div class="publish-info">
@@ -740,12 +762,15 @@ int insertComment(Comment comment);
                             
                                 
 
+
+
+
 可以针对帖子，针对评论，针对用户，针对。。。发表评论，因此将评论的业务进行抽象，用一张表解决所有评论的问题
 实体字段：entity_type，entity_id
 entity_type：评论的目标的类别，例如：
 
 1 代表帖子
-2 代表
+2
                             
                         </div>
                         <div class="publish-info">
@@ -784,6 +809,9 @@ entity_type：评论的目标的类别，例如：
                             
                                 
 
+
+
+
 第一类丢失更新
 第二类丢失更新
 脏读
@@ -794,7 +822,7 @@ entity_type：评论的目标的类别，例如：
 实现机制锁要自己实现
 
 Spring 事物管理
-测试（插入注解方法，常用）在方法上加上注解 
+测试（插入注解方法，常用）在方法上加上
                             
                         </div>
                         <div class="publish-info">
@@ -844,10 +872,12 @@ Spring 事物管理
                         <div class="summary block-with-text">
                             
                                 
+
+
+
 用th:text不会解析html，用th:utext会解析html，在页面中显示相应的样式
 用户在发帖时，可能带有标签，用utext 可以正常显示标签的样子，若不用utext 会显示转义的字符
 DAO层增加方法根据帖子id 查询帖子
-Di
                             
                         </div>
                         <div class="publish-info">
@@ -885,6 +915,10 @@ Di
                         <div class="summary block-with-text">
                             
                                 
+
+
+
+
 导包
 根据包中的api 编写方法服务器给浏览器返回的JSON数据，往往会包含几部分内容
 
@@ -892,7 +926,7 @@ Di
 给浏览器返回一个提示信息，成功还是失败 …. 
 返回业务数据
 
-JSON返回的是字符串，c
+JSON返回的是字
                             
                         </div>
                         <div class="publish-info">
@@ -954,10 +988,14 @@ JSON返回的是字符串，c
                         <div class="summary block-with-text">
                             
                                 
+
+
+
+
 package com.nowcoder.community.util;
 
 import org.apache.commons.lang3.CharUtils;
-import org.apache.commons.lang3.String
+import org.apache.commons.lang3.St
                             
                         </div>
                         <div class="publish-info">
@@ -1003,10 +1041,14 @@ import org.apache.commons.lang3.String
                         <div class="summary block-with-text">
                             
                                 
+
+
+
+
 @Target 注解声明自定义注解可以写在哪个位置，作用在哪个类型上（类，方法，属性）
 @Retention 声明自定义注解保留的时间或有效的时间，编译有效还是运行有效
 @Document 声明自定义注解在生成文档时，要不要带上
-@Inh
+
                             
                         </div>
                         <div class="publish-info">

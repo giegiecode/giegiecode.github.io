@@ -385,19 +385,10 @@
                 </a>
                 
                 
-                <a href="/categories/%E6%A1%86%E6%9E%B6/" title="框架: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #F5EEF8;">框架
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/categories/%E7%AE%97%E6%B3%95/" title="算法: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #D5F5E3;">算法
+                            style="background-color: #F5EEF8;">算法
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -406,8 +397,17 @@
                 <a href="/categories/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/" title="牛客项目: 33">
                     <span class="chip center-align waves-effect waves-light
                              chip-active "
-                            style="background-color: #E8F8F5;">牛客项目
+                            style="background-color: #D5F5E3;">牛客项目
                         <span class="tag-length">33</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/%E6%A1%86%E6%9E%B6/" title="框架: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #E8F8F5;">框架
+                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
@@ -447,9 +447,12 @@
                         <div class="summary block-with-text">
                             
                                 
+
+
+
 在 RedisKeyUtil 中补充 UV与DAU相关的 key 
 private static final String PREFIX_UV &#x3D; &quot;uv&quot;;
-private static final Str
+private static final 
                             
                         </div>
                         <div class="publish-info">
@@ -500,10 +503,13 @@ private static final Str
                         <div class="summary block-with-text">
                             
                                 
+
+
+
 导包,thymeleaf security 
 &lt;dependency>
    &lt;groupId>org.thymeleaf.extras&lt;/groupId>
-   &lt;artifactId>thymeleaf-ext
+   &lt;artifactId>thymeleaf-
                             
                         </div>
                         <div class="publish-info">
@@ -550,10 +556,15 @@ private static final Str
                         <div class="summary block-with-text">
                             
                                 
+
+
+
+
+
 1.导包
 &lt;dependency>
    &lt;groupId>org.springframework.boot&lt;/groupId>
-   &lt;artifactId>spring-boot-starter-securit
+   &lt;artifactId>spring-boot-starter-se
                             
                         </div>
                         <div class="publish-info">
@@ -600,11 +611,16 @@ private static final Str
                         <div class="summary block-with-text">
                             
                                 
+
+
+
+
+
 Service@Service
 public class ElasticsearchService &#123;
 
     @Autowired
-    private DiscussPostRepository discussRepos
+    private DiscussPostRepository discuss
                             
                         </div>
                         <div class="publish-info">
@@ -650,11 +666,14 @@ public class ElasticsearchService &#123;
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                拦截器
+                                
+
+
+拦截器
 
 通知列表Dao层
 &lt;select id="selectLatestNotice" resultType="Message">
-    select &lt;include refid="selectFields">&lt;/
+    select &lt;include refid="selectFields">&l
                             
                         </div>
                         <div class="publish-info">
@@ -692,9 +711,14 @@ public class ElasticsearchService &#123;
                         <div class="summary block-with-text">
                             
                                 
+
+
+
+
+
 在评论、点赞、关注以后，需要发通知，将消息放到队列里，之后不用管继续处理别的事，然后由专门的消费者线程去处理，称这种并发的方式为异步的方式(同时进行)
 具体来说，消费者线程要从队列里取到消息，往message里存一条数据
-技术角度：用的 
+技术角
                             
                         </div>
                         <div class="publish-info">
@@ -744,6 +768,11 @@ public class ElasticsearchService &#123;
                         <div class="summary block-with-text">
                             
                                 
+
+
+
+
+
 导包，父pom中已经声明了对应的版本，可以去除版本号
 
 配置
@@ -752,7 +781,6 @@ public class ElasticsearchService &#123;
 测试
 开启 zookeeper 和 kafka
 @SpringBootTest
-@Con
                             
                         </div>
                         <div class="publish-info">
@@ -801,9 +829,12 @@ public class ElasticsearchService &#123;
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                Dao层
+                                
+
+
+Dao层
 对应方法的 sql 语句&lt;select id="selectCommentById" resultType="Comment">
-    select &lt;include refid="selectFields">&lt
+    select &lt;include refid="selectFields">
                             
                         </div>
                         <div class="publish-info">
@@ -841,10 +872,15 @@ public class ElasticsearchService &#123;
                         <div class="summary block-with-text">
                             
                                 
+
+
+
+
+
 使用Redis存储验证码增加key的定义及方法private static final String RPEFIX_KAPTCHA &#x3D; &quot;kaptcha&quot;;
 
 &#x2F;&#x2F; 登录验证码
-&#x2F
+
                             
                         </div>
                         <div class="publish-info">
@@ -890,9 +926,13 @@ public class ElasticsearchService &#123;
                         <div class="summary block-with-text">
                             
                                 
+
+
+
+
 Service层&#x2F;&#x2F; 查询某用户关注的人
 &#x2F;&#x2F; 集合中存的是关注的人或粉丝的id,但传给页面的不能只是id,需要有user和关注的时间,是user对象和时间整合在一起的数据
-public List&
+public L
                             
                         </div>
                         <div class="publish-info">
@@ -930,9 +970,14 @@ public List&
                         <div class="summary block-with-text">
                             
                                 
+
+
+
+
+
 声明两个前缀，意味着要存两份数据，与点赞类似，一个是存与业务相关的数据，一个是为了统计方便
 我关注了某人，要把这个目标存下来，另一方面，我关注的那个人，以他为 key 把我作为粉丝存进去
-我的角度：followee，他的粉丝：follow
+我的角度：followee，他的粉丝：f
                             
                         </div>
                         <div class="publish-info">
@@ -982,7 +1027,13 @@ public List&
                         <div class="summary block-with-text">
                             
                                 
-通过点赞的数据可以把点赞数统计出来，但麻烦，要统计这个人发布多少帖子多少评论，将帖子和评论的赞的数量加起来，因此常用另外一种方式：在用户点赞的时候，再增加一个维度，把这个赞记录下来，再加一份数据，以用户为 key ，把这个数记下将之前的点
+
+
+
+
+
+
+通过点赞的数据可以把点赞数统计出来，但麻烦，要统计这个人发布多少帖子多少评论，将帖子和评论的赞的数量加起来，因此常用另外一种方式：在用户点赞的时候，再增加一个维度，把这个赞记录下来，再加一份数据，以用户为 key ，把这个数记
                             
                         </div>
                         <div class="publish-info">

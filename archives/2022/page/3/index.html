@@ -492,12 +492,15 @@
                                 
                                     
 
+
+
+
 可以针对帖子，针对评论，针对用户，针对。。。发表评论，因此将评论的业务进行抽象，用一张表解决所有评论的问题
 实体字段：entity_type，entity_id
 entity_type：评论的目标的类别，例如：
 
 1 代表帖子
-2 代表
+2
                                 
                             </div>
                             <div class="publish-info">
@@ -551,6 +554,9 @@ entity_type：评论的目标的类别，例如：
                                 
                                     
 
+
+
+
 第一类丢失更新
 第二类丢失更新
 脏读
@@ -561,7 +567,7 @@ entity_type：评论的目标的类别，例如：
 实现机制锁要自己实现
 
 Spring 事物管理
-测试（插入注解方法，常用）在方法上加上注解 
+测试（插入注解方法，常用）在方法上加上
                                 
                             </div>
                             <div class="publish-info">
@@ -622,10 +628,12 @@ Spring 事物管理
                             <div class="summary block-with-text">
                                 
                                     
+
+
+
 用th:text不会解析html，用th:utext会解析html，在页面中显示相应的样式
 用户在发帖时，可能带有标签，用utext 可以正常显示标签的样子，若不用utext 会显示转义的字符
 DAO层增加方法根据帖子id 查询帖子
-Di
                                 
                             </div>
                             <div class="publish-info">
@@ -678,6 +686,10 @@ Di
                             <div class="summary block-with-text">
                                 
                                     
+
+
+
+
 导包
 根据包中的api 编写方法服务器给浏览器返回的JSON数据，往往会包含几部分内容
 
@@ -685,7 +697,7 @@ Di
 给浏览器返回一个提示信息，成功还是失败 …. 
 返回业务数据
 
-JSON返回的是字符串，c
+JSON返回的是字
                                 
                             </div>
                             <div class="publish-info">
@@ -752,10 +764,14 @@ JSON返回的是字符串，c
                             <div class="summary block-with-text">
                                 
                                     
+
+
+
+
 package com.nowcoder.community.util;
 
 import org.apache.commons.lang3.CharUtils;
-import org.apache.commons.lang3.String
+import org.apache.commons.lang3.St
                                 
                             </div>
                             <div class="publish-info">
@@ -814,10 +830,14 @@ import org.apache.commons.lang3.String
                             <div class="summary block-with-text">
                                 
                                     
+
+
+
+
 @Target 注解声明自定义注解可以写在哪个位置，作用在哪个类型上（类，方法，属性）
 @Retention 声明自定义注解保留的时间或有效的时间，编译有效还是运行有效
 @Document 声明自定义注解在生成文档时，要不要带上
-@Inh
+
                                 
                             </div>
                             <div class="publish-info">
@@ -877,10 +897,12 @@ import org.apache.commons.lang3.String
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    页面跳转登录页面点击忘记密码跳转到 forget 页面，请求的方式为 get，再处理登录页面，使点击可以跳转到忘记密码页面
+                                    
+
+页面跳转登录页面点击忘记密码跳转到 forget 页面，请求的方式为 get，再处理登录页面，使点击可以跳转到忘记密码页面
 
 
-service 层service 层增加重置密码的业务，接收参数为邮箱和密码，先进行空值处理，验证邮箱：根据传入
+service 层service 层增加重置密码的业务，接收参数为邮箱和密码，先进行空值处理，验证邮箱：根据
                                 
                             </div>
                             <div class="publish-info">
@@ -932,11 +954,15 @@ service 层service 层增加重置密码的业务，接收参数为邮箱和密�
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    修改上传头像
+                                    
+
+
+
+修改上传头像
 跳转账户设置页面登录后点击首页的账号设置能跳转到setting 页面
 在 controller 包下新建一个UserController，处理与用户个人有关的设置
 增加访问路径和请求方式，返回账号设置页面
-对首页的账号设置按钮
+对首页的账号
                                 
                             </div>
                             <div class="publish-info">
@@ -997,11 +1023,16 @@ service 层service 层增加重置密码的业务，接收参数为邮箱和密�
                                     
 
 
+
+
+
+
+
 在Util 包下新建类CookieUtil 对浏览器发来的cookie 进行封装，从cookie中获取要查找的指定字符串
 
 在UserService中增加一个方法，根据ticket 查找用户的凭证
 
-难点：多线程将user 用户存储起
+难点：多线程将user 
                                 
                             </div>
                             <div class="publish-info">
@@ -1062,10 +1093,15 @@ service 层service 层增加重置密码的业务，接收参数为邮箱和密�
                             <div class="summary block-with-text">
                                 
                                     
+
+
+
+
+
 dao -&gt; service -&gt; controller
 包 entity 下新建实体类 LoginTicket 属性与表中的字段对应，并生成对应的set，get，tostring方法
 
-包 dao 下新建接口 LoginTi
+包 dao 下新建接口 Lo
                                 
                             </div>
                             <div class="publish-info">
@@ -1124,6 +1160,10 @@ dao -&gt; service -&gt; controller
                             <div class="summary block-with-text">
                                 
                                     
+
+
+
+
 导入 jar 包
 
 编写配置类（config 包下新建类 KaptchaConfig）
@@ -1132,7 +1172,7 @@ dao -&gt; service -&gt; controller
 DefaultKaptcha 是这个接口的实现类
 
 KaptchaConfig 配置类
-package com.n
+package c
                                 
                             </div>
                             <div class="publish-info">
@@ -1193,6 +1233,9 @@ package com.n
                                     
 
 
+
+
+
 cookie
 
 session 优点：数据存在服务端安全；缺点：有些内存上的压力
@@ -1200,8 +1243,7 @@ session 优点：数据存在服务端安全；缺点：有些内存上的压力
 
 用户变多，服务器分布式部署
 nginx：用于负载均衡
-问题：第一次访问服务器①，生成session，第二次访问服务器③，就要重新生成session
-
+问题：第一次访问服务器①，生成session，第二次访问服务器③，就要重新生成sessi
                                 
                             </div>
                             <div class="publish-info">

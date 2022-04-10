@@ -385,19 +385,10 @@
                 </a>
                 
                 
-                <a href="/categories/%E6%A1%86%E6%9E%B6/" title="框架: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #F5EEF8;">框架
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/categories/%E7%AE%97%E6%B3%95/" title="算法: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #D5F5E3;">算法
+                            style="background-color: #F5EEF8;">算法
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -406,8 +397,17 @@
                 <a href="/categories/%E7%89%9B%E5%AE%A2%E9%A1%B9%E7%9B%AE/" title="牛客项目: 33">
                     <span class="chip center-align waves-effect waves-light
                              chip-active "
-                            style="background-color: #E8F8F5;">牛客项目
+                            style="background-color: #D5F5E3;">牛客项目
                         <span class="tag-length">33</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/%E6%A1%86%E6%9E%B6/" title="框架: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #E8F8F5;">框架
+                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
@@ -445,10 +445,12 @@
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                页面跳转登录页面点击忘记密码跳转到 forget 页面，请求的方式为 get，再处理登录页面，使点击可以跳转到忘记密码页面
+                                
+
+页面跳转登录页面点击忘记密码跳转到 forget 页面，请求的方式为 get，再处理登录页面，使点击可以跳转到忘记密码页面
 
 
-service 层service 层增加重置密码的业务，接收参数为邮箱和密码，先进行空值处理，验证邮箱：根据传入
+service 层service 层增加重置密码的业务，接收参数为邮箱和密码，先进行空值处理，验证邮箱：根据
                             
                         </div>
                         <div class="publish-info">
@@ -485,11 +487,15 @@ service 层service 层增加重置密码的业务，接收参数为邮箱和密�
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                修改上传头像
+                                
+
+
+
+修改上传头像
 跳转账户设置页面登录后点击首页的账号设置能跳转到setting 页面
 在 controller 包下新建一个UserController，处理与用户个人有关的设置
 增加访问路径和请求方式，返回账号设置页面
-对首页的账号设置按钮
+对首页的账号
                             
                         </div>
                         <div class="publish-info">
@@ -537,11 +543,16 @@ service 层service 层增加重置密码的业务，接收参数为邮箱和密�
                                 
 
 
+
+
+
+
+
 在Util 包下新建类CookieUtil 对浏览器发来的cookie 进行封装，从cookie中获取要查找的指定字符串
 
 在UserService中增加一个方法，根据ticket 查找用户的凭证
 
-难点：多线程将user 用户存储起
+难点：多线程将user 
                             
                         </div>
                         <div class="publish-info">
@@ -591,10 +602,15 @@ service 层service 层增加重置密码的业务，接收参数为邮箱和密�
                         <div class="summary block-with-text">
                             
                                 
+
+
+
+
+
 dao -&gt; service -&gt; controller
 包 entity 下新建实体类 LoginTicket 属性与表中的字段对应，并生成对应的set，get，tostring方法
 
-包 dao 下新建接口 LoginTi
+包 dao 下新建接口 Lo
                             
                         </div>
                         <div class="publish-info">
@@ -640,6 +656,10 @@ dao -&gt; service -&gt; controller
                         <div class="summary block-with-text">
                             
                                 
+
+
+
+
 导入 jar 包
 
 编写配置类（config 包下新建类 KaptchaConfig）
@@ -648,7 +668,7 @@ dao -&gt; service -&gt; controller
 DefaultKaptcha 是这个接口的实现类
 
 KaptchaConfig 配置类
-package com.n
+package c
                             
                         </div>
                         <div class="publish-info">
@@ -696,6 +716,9 @@ package com.n
                                 
 
 
+
+
+
 cookie
 
 session 优点：数据存在服务端安全；缺点：有些内存上的压力
@@ -703,8 +726,7 @@ session 优点：数据存在服务端安全；缺点：有些内存上的压力
 
 用户变多，服务器分布式部署
 nginx：用于负载均衡
-问题：第一次访问服务器①，生成session，第二次访问服务器③，就要重新生成session
-
+问题：第一次访问服务器①，生成session，第二次访问服务器③，就要重新生成sessi
                             
                         </div>
                         <div class="publish-info">
@@ -754,9 +776,13 @@ nginx：用于负载均衡
                         <div class="summary block-with-text">
                             
                                 
+
+
+
+
 访问注册页面：点击顶部区域内的链接，打开注册页面在controller包下新建LoginControllerpackage com.nowcoder.community.controller;
 
-import org.springfram
+import org.spring
                             
                         </div>
                         <div class="publish-info">
@@ -795,13 +821,18 @@ import org.springfram
                         <div class="summary block-with-text">
                             
                                 
+
+
+
+
+
 开启SMTP服务
 导入jar包
 
 邮箱参数配置
 password 处填写授权码
 使用 JavaMailSender 发送邮件community 包下 新建包util ，建类MailClient
-JavaMailSender 是 Sprin
+JavaMailSender 是 
                             
                         </div>
                         <div class="publish-info">
@@ -840,10 +871,13 @@ JavaMailSender 是 Sprin
                         <div class="summary block-with-text">
                             
                                 
+
+
+
 DAO层实体类（DiscussPost.java）entity包
 DAO接口（DiscussPostMapper.java）写方法dao包package com.nowcoder.community.dao;
 
-import com.no
+import com
                             
                         </div>
                         <div class="publish-info">

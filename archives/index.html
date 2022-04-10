@@ -548,9 +548,12 @@
                             <div class="summary block-with-text">
                                 
                                     
+
+
+
 在 RedisKeyUtil 中补充 UV与DAU相关的 key 
 private static final String PREFIX_UV &#x3D; &quot;uv&quot;;
-private static final Str
+private static final 
                                 
                             </div>
                             <div class="publish-info">
@@ -612,10 +615,13 @@ private static final Str
                             <div class="summary block-with-text">
                                 
                                     
+
+
+
 导包,thymeleaf security 
 &lt;dependency>
    &lt;groupId>org.thymeleaf.extras&lt;/groupId>
-   &lt;artifactId>thymeleaf-ext
+   &lt;artifactId>thymeleaf-
                                 
                             </div>
                             <div class="publish-info">
@@ -675,10 +681,15 @@ private static final Str
                             <div class="summary block-with-text">
                                 
                                     
+
+
+
+
+
 1.导包
 &lt;dependency>
    &lt;groupId>org.springframework.boot&lt;/groupId>
-   &lt;artifactId>spring-boot-starter-securit
+   &lt;artifactId>spring-boot-starter-se
                                 
                             </div>
                             <div class="publish-info">
@@ -739,9 +750,14 @@ private static final Str
                                 
                                     
 
+
+
+
+
+
 Springsecuritydemo已引入security包，权限控制就生效
 先对 user 实体类做处理，用户具备哪些权限（type字段），这里一个用户具备一个权限，比较简单
-将来用 security 做授权时，需要的不是 type 
+将来用 security 做授权时，需要的不是 
                                 
                             </div>
                             <div class="publish-info">
@@ -791,11 +807,16 @@ Springsecuritydemo已引入security包，权限控制就生效
                             <div class="summary block-with-text">
                                 
                                     
+
+
+
+
+
 Service@Service
 public class ElasticsearchService &#123;
 
     @Autowired
-    private DiscussPostRepository discussRepos
+    private DiscussPostRepository discuss
                                 
                             </div>
                             <div class="publish-info">
@@ -855,6 +876,11 @@ public class ElasticsearchService &#123;
                             <div class="summary block-with-text">
                                 
                                     
+
+
+
+
+
 导包
 配置
 处理 netty 启动冲突问题
@@ -865,7 +891,7 @@ public class ElasticsearchService &#123;
 Test
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ContextConfiguration(classe
+@ContextConfiguration(c
                                 
                             </div>
                             <div class="publish-info">
@@ -922,12 +948,17 @@ Test
                                 
                                     
 
+
+
+
+
+
 索引：相当于数据库里的库 database
 类型：相当于数据库里的表 table
 文档：相当于表里的一行(条)数据，数据结构通常采用 json
 字段：json 中的每一个属性，相当于表中的一列
 
-最新：索引对应表，文档对应行，字段对应列
+最新：索引对应表，文档对应行，
                                 
                             </div>
                             <div class="publish-info">
@@ -982,11 +1013,14 @@ Test
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    拦截器
+                                    
+
+
+拦截器
 
 通知列表Dao层
 &lt;select id="selectLatestNotice" resultType="Message">
-    select &lt;include refid="selectFields">&lt;/
+    select &lt;include refid="selectFields">&l
                                 
                             </div>
                             <div class="publish-info">
@@ -1044,9 +1078,14 @@ Test
                             <div class="summary block-with-text">
                                 
                                     
+
+
+
+
+
 在评论、点赞、关注以后，需要发通知，将消息放到队列里，之后不用管继续处理别的事，然后由专门的消费者线程去处理，称这种并发的方式为异步的方式(同时进行)
 具体来说，消费者线程要从队列里取到消息，往message里存一条数据
-技术角度：用的 
+技术角
                                 
                             </div>
                             <div class="publish-info">
@@ -1107,6 +1146,11 @@ Test
                             <div class="summary block-with-text">
                                 
                                     
+
+
+
+
+
 导包，父pom中已经声明了对应的版本，可以去除版本号
 
 配置
@@ -1115,7 +1159,6 @@ Test
 测试
 开启 zookeeper 和 kafka
 @SpringBootTest
-@Con
                                 
                             </div>
                             <div class="publish-info">
@@ -1175,9 +1218,12 @@ Test
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    Dao层
+                                    
+
+
+Dao层
 对应方法的 sql 语句&lt;select id="selectCommentById" resultType="Comment">
-    select &lt;include refid="selectFields">&lt
+    select &lt;include refid="selectFields">
                                 
                             </div>
                             <div class="publish-info">

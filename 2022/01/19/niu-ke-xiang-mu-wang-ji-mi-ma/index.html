@@ -469,7 +469,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-29
+                    2022-04-10
                 </div>
                 
 
@@ -501,7 +501,9 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="页面跳转"><a href="#页面跳转" class="headerlink" title="页面跳转"></a>页面跳转</h2><p>登录页面点击忘记密码跳转到 forget 页面，请求的方式为 get，再处理登录页面，使点击可以跳转到忘记密码页面</p>
+                <meta name="referrer" content="no-referrer"/>
+
+<h2 id="页面跳转"><a href="#页面跳转" class="headerlink" title="页面跳转"></a>页面跳转</h2><p>登录页面点击忘记密码跳转到 forget 页面，请求的方式为 get，再处理登录页面，使点击可以跳转到忘记密码页面</p>
 <p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220119203608355.png" alt="image-20220119203608355"></p>
 <p><img src="https://gitee.com/qi-xuan-qiaodaima/images/raw/master/img/image-20220119205017503.png" alt="image-20220119205017503"></p>
 <h2 id="service-层"><a href="#service-层" class="headerlink" title="service 层"></a>service 层</h2><p>service 层增加重置密码的业务，接收参数为邮箱和密码，先进行空值处理，验证邮箱：根据传入的邮箱查找是否有对应的用户，将传入的用户输入的密码再加上对应的 salt 做md5 加密处理，更改数据库中原先的密码，将处理的信息装入 map 并返回。</p>
